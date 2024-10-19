@@ -1,12 +1,15 @@
 package raf.draft.dsw.gui.swing;
 
+import lombok.Getter;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
     //buduca polja za sve komponente view-a na glavnom prozoru
-
-    public MainFrame(){
+    @Getter
+    private static MainFrame instanca = new MainFrame();
+    private MainFrame(){
         initialize();
     }
 
