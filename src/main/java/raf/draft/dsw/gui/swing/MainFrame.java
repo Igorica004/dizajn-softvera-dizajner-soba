@@ -1,14 +1,17 @@
 package raf.draft.dsw.gui.swing;
 
+import lombok.Data;
 import lombok.Getter;
+import raf.draft.dsw.controller.ActionManager;
 
 import javax.swing.*;
 import java.awt.*;
-
+@Data
 public class MainFrame extends JFrame {
     //buduca polja za sve komponente view-a na glavnom prozoru
     @Getter
     private static MainFrame instanca = new MainFrame();
+    private ActionManager actionManager = new ActionManager();
     private MainFrame(){
         initialize();
     }
@@ -26,7 +29,7 @@ public class MainFrame extends JFrame {
         MyMenuBar menu = new MyMenuBar();
         setJMenuBar(menu);
 
-        MyToolBar toolBar = new MyToolBar();
+        MyToolBar toolBar = new MyToolBar(this);
         add(toolBar, BorderLayout.NORTH);
     }
 }
