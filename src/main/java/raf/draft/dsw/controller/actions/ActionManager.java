@@ -1,8 +1,6 @@
-package raf.draft.dsw.controller;
+package raf.draft.dsw.controller.actions;
 
 import lombok.Data;
-
-import java.awt.desktop.AboutEvent;
 
 @Data
 public class ActionManager {

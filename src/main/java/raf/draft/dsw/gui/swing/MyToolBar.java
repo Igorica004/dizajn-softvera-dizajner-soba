@@ -1,17 +1,17 @@
 package raf.draft.dsw.gui.swing;
 
-import raf.draft.dsw.controller.ExitAction;
-import raf.draft.dsw.controller.ONama;
+import raf.draft.dsw.controller.actions.ExitAction;
+import raf.draft.dsw.controller.actions.ONama;
 
 import javax.swing.*;
 
 public class MyToolBar extends JToolBar {
-    public MyToolBar(MainFrame mainFrame){
+    public MyToolBar(){
         super(HORIZONTAL);
         setFloatable(false);
 
-        ExitAction ea = mainFrame.getActionManager().getExitAction();
-        ONama on = mainFrame.getActionManager().getONama();
+        ExitAction ea = MainFrame.getInstanca().getActionManager().getExitAction();
+        ONama on = MainFrame.getInstanca().getActionManager().getONama();
         add(on);
         add(ea);
     }

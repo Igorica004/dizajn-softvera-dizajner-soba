@@ -2,7 +2,7 @@ package raf.draft.dsw.gui.swing;
 
 import lombok.Data;
 import lombok.Getter;
-import raf.draft.dsw.controller.ActionManager;
+import raf.draft.dsw.controller.actions.ActionManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,7 +29,7 @@ public class MainFrame extends JFrame {
         MyMenuBar menu = new MyMenuBar();
         setJMenuBar(menu);
 
-        MyToolBar toolBar = new MyToolBar(this);
+        MyToolBar toolBar = new MyToolBar();
         add(toolBar, BorderLayout.NORTH);
     }
 }
