@@ -3,11 +3,14 @@ package raf.draft.dsw.gui.swing;
 import lombok.Data;
 import lombok.Getter;
 import raf.draft.dsw.controller.actions.ActionManager;
+import raf.draft.dsw.controller.observer.ISubscriber;
+import raf.draft.dsw.controller.observer.Notification;
 
 import javax.swing.*;
 import java.awt.*;
 @Data
-public class MainFrame extends JFrame {
+//treba da bude sub
+public class MainFrame extends JFrame implements ISubscriber {
     //buduca polja za sve komponente view-a na glavnom prozoru
     @Getter
     private static MainFrame instanca = new MainFrame();
@@ -31,5 +34,11 @@ public class MainFrame extends JFrame {
 
         MyToolBar toolBar = new MyToolBar();
         add(toolBar, BorderLayout.NORTH);
+    }
+
+    @Override
+    public void update(Notification notification) {
+        ProzorGreska prozorGreska = new ProzorGreska(notification);
+        prozorGreska.setVisible(true);
     }
 }

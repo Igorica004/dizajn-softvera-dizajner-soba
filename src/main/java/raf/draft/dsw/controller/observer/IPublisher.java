@@ -6,6 +6,6 @@ import java.util.Observer;
 public interface IPublisher {
     void addSubscriber(ISubscriber sub);
     void removeSubscriber(ISubscriber sub);
-    void notifySubscribers(Object notification);
+    void notifySubscribers(Notification notification);
     ArrayList<ISubscriber> subscriberList = new ArrayList<>();
 }

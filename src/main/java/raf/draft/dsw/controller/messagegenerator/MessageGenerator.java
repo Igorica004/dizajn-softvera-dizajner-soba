@@ -2,6 +2,8 @@ package raf.draft.dsw.controller.messagegenerator;
 
 import raf.draft.dsw.controller.observer.IPublisher;
 import raf.draft.dsw.controller.observer.ISubscriber;
+import raf.draft.dsw.controller.observer.Notification;
+import raf.draft.dsw.model.messages.Message;
 
 public class MessageGenerator implements IPublisher {
     @Override
@@ -14,8 +16,11 @@ public class MessageGenerator implements IPublisher {
         subscriberList.remove(sub);
     }
 
+    public void generateMessage(Message m){
+        notifySubscribers(new Notification(m));
+    }
     @Override
-    public void notifySubscribers(Object notification) {
+    public void notifySubscribers(Notification notification) {
         for(ISubscriber subscriber : subscriberList) {
             subscriber.update(notification);
         }
