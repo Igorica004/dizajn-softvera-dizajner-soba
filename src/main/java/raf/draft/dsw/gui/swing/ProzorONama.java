@@ -42,7 +42,8 @@ public class ProzorONama extends JFrame {
         j2.add(slikaAnastasija,BorderLayout.NORTH);
         j2.add(slikaIgor,BorderLayout.SOUTH);
         j1.add(j2);
-        add(j1, BorderLayout.CENTER);
+        //add(j1, BorderLayout.CENTER);
+        setContentPane(j1);
         pack();
     }
 }

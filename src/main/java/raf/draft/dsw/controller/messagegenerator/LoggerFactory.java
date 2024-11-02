@@ -1,34 +1,26 @@
 package raf.draft.dsw.controller.messagegenerator;
 
-import raf.draft.dsw.controller.observer.Notification;
 import raf.draft.dsw.core.ApplicationFramework;
 import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.model.messages.Message;
+import raf.draft.dsw.model.messages.MessageType;
+
+import java.time.LocalDateTime;
 
 public class LoggerFactory {
-
     //jedna metoda, string
-    /*public Logger createConsoleLogger(){
-        ConsoleLogger consoleLogger = new ConsoleLogger();
-        ApplicationFramework.getInstanca().getMessageGenerator().addSubscriber(consoleLogger);
-        return consoleLogger;
-    }
-    public Logger createFileLogger(){
-        FileLogger fileLogger = new FileLogger();
-        ApplicationFramework.getInstanca().getMessageGenerator().addSubscriber(fileLogger);
-        return fileLogger;
-    }*/
-
-    public Logger napraviLogger(String tip)
-    {
-        if(tip.equals("File"))
-        {
-            return new FileLogger();
+    public Logger napraviLogger(String type) {
+        Logger logger = null;
+        if(type.equals("Console"))
+            logger = new ConsoleLogger();
+        else if(type.equals("File"))
+            logger = new FileLogger();
+        if(logger == null){
+            Message poruka = new Message(MessageType.GRESKA, LocalDateTime.now(),"LoggerFatory: Nepostojeci tim logger-a");
+            ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(poruka);
+            return null;
         }
-        else if(tip.equals("Console"))
-        {
-            return new ConsoleLogger();
-        }
-        else return null;
+        ApplicationFramework.getInstanca().getMessageGenerator().addSubscriber(logger);
+        return logger;
     }
 }

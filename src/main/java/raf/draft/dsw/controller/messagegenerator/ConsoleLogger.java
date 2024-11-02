@@ -13,7 +13,7 @@ public class ConsoleLogger implements Logger {
 
     @Override
     public void update(Notification notification) {
-
+        log(notification);
     }
 
 

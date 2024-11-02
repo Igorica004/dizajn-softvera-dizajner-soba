@@ -5,6 +5,7 @@ import lombok.Getter;
 import raf.draft.dsw.controller.actions.ActionManager;
 import raf.draft.dsw.controller.observer.ISubscriber;
 import raf.draft.dsw.controller.observer.Notification;
+import raf.draft.dsw.core.ApplicationFramework;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,14 +13,19 @@ import java.awt.*;
 //treba da bude sub
 public class MainFrame extends JFrame implements ISubscriber {
     //buduca polja za sve komponente view-a na glavnom prozoru
-    @Getter
-    private static MainFrame instanca = new MainFrame();
+    private static MainFrame instanca = null;
     private ActionManager actionManager = new ActionManager();
-    private MainFrame(){
-        initialize();
+    private MainFrame(){}
+    public static MainFrame getInstanca(){
+        if(instanca == null){
+            instanca = new MainFrame();
+            instanca.initialize();
+        }
+        return instanca;
     }
 
     private void initialize(){
+        ApplicationFramework.getInstanca().getMessageGenerator().addSubscriber(this);
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
         int screenHeight = screenSize.height;
