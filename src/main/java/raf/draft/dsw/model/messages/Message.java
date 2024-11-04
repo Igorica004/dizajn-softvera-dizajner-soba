@@ -14,6 +14,6 @@ public class Message {
 
     @Override
     public String toString() {
-        return String.format("[%s][%s][%s]",tipPoruke,timestamp,sadrzaj);
+        return String.format("[%s][%s] %s",tipPoruke,timestamp,sadrzaj);
     }
 }

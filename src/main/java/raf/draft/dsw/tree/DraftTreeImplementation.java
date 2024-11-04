@@ -1,0 +1,49 @@
+package raf.draft.dsw.tree;
+
+import raf.draft.dsw.model.nodes.DraftNode;
+import raf.draft.dsw.model.nodes.DraftNodeComposite;
+import raf.draft.dsw.model.structures.Project;
+import raf.draft.dsw.model.structures.ProjectExplorer;
+import raf.draft.dsw.tree.model.DraftTreeItem;
+import raf.draft.dsw.tree.view.DraftTreeView;
+
+import javax.swing.*;
+import javax.swing.tree.DefaultTreeModel;
+import java.util.Random;
+
+public class DraftTreeImplementation implements DraftTree {
+    private DraftTreeView treeView;
+    private DefaultTreeModel treeModel;
+
+    @Override
+    public DraftTreeView genrateTree(ProjectExplorer projectExplorer) {
+        DraftTreeItem root = new DraftTreeItem(projectExplorer);
+        treeModel = new DefaultTreeModel(root);
+        return treeView;
+    }
+
+    @Override
+    public void addChild(DraftTreeItem item) {
+        if (!(item.getDraftNode() instanceof DraftNodeComposite))
+            return;
+
+        DraftNode child = createChild(item.getDraftNode());
+        item.add(new DraftTreeItem(child));
+        ((DraftNodeComposite) item.getDraftNode()).addChild(child);
+        treeView.expandPath(treeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(treeView);
+
+    }
+
+    @Override
+    public DraftTreeItem getSelectedNode() {
+        return (DraftTreeItem) treeView.getLastSelectedPathComponent();
+    }
+
+    private DraftNode createChild(DraftNode parent) {
+        if (parent instanceof ProjectExplorer)
+            return new Project(String.format("Project %d",(new Random()).nextInt(100)), parent);
+        return null;
+    }
+
+}
