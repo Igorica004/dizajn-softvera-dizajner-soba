@@ -1,5 +1,7 @@
 package raf.draft.dsw.model.repository;
 
-public interface DraftRepository {
+import raf.draft.dsw.model.structures.ProjectExplorer;
 
+public interface DraftRepository {
+    ProjectExplorer getProjectExplorer();
 }

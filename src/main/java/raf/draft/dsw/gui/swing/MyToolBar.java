@@ -1,6 +1,7 @@
 package raf.draft.dsw.gui.swing;
 
 import raf.draft.dsw.controller.actions.ExitAction;
+import raf.draft.dsw.controller.actions.NewProjectAction;
 import raf.draft.dsw.controller.actions.ONama;
 
 import javax.swing.*;
@@ -12,7 +13,9 @@ public class MyToolBar extends JToolBar {
 
         ExitAction ea = MainFrame.getInstanca().getActionManager().getExitAction();
         ONama on = MainFrame.getInstanca().getActionManager().getONama();
+        NewProjectAction npa = MainFrame.getInstanca().getActionManager().getNewProjectAction();
         add(on);
         add(ea);
+        add(npa);
     }
 }

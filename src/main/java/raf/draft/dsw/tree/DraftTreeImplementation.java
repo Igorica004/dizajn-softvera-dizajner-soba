@@ -19,6 +19,7 @@ public class DraftTreeImplementation implements DraftTree {
     public DraftTreeView genrateTree(ProjectExplorer projectExplorer) {
         DraftTreeItem root = new DraftTreeItem(projectExplorer);
         treeModel = new DefaultTreeModel(root);
+        treeView = new DraftTreeView(treeModel);
         return treeView;
     }
 

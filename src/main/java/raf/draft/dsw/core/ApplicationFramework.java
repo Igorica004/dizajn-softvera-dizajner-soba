@@ -9,6 +9,8 @@ import raf.draft.dsw.controller.messagegenerator.FileLogger;
 import raf.draft.dsw.controller.messagegenerator.LoggerFactory;
 import raf.draft.dsw.controller.messagegenerator.MessageGenerator;
 import raf.draft.dsw.gui.swing.MainFrame;
+import raf.draft.dsw.model.repository.DraftExplorerImplementation;
+import raf.draft.dsw.model.repository.DraftRepository;
 
 import java.io.Console;
 import java.io.File;
@@ -30,12 +32,14 @@ public class ApplicationFramework {
     private MessageGenerator messageGenerator;
     private ConsoleLogger consoleLogger;
     private FileLogger fileLogger;
+    protected DraftRepository draftRepository;
 
     public void initialize(){
         loggerFactory = new LoggerFactory();
         messageGenerator = new MessageGenerator();
         consoleLogger = (ConsoleLogger)loggerFactory.napraviLogger("Console");
         fileLogger = (FileLogger)loggerFactory.napraviLogger("File");
+        draftRepository = new DraftExplorerImplementation();
 
         MainFrame mainFrame = MainFrame.getInstanca();
         mainFrame.setVisible(true);

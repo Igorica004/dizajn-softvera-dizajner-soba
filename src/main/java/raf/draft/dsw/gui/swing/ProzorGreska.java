@@ -11,6 +11,7 @@ public class ProzorGreska extends JFrame {
     public ProzorGreska(Notification notification){
         inicijalizuj(notification.getPoruka());
     }
+
     private void inicijalizuj(Message poruka){
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();

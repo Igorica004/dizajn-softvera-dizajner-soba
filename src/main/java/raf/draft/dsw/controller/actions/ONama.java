@@ -25,6 +25,6 @@ public class ONama extends AbstractRoomAction {
     public void actionPerformed(ActionEvent e) {
         ProzorONama prozorONama = new ProzorONama();
         prozorONama.setVisible(true);
-        ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(new Message(MessageType.OBAVESTENJE, LocalDateTime.now(), "tEsT"));
+        //ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(new Message(MessageType.OBAVESTENJE, LocalDateTime.now(), "tEsT"));
     }
 }
