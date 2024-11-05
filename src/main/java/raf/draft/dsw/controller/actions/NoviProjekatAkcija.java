@@ -8,9 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 
-public class NewProjectAction extends AbstractRoomAction{
+public class NoviProjekatAkcija extends AbstractRoomAction{
 
-    public NewProjectAction() {
+    public NoviProjekatAkcija() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
                 KeyEvent.VK_N, ActionEvent.CTRL_MASK));
         putValue(SMALL_ICON, loadIcon("/images/newproject.png"));
@@ -23,6 +23,6 @@ public class NewProjectAction extends AbstractRoomAction{
     @Override
     public void actionPerformed(ActionEvent e) {
         DraftTreeItem selected = (DraftTreeItem) MainFrame.getInstanca().getDraftTree().getSelectedNode();
-        MainFrame.getInstanca().getDraftTree().addChild(selected);
+
     }
 }

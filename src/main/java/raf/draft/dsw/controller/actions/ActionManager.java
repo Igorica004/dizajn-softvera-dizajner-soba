@@ -5,12 +5,12 @@ import lombok.Data;
 @Data
 public class ActionManager {
     private ExitAction exitAction;
-    private ONama oNama;
-    private NewProjectAction newProjectAction;
+    private ONamaAkcija oNamaAkcija;
+    private NoviProjekatAkcija noviProjekatAkcija;
     public ActionManager(){
         exitAction = new ExitAction();
-        oNama = new ONama();
-        newProjectAction = new NewProjectAction();
+        oNamaAkcija = new ONamaAkcija();
+        noviProjekatAkcija = new NoviProjekatAkcija();
     }
 
 }

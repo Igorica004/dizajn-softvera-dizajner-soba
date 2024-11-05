@@ -14,5 +14,6 @@ public abstract class DraftNodeComposite extends DraftNode {
 
     public DraftNodeComposite(String name, DraftNode parent) {
         super(name,parent);
+        children = new ArrayList<>();
     }
 }

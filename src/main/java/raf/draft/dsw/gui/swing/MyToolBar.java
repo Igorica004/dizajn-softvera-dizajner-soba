@@ -1,8 +1,8 @@
 package raf.draft.dsw.gui.swing;
 
 import raf.draft.dsw.controller.actions.ExitAction;
-import raf.draft.dsw.controller.actions.NewProjectAction;
-import raf.draft.dsw.controller.actions.ONama;
+import raf.draft.dsw.controller.actions.NoviProjekatAkcija;
+import raf.draft.dsw.controller.actions.ONamaAkcija;
 
 import javax.swing.*;
 
@@ -12,8 +12,8 @@ public class MyToolBar extends JToolBar {
         setFloatable(false);
 
         ExitAction ea = MainFrame.getInstanca().getActionManager().getExitAction();
-        ONama on = MainFrame.getInstanca().getActionManager().getONama();
-        NewProjectAction npa = MainFrame.getInstanca().getActionManager().getNewProjectAction();
+        ONamaAkcija on = MainFrame.getInstanca().getActionManager().getONamaAkcija();
+        NoviProjekatAkcija npa = MainFrame.getInstanca().getActionManager().getNoviProjekatAkcija();
         add(on);
         add(ea);
         add(npa);
