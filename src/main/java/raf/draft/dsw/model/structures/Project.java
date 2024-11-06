@@ -11,7 +11,7 @@ public class Project extends DraftNode {
     private String autor;
     private String putanja;
     public Project(String ime, DraftNode roditelj){super(ime,roditelj);}
-    public Project(String ime, DraftNode roditelj, String autor, String putanja) {
+    public Project(String autor, DraftNode roditelj, String ime, String putanja) {
         super(ime, roditelj);
         this.ime = ime;
         this.autor = autor;

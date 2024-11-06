@@ -39,11 +39,12 @@ public class ProzorNoviProjekatForma extends JFrame {
         panel2.add(fieldNaziv);
         panel2.add(labelPutanja);
         panel2.add(fieldPutanja);
-        dugmeNoviProzor.addActionListener(new NoviProjekatAkcija(fieldAutor.getText(), fieldNaziv.getText(), fieldPutanja.getText()));
+        dugmeNoviProzor.addActionListener(new NoviProjekatAkcija(fieldAutor.getText(), fieldNaziv.getText(), fieldPutanja.getText(), this));
         panel1.add(panel2);
         panel1.add(dugmeNoviProzor);
         setContentPane(panel1);
         pack();
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
 }

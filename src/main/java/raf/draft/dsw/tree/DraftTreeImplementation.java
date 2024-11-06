@@ -2,6 +2,7 @@ package raf.draft.dsw.tree;
 
 import raf.draft.dsw.model.nodes.DraftNode;
 import raf.draft.dsw.model.nodes.DraftNodeComposite;
+import raf.draft.dsw.model.repository.DraftExplorerImplementation;
 import raf.draft.dsw.model.structures.Project;
 import raf.draft.dsw.model.structures.ProjectExplorer;
 import raf.draft.dsw.tree.model.DraftTreeItem;
@@ -35,16 +36,20 @@ public class DraftTreeImplementation implements DraftTree {
         SwingUtilities.updateComponentTreeUI(treeView);
 
     }
+    public void addProject(DraftTreeItem child){
+        ((DraftTreeItem)treeModel.getRoot()).add(child);
+        treeView.expandPath(treeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(treeView);
+
+    }
 
     @Override
     public DraftTreeItem getSelectedNode() {
         return (DraftTreeItem) treeView.getLastSelectedPathComponent();
     }
 
-    private DraftNode createChild(DraftNode parent) {
-        if (parent instanceof ProjectExplorer)
-            return new Project(String.format("Project %d",(new Random()).nextInt(100)), parent);
-        return null;
+    private DraftNode createChild(DraftNode draftNode) {
+        return draftNode;
     }
 
 }
