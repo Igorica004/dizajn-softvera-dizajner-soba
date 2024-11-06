@@ -6,11 +6,11 @@ import lombok.Data;
 public class ActionManager {
     private ExitAction exitAction;
     private ONamaAkcija oNamaAkcija;
-    private NoviProjekatAkcija noviProjekatAkcija;
+    private NoviProjekatFormaAkcija noviProjekatFormaAkcija;
     public ActionManager(){
         exitAction = new ExitAction();
         oNamaAkcija = new ONamaAkcija();
-        noviProjekatAkcija = new NoviProjekatAkcija();
+        noviProjekatFormaAkcija = new NoviProjekatFormaAkcija();
     }
 
 }
