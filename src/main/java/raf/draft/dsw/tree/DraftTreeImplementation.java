@@ -1,5 +1,6 @@
 package raf.draft.dsw.tree;
 
+import lombok.Getter;
 import raf.draft.dsw.model.nodes.DraftNode;
 import raf.draft.dsw.model.nodes.DraftNodeComposite;
 import raf.draft.dsw.model.repository.DraftExplorerImplementation;
@@ -12,6 +13,7 @@ import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
 import java.util.Random;
 
+@Getter
 public class DraftTreeImplementation implements DraftTree {
     private DraftTreeView treeView;
     private DefaultTreeModel treeModel;
