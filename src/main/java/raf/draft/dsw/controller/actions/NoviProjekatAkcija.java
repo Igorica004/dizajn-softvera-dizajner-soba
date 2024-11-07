@@ -24,6 +24,7 @@ public class NoviProjekatAkcija implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        //premestiti u drafttreeimplementation metodu addchild/createchild, ovde samo pozvati to
         DraftTreeItem draftTreeItem = new DraftTreeItem(new Project(autor.getText(),ApplicationFramework.getInstanca().getDraftRepository().getProjectExplorer(),putanja.getText(), naziv.getText()));
         ((DraftTreeImplementation)MainFrame.getInstanca().getDraftTree()).addProject(draftTreeItem);
         DraftTreeView treeView = ((DraftTreeImplementation) MainFrame.getInstanca().getDraftTree()).getTreeView();

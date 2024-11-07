@@ -28,6 +28,7 @@ public class DraftTreeImplementation implements DraftTree {
 
     @Override
     public void addChild(DraftTreeItem item) {
+        //implementirati da na osnovu parenta on kreira odgovarajuci tip objekta (explorer->project->building->room)
         if (!(item.getDraftNode() instanceof DraftNodeComposite))
             return;
 
@@ -51,6 +52,7 @@ public class DraftTreeImplementation implements DraftTree {
     }
 
     private DraftNode createChild(DraftNode draftNode) {
+        //ovde staviti fabriku
         return draftNode;
     }
 
