@@ -2,15 +2,10 @@ package raf.draft.dsw.tree;
 
 import lombok.Getter;
 import raf.draft.dsw.controller.actions.NoviProjekatAkcija;
-import raf.draft.dsw.controller.actions.NoviProjekatFormaAkcija;
-import raf.draft.dsw.gui.swing.ProzorNoviProjekatForma;
 import raf.draft.dsw.model.factory.Factory;
-import raf.draft.dsw.model.factory.FactoryProject;
 import raf.draft.dsw.model.factory.FactoryUtils;
 import raf.draft.dsw.model.nodes.DraftNode;
 import raf.draft.dsw.model.nodes.DraftNodeComposite;
-import raf.draft.dsw.model.repository.DraftExplorerImplementation;
-import raf.draft.dsw.model.structures.Building;
 import raf.draft.dsw.model.structures.Project;
 import raf.draft.dsw.model.structures.ProjectExplorer;
 import raf.draft.dsw.tree.model.DraftTreeItem;
@@ -18,7 +13,6 @@ import raf.draft.dsw.tree.view.DraftTreeView;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
-import java.util.Random;
 
 @Getter
 public class DraftTreeImplementation implements DraftTree {
