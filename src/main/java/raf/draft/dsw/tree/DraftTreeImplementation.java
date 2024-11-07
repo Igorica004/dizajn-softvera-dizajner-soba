@@ -1,9 +1,16 @@
 package raf.draft.dsw.tree;
 
 import lombok.Getter;
+import raf.draft.dsw.controller.actions.NoviProjekatAkcija;
+import raf.draft.dsw.controller.actions.NoviProjekatFormaAkcija;
+import raf.draft.dsw.gui.swing.ProzorNoviProjekatForma;
+import raf.draft.dsw.model.factory.Factory;
+import raf.draft.dsw.model.factory.FactoryProject;
+import raf.draft.dsw.model.factory.FactoryUtils;
 import raf.draft.dsw.model.nodes.DraftNode;
 import raf.draft.dsw.model.nodes.DraftNodeComposite;
 import raf.draft.dsw.model.repository.DraftExplorerImplementation;
+import raf.draft.dsw.model.structures.Building;
 import raf.draft.dsw.model.structures.Project;
 import raf.draft.dsw.model.structures.ProjectExplorer;
 import raf.draft.dsw.tree.model.DraftTreeItem;
@@ -27,16 +34,21 @@ public class DraftTreeImplementation implements DraftTree {
     }
 
     @Override
-    public void addChild(DraftTreeItem item) {
-        //implementirati da na osnovu parenta on kreira odgovarajuci tip objekta (explorer->project->building->room)
-        if (!(item.getDraftNode() instanceof DraftNodeComposite))
-            return;
-
-        DraftNode child = createChild(item.getDraftNode());
-        item.add(new DraftTreeItem(child));
-        ((DraftNodeComposite) item.getDraftNode()).addChild(child);
+    public void addChild() {
+        DraftTreeItem selectedTreeItem = getSelectedNode();
+        DraftNodeComposite selectedNode = (DraftNodeComposite) selectedTreeItem.getDraftNode();
+        DraftNode newNode = null;
+        Factory factory = FactoryUtils.getFactory(selectedNode);
+        if(selectedNode instanceof ProjectExplorer){
+            NoviProjekatAkcija noviProjekatAkcija = new NoviProjekatAkcija();
+            Project project = noviProjekatAkcija.getProject();
+            newNode = factory.createNode(null,project.getIme(),project.getAutor(),project.getPutanja());
+        }
+        selectedNode.addChild(newNode);
+        selectedTreeItem.add(new DraftTreeItem(newNode));
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
+
 
     }
     public void addProject(DraftTreeItem child){

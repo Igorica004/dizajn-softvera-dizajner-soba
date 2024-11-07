@@ -3,6 +3,7 @@ package raf.draft.dsw.controller.actions;
 import com.sun.tools.javac.Main;
 import raf.draft.dsw.core.ApplicationFramework;
 import raf.draft.dsw.gui.swing.MainFrame;
+import raf.draft.dsw.gui.swing.ProzorNoviProjekatForma;
 import raf.draft.dsw.model.structures.Project;
 import raf.draft.dsw.tree.DraftTreeImplementation;
 import raf.draft.dsw.tree.model.DraftTreeItem;
@@ -16,12 +17,14 @@ public class NoviProjekatAkcija implements ActionListener {
     private JTextField autor,naziv,putanja;
     private JFrame jFrame;
 
-    public NoviProjekatAkcija(JTextField autor, JTextField naziv, JTextField putanja, JFrame jFrame) {
-        this.autor = autor;
-        this.naziv = naziv;
-        this.putanja = putanja;
-        this.jFrame = jFrame;
-    }
+    //public NoviProjekatAkcija(JTextField autor, JTextField naziv, JTextField putanja, JFrame jFrame) {
+    //    this.autor = autor;
+    //    this.naziv = naziv;
+    //    this.putanja = putanja;
+    //    this.jFrame = jFrame;
+    //}
+
+    public NoviProjekatAkcija(){}
     @Override
     public void actionPerformed(ActionEvent e) {
         //premestiti u drafttreeimplementation metodu addchild/createchild, ovde samo pozvati to
@@ -31,5 +34,11 @@ public class NoviProjekatAkcija implements ActionListener {
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
         jFrame.dispose();
+    }
+
+    public Project getProject(){
+        ProzorNoviProjekatForma prozorNoviProjekatForma = new ProzorNoviProjekatForma();
+        prozorNoviProjekatForma.setVisible(true);
+        return prozorNoviProjekatForma.getProject();
     }
 }

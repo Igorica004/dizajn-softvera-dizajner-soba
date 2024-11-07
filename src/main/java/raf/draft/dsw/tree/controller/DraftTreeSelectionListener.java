@@ -11,8 +11,8 @@ public class DraftTreeSelectionListener implements TreeSelectionListener {
     @Override
     public void valueChanged(TreeSelectionEvent e) {
         TreePath path = e.getPath();
-        DraftTreeItem treeItemSelected = (DraftTreeItem) path.getLastPathComponent();
-
+        //DraftTreeItem treeItemSelected = (DraftTreeItem) path.getLastPathComponent();
+        DraftTreeItem treeItemSelected = MainFrame.getInstanca().getDraftTree().getSelectedNode();
         System.out.println("Selektovan cvor:"+ treeItemSelected.getDraftNode().getIme());
         System.out.println("getPath: "+e.getPath());
 
