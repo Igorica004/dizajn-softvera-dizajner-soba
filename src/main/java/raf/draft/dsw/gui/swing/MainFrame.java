@@ -45,6 +45,11 @@ public class MainFrame extends JFrame implements ISubscriber {
         MyToolBar toolBar = new MyToolBar();
         add(toolBar, BorderLayout.NORTH);
 
+        JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
+        tabbedPane.addTab("hehe",new JPanel());
+        tabbedPane.addTab("hehehe",new JPanel());
+
+
         JTree projectExplorer = draftTree.genrateTree(ApplicationFramework.getInstanca().getDraftRepository().getProjectExplorer());
 
         JPanel desktop = new JPanel();
@@ -53,8 +58,10 @@ public class MainFrame extends JFrame implements ISubscriber {
         scroll.setMinimumSize(new Dimension(200,150));
         JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scroll,desktop);
         getContentPane().add(split,BorderLayout.CENTER);
+
         split.setDividerLocation(250);
         split.setOneTouchExpandable(true);
+
     }
 
     @Override
