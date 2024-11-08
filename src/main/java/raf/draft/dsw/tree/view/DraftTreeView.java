@@ -1,5 +1,6 @@
 package raf.draft.dsw.tree.view;
 
+import raf.draft.dsw.gui.swing.TabbedPane;
 import raf.draft.dsw.tree.controller.DraftTreeCellEditor;
 import raf.draft.dsw.tree.controller.DraftTreeSelectionListener;
 
@@ -11,6 +12,7 @@ public class DraftTreeView extends JTree {
         setModel(defaultTreeModel);
         DraftTreeCellRender draftTreeCellRender = new DraftTreeCellRender();
         addTreeSelectionListener(new DraftTreeSelectionListener());
+        addTreeSelectionListener(new TabbedPane());
         setCellEditor(new DraftTreeCellEditor(this,draftTreeCellRender));
         setCellRenderer(draftTreeCellRender);
         setEditable(true);

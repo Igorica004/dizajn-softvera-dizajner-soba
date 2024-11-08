@@ -10,6 +10,7 @@ import raf.draft.dsw.tree.DraftTree;
 import raf.draft.dsw.tree.DraftTreeImplementation;
 
 import javax.swing.*;
+import javax.swing.event.TreeSelectionListener;
 import java.awt.*;
 @Data
 //treba da bude sub
@@ -18,7 +19,7 @@ public class MainFrame extends JFrame implements ISubscriber {
     private static MainFrame instanca = null;
     private ActionManager actionManager = new ActionManager();
     private DraftTree draftTree = new DraftTreeImplementation();
-
+    private JTabbedPane tabbedPane;
     private MainFrame(){}
     public static MainFrame getInstanca(){
         if(instanca == null){
@@ -45,18 +46,19 @@ public class MainFrame extends JFrame implements ISubscriber {
         MyToolBar toolBar = new MyToolBar();
         add(toolBar, BorderLayout.NORTH);
 
-        JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
-        tabbedPane.addTab("hehe",new JPanel());
-        tabbedPane.addTab("hehehe",new JPanel());
+
+        tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM, JTabbedPane.SCROLL_TAB_LAYOUT);
+        tabbedPane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        //tabbedPane.addTab("h", new JLabel("aaaaaaaaa"));
 
 
         JTree projectExplorer = draftTree.genrateTree(ApplicationFramework.getInstanca().getDraftRepository().getProjectExplorer());
 
-        JPanel desktop = new JPanel();
-
+        //JPanel desktop = new JPanel();
         JScrollPane scroll=new JScrollPane(projectExplorer);
         scroll.setMinimumSize(new Dimension(200,150));
-        JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scroll,desktop);
+        JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scroll,tabbedPane);
+
         getContentPane().add(split,BorderLayout.CENTER);
 
         split.setDividerLocation(250);
