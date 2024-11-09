@@ -4,6 +4,9 @@ import lombok.Getter;
 import raf.draft.dsw.controller.actions.NoviBuildingRoomAkcija;
 import raf.draft.dsw.controller.actions.NoviProjekatAkcija;
 import raf.draft.dsw.controller.actions.NoviRoomAkcija;
+import raf.draft.dsw.controller.observer.IPublisher;
+import raf.draft.dsw.controller.observer.ISubscriber;
+import raf.draft.dsw.controller.observer.Notification;
 import raf.draft.dsw.core.ApplicationFramework;
 import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.model.factory.Factory;
@@ -26,7 +29,7 @@ import javax.swing.tree.DefaultTreeModel;
 import java.time.LocalDateTime;
 
 @Getter
-public class DraftTreeImplementation implements DraftTree {
+public class DraftTreeImplementation implements DraftTree, IPublisher {
     private DraftTreeView treeView;
     private DefaultTreeModel treeModel;
 
@@ -50,30 +53,23 @@ public class DraftTreeImplementation implements DraftTree {
 
         DraftNodeComposite selectedNode = (DraftNodeComposite) selectedTreeItem.getDraftNode();
         DraftNode newNode = null;
-        Factory factory;
 
         if(selectedNode instanceof ProjectExplorer){
-            factory = new FactoryProject();
             NoviProjekatAkcija noviProjekatAkcija = MainFrame.getInstanca().getActionManager().getNoviProjekatAkcija();
             Project project = noviProjekatAkcija.getProject();
-            newNode = factory.createNode(null,project.getIme(),project.getAutor(),project.getPutanja());
+            newNode = createChild(project);
         }
 
         else if(selectedNode instanceof Project){
             NoviBuildingRoomAkcija noviBuildingRoomAkcija = MainFrame.getInstanca().getActionManager().getNoviBuildingRoomAkcija();
             DraftNode tempDraftTree = noviBuildingRoomAkcija.getDraftNode();
-            if(tempDraftTree instanceof Building)
-                factory = new FactoryBuilding();
-            else
-                factory = new FactoryRoom();
-            newNode = factory.createNode(selectedNode,tempDraftTree.getIme(),"","");
+            newNode = createChild(tempDraftTree);
         }
 
         else{
             NoviRoomAkcija noviRoomAkcija = MainFrame.getInstanca().getActionManager().getNoviRoomAkcija();
             Room room = noviRoomAkcija.getRoom();
-            factory = new FactoryRoom();
-            newNode = new Room(room.getIme(),selectedNode);
+            newNode = createChild(room);
         }
 
         selectedNode.addChild(newNode);
@@ -84,12 +80,6 @@ public class DraftTreeImplementation implements DraftTree {
 
 
     }
-    public void addProject(DraftTreeItem child){
-        ((DraftTreeItem)treeModel.getRoot()).add(child);
-        treeView.expandPath(treeView.getSelectionPath());
-        SwingUtilities.updateComponentTreeUI(treeView);
-
-    }
 
     @Override
     public DraftTreeItem getSelectedNode() {
@@ -97,8 +87,32 @@ public class DraftTreeImplementation implements DraftTree {
     }
 
     private DraftNode createChild(DraftNode draftNode) {
-        //ovde staviti fabriku
-        return draftNode;
+        Factory factory;
+        if(draftNode instanceof Project){
+            Project project = (Project) draftNode;
+            factory = new FactoryProject();
+            return factory.createNode(getSelectedNode().getDraftNode(),project.getIme(),project.getAutor(),project.getPutanja());
+        }
+        if(draftNode instanceof Building)
+            factory = new FactoryBuilding();
+        else
+            factory = new FactoryRoom();
+        return factory.createNode(getSelectedNode().getDraftNode(),draftNode.getIme(),"","");
     }
 
+    @Override
+    public void addSubscriber(ISubscriber sub) {
+        subscriberList.add(sub);
+    }
+
+    @Override
+    public void removeSubscriber(ISubscriber sub) {
+        subscriberList.remove(sub);
+    }
+    @Override
+    public void notifySubscribers(Notification notification) {
+        for(ISubscriber subscriber : subscriberList) {
+            subscriber.update(notification);
+        }
+    }
 }

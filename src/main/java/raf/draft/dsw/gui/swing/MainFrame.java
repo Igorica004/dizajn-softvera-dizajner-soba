@@ -1,16 +1,17 @@
 package raf.draft.dsw.gui.swing;
 
 import lombok.Data;
-import lombok.Getter;
 import raf.draft.dsw.controller.actions.ActionManager;
 import raf.draft.dsw.controller.observer.ISubscriber;
 import raf.draft.dsw.controller.observer.Notification;
 import raf.draft.dsw.core.ApplicationFramework;
+import raf.draft.dsw.tabbedpane.TabbedPaneImplementation;
+import raf.draft.dsw.tabbedpane.TabbedPaneInterface;
+import raf.draft.dsw.tabbedpane.view.TabbedPaneView;
 import raf.draft.dsw.tree.DraftTree;
 import raf.draft.dsw.tree.DraftTreeImplementation;
 
 import javax.swing.*;
-import javax.swing.event.TreeSelectionListener;
 import java.awt.*;
 @Data
 //treba da bude sub
@@ -19,7 +20,7 @@ public class MainFrame extends JFrame implements ISubscriber {
     private static MainFrame instanca = null;
     private ActionManager actionManager = new ActionManager();
     private DraftTree draftTree = new DraftTreeImplementation();
-    private JTabbedPane tabbedPane;
+    private TabbedPaneInterface tabbedPane = new TabbedPaneImplementation();
     private MainFrame(){}
     public static MainFrame getInstanca(){
         if(instanca == null){
@@ -30,6 +31,7 @@ public class MainFrame extends JFrame implements ISubscriber {
     }
 
     private void initialize(){
+        ((DraftTreeImplementation)draftTree).addSubscriber((ISubscriber)tabbedPane);
         ApplicationFramework.getInstanca().getMessageGenerator().addSubscriber(this);
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
@@ -45,10 +47,6 @@ public class MainFrame extends JFrame implements ISubscriber {
 
         MyToolBar toolBar = new MyToolBar();
         add(toolBar, BorderLayout.NORTH);
-
-
-        tabbedPane = new JTabbedPane(JTabbedPane.BOTTOM, JTabbedPane.SCROLL_TAB_LAYOUT);
-        tabbedPane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         //tabbedPane.addTab("h", new JLabel("aaaaaaaaa"));
 
 
@@ -57,7 +55,7 @@ public class MainFrame extends JFrame implements ISubscriber {
         //JPanel desktop = new JPanel();
         JScrollPane scroll=new JScrollPane(projectExplorer);
         scroll.setMinimumSize(new Dimension(200,150));
-        JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scroll,tabbedPane);
+        JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scroll, ((TabbedPaneImplementation)tabbedPane).getTabbedPaneView());
 
         getContentPane().add(split,BorderLayout.CENTER);
 
