@@ -90,6 +90,23 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
     }
 
     @Override
+    public void removeChild() {
+        DraftTreeItem selectedTreeItem = getSelectedNode();
+        if(selectedTreeItem==null){
+            Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"Nema selectovan cvor za brisanje!");
+            ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
+            return;
+        }
+        else if(selectedTreeItem.getDraftNode() instanceof ProjectExplorer){
+            Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"Ne moze da se obrise root!");
+            ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
+        }
+        selectedTreeItem.removeFromParent();
+        SwingUtilities.updateComponentTreeUI(treeView);
+    }
+
+
+    @Override
     public DraftTreeItem getSelectedNode() {
         return (DraftTreeItem) treeView.getLastSelectedPathComponent();
     }

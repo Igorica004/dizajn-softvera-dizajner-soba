@@ -1,6 +1,7 @@
 package raf.draft.dsw.tabbedpane.view;
 
 import lombok.Data;
+import raf.draft.dsw.model.structures.Project;
 import raf.draft.dsw.utils.ColorUtils;
 
 import javax.swing.*;
@@ -16,8 +17,17 @@ public class TabbedPaneView extends JTabbedPane {
     public void initialize(ArrayList<TabPanel> tabovi){
         if(tabovi == null) return;
         removeAll();
-        for(TabPanel child : tabovi)
-            addTab(child.getRoom().getNaziv(),child);
+        String label;
+        for(TabPanel child : tabovi) {
+            if (child.getRoom().getRoditelj() instanceof Project) {
+                label = child.getRoom().getRoditelj().getNaziv() + "\\";
+            }
+            else{
+                label = child.getRoom().getRoditelj().getRoditelj().getNaziv() + "\\" + child.getRoom().getRoditelj().getNaziv();
+            }
+            //addTab(child.getRoom().getIme(),child);
+            addTab(child.getRoom().getNaziv(), new JLabel(label));
+        }
         for(int i=0; i<getTabCount(); i++){
             setBackgroundAt(i,((TabPanel)getComponentAt(i)).getRoom().getColor());
             setForegroundAt(i, ColorUtils.getContrastingTextColor(((TabPanel) getComponentAt(i)).getRoom().getColor()));

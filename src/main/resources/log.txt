@@ -4,3 +4,10 @@
 [GRESKA][2024-11-09T15:41:29.342264144] Soba ne moze da ima dete
 [GRESKA][2024-11-09T16:41:25.554842282] Soba ne moze da ima dete
 [GRESKA][2024-11-10T14:58:17.311479078] nmp
+[GRESKA][2024-11-10T15:17:25.539701600] nmp
+[GRESKA][2024-11-10T15:25:46.777808400] nmp
+[GRESKA][2024-11-10T15:56:25.764716200] Soba ne moze da ima dete
+[GRESKA][2024-11-10T16:26:21.988697300] Ne moze da se obrise root!
+[GRESKA][2024-11-10T16:29:16.571169] Nema selectovan cvor za brisanje!
+[GRESKA][2024-11-10T16:29:34.983802] Nema selectovan cvor za brisanje!
+[GRESKA][2024-11-10T16:29:40.549609100] Ne moze da se obrise root!
