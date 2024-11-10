@@ -11,8 +11,10 @@ public class DraftTreeView extends JTree {
     public DraftTreeView(DefaultTreeModel defaultTreeModel) {
         setModel(defaultTreeModel);
         DraftTreeCellRender draftTreeCellRender = new DraftTreeCellRender();
+
         addTreeSelectionListener(new DraftTreeSelectionListener());
         addMouseListener(new DraftTreeMouseListener());
+
         setCellEditor(new DraftTreeCellEditor(this,draftTreeCellRender));
         setCellRenderer(draftTreeCellRender);
         setEditable(true);

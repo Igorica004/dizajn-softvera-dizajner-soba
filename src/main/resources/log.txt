@@ -12,3 +12,6 @@
 [GRESKA][2024-11-10T16:29:34.983802] Nema selectovan cvor za brisanje!
 [GRESKA][2024-11-10T16:29:40.549609100] Ne moze da se obrise root!
 [GRESKA][2024-11-10T16:43:15.671517356] Soba ne moze da ima dete
+[GRESKA][2024-11-10T23:19:32.629551500] Greska pri imenovanju!
+[GRESKA][2024-11-10T23:20:41.401447] Nije selektovana grana!
+[GRESKA][2024-11-10T23:26:29.380933500] Greska pri imenovanju!

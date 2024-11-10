@@ -47,7 +47,11 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
     @Override
     public void addChild() {
         DraftTreeItem selectedTreeItem = getSelectedNode();
-
+        if (selectedTreeItem == null) {
+            Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"Nije selektovana grana!");
+            ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
+            return;
+        }
         if(!(selectedTreeItem.getDraftNode() instanceof DraftNodeComposite)){
             Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"Soba ne moze da ima dete");
             ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
@@ -60,6 +64,11 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         if(selectedNode instanceof ProjectExplorer){
             NoviProjekatAkcija noviProjekatAkcija = MainFrame.getInstanca().getActionManager().getNoviProjekatAkcija();
             Project project = noviProjekatAkcija.getProject();
+            if(selectedNode.getChildren().contains(project)){
+                Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"Greska pri imenovanju!");
+                ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
+                return;
+            };
             newNode = createChild(project);
             newNode.setColor(ColorUtils.randomColor());
         }
@@ -67,6 +76,11 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         else if(selectedNode instanceof Project){
             NoviBuildingRoomAkcija noviBuildingRoomAkcija = MainFrame.getInstanca().getActionManager().getNoviBuildingRoomAkcija();
             DraftNode tempDraftTree = noviBuildingRoomAkcija.getDraftNode();
+            if(selectedNode.getChildren().contains(tempDraftTree)){
+                Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"Greska pri imenovanju!");
+                ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
+                return;
+            }
             newNode = createChild(tempDraftTree);
             if(tempDraftTree instanceof Building)
                 newNode.setColor(ColorUtils.randomColor());
@@ -75,8 +89,14 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         }
 
         else{ //Building
+
             NoviRoomAkcija noviRoomAkcija = MainFrame.getInstanca().getActionManager().getNoviRoomAkcija();
             Room room = noviRoomAkcija.getRoom();
+            if(selectedNode.getChildren().contains(room)){
+                Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"Greska pri imenovanju!");
+                ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
+                return;
+            }
             newNode = createChild(room);
             newNode.setColor(newNode.getRoditelj().getColor());
         }
