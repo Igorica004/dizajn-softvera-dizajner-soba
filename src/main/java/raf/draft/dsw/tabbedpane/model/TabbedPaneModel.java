@@ -25,9 +25,10 @@ public class TabbedPaneModel {
 
     public void update(){
         DraftNode selektovan = MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode();
+        ArrayList<DraftNode> stariTabovi = new ArrayList<>();
         ArrayList<DraftNode> tabovi = new ArrayList<>();
         if(sviTabovi.containsKey(selektovan))
-            tabovi = sviTabovi.get(selektovan);
+            stariTabovi = sviTabovi.get(selektovan);
         HashMap<Building, Color> boje = new HashMap<>();
         for(DraftNode building: ((Project) selektovan).getChildren()){
             if(building instanceof Building build){
@@ -39,13 +40,13 @@ public class TabbedPaneModel {
         for (DraftNode child : ((Project) selektovan).getChildren()) {
             if(child instanceof Building build)
                 for(DraftNode room:build.getChildren()){
-                    if(!tabovi.contains(room)){
+                    if(!stariTabovi.contains(room)){
                         room.setColor(boje.get(build));
                     }
                     tabovi.add(room);
                 }
             else{
-                if(!tabovi.contains(child)) {
+                if(!stariTabovi.contains(child)) {
                     child.setColor(getBojaProjekta());
                 }
                 tabovi.add(child);
