@@ -14,6 +14,7 @@ public class TabbedPaneView extends JTabbedPane {
         setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
     public void initialize(ArrayList<TabPanel> tabovi){
+        if(tabovi == null) return;
         removeAll();
         for(TabPanel child : tabovi)
             addTab(child.getRoom().getNaziv(),child);

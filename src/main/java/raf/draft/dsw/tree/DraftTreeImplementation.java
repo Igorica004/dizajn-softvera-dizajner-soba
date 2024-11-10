@@ -23,6 +23,7 @@ import raf.draft.dsw.model.structures.ProjectExplorer;
 import raf.draft.dsw.model.structures.Room;
 import raf.draft.dsw.tree.model.DraftTreeItem;
 import raf.draft.dsw.tree.view.DraftTreeView;
+import raf.draft.dsw.utils.ColorUtils;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
@@ -60,18 +61,24 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
             NoviProjekatAkcija noviProjekatAkcija = MainFrame.getInstanca().getActionManager().getNoviProjekatAkcija();
             Project project = noviProjekatAkcija.getProject();
             newNode = createChild(project);
+            newNode.setColor(ColorUtils.randomColor());
         }
 
         else if(selectedNode instanceof Project){
             NoviBuildingRoomAkcija noviBuildingRoomAkcija = MainFrame.getInstanca().getActionManager().getNoviBuildingRoomAkcija();
             DraftNode tempDraftTree = noviBuildingRoomAkcija.getDraftNode();
             newNode = createChild(tempDraftTree);
+            if(tempDraftTree instanceof Building)
+                newNode.setColor(ColorUtils.randomColor());
+            else
+                newNode.setColor(newNode.getRoditelj().getColor());
         }
 
-        else{
+        else{ //Building
             NoviRoomAkcija noviRoomAkcija = MainFrame.getInstanca().getActionManager().getNoviRoomAkcija();
             Room room = noviRoomAkcija.getRoom();
             newNode = createChild(room);
+            newNode.setColor(newNode.getRoditelj().getColor());
         }
 
         selectedNode.addChild(newNode);
@@ -79,7 +86,7 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
 
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
-
+        notifySubscribers(null);
     }
 
     @Override
@@ -98,7 +105,9 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
             factory = new FactoryBuilding();
         else
             factory = new FactoryRoom();
-        return factory.createNode(getSelectedNode().getDraftNode(),draftNode.getNaziv(),"","");
+        DraftNode newNode = factory.createNode(getSelectedNode().getDraftNode(),draftNode.getNaziv(),"","");
+        newNode.setRoditelj(getSelectedNode().getDraftNode());
+        return newNode;
     }
 
     @Override

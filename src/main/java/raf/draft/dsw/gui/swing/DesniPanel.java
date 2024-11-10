@@ -3,6 +3,8 @@ package raf.draft.dsw.gui.swing;
 import lombok.Data;
 import raf.draft.dsw.controller.observer.ISubscriber;
 import raf.draft.dsw.controller.observer.Notification;
+import raf.draft.dsw.model.nodes.DraftNode;
+import raf.draft.dsw.model.structures.Building;
 import raf.draft.dsw.model.structures.Project;
 import raf.draft.dsw.tabbedpane.TabbedPaneImplementation;
 import raf.draft.dsw.tabbedpane.TabbedPaneInterface;
@@ -34,8 +36,12 @@ public class DesniPanel extends JPanel implements ISubscriber {
     public void update(Notification notification) {
         tabbedPane.updateTabbedPane();
         DraftTreeImplementation draftTreeImplementation = (DraftTreeImplementation) MainFrame.getInstanca().getDraftTree();
-        Project project = (Project) draftTreeImplementation.getSelectedNode().getDraftNode();
-        naziv.setText(project.getNaziv());
-        autor.setText(project.getAutor());
+        DraftNode selektovan = draftTreeImplementation.getSelectedNode().getDraftNode();
+        Project projekat = null;
+        if(selektovan instanceof Project project) {projekat = project;}
+        else if(selektovan instanceof Building building) {projekat = (Project)building.getRoditelj();}
+        if(projekat == null) {return;}
+        naziv.setText(projekat.getNaziv());
+        autor.setText(projekat.getAutor());
     }
 }

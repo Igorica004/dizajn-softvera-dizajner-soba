@@ -15,28 +15,24 @@ import java.util.HashMap;
 @Data
 public class TabbedPaneModel {
     private HashMap<DraftNode,ArrayList<TabPanel>> sviTabovi = new HashMap<>();
-    private HashMap<DraftNode,Color> projektneBoje = new HashMap<>();
-    public Color getBojaProjekta(){
-        DraftNode selektovan = MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode();
-        if(!projektneBoje.containsKey(selektovan))
-            projektneBoje.put(selektovan, ColorUtils.randomColor());
-        return projektneBoje.get(selektovan);
-    }
+    //private HashMap<DraftNode,Color> projektneBoje = new HashMap<>();
+    //public Color getBojaProjekta(){
+    //    DraftNode selektovan = MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode();
+    //    if(!projektneBoje.containsKey(selektovan))
+    //        projektneBoje.put(selektovan, ColorUtils.randomColor());
+    //    return projektneBoje.get(selektovan);
+    //}
 
     public void update(){
         DraftNode selektovan = MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode();
+        if(selektovan instanceof Building)
+            selektovan = selektovan.getRoditelj();
+        else if(!(selektovan instanceof Project))
+            return;
         ArrayList<TabPanel> stariTabovi = new ArrayList<>();
         ArrayList<TabPanel> tabovi = new ArrayList<>();
         if(sviTabovi.containsKey(selektovan))
             stariTabovi = sviTabovi.get(selektovan);
-        HashMap<Building, Color> boje = new HashMap<>();
-        for(DraftNode building: ((Project) selektovan).getChildren()){
-            if(building instanceof Building build){
-                if(!boje.containsKey(build)){
-                    boje.put(build, ColorUtils.randomColor());
-                }
-            }
-        }
         for (DraftNode child : ((Project) selektovan).getChildren()) {
             if(child instanceof Building build)
                 for(DraftNode room:build.getChildren()){
@@ -47,7 +43,6 @@ public class TabbedPaneModel {
                         }
                     }
                     else{
-                        room.setColor(boje.get(build));
                         tabovi.add(new TabPanel(room));
                     }
                 }
@@ -59,7 +54,6 @@ public class TabbedPaneModel {
                     }
                 }
                 else{
-                    child.setColor(getBojaProjekta());
                     tabovi.add(new TabPanel(child));
                 }
             }
@@ -68,6 +62,8 @@ public class TabbedPaneModel {
     }
     public ArrayList<TabPanel> getTabovi(){
         DraftNode selektovan = MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode();
+        if(selektovan instanceof Building)
+            selektovan = selektovan.getRoditelj();
         return sviTabovi.get(selektovan);
     }
 }
