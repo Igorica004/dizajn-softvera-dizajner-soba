@@ -5,7 +5,10 @@ import raf.draft.dsw.controller.observer.ISubscriber;
 import raf.draft.dsw.controller.observer.Notification;
 import raf.draft.dsw.model.messages.Message;
 
+import java.util.ArrayList;
+
 public class MessageGenerator implements IPublisher {
+    private ArrayList<ISubscriber> subscriberList = new ArrayList<>();
     @Override
     public void addSubscriber(ISubscriber sub) {
         subscriberList.add(sub);

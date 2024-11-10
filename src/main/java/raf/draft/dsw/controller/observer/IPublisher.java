@@ -7,5 +7,4 @@ public interface IPublisher {
     void addSubscriber(ISubscriber sub);
     void removeSubscriber(ISubscriber sub);
     void notifySubscribers(Notification notification);
-    ArrayList<ISubscriber> subscriberList = new ArrayList<>();
 }

@@ -27,11 +27,13 @@ import raf.draft.dsw.tree.view.DraftTreeView;
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @Getter
 public class DraftTreeImplementation implements DraftTree, IPublisher {
     private DraftTreeView treeView;
     private DefaultTreeModel treeModel;
+    private ArrayList<ISubscriber> subscriberList = new ArrayList<>();
 
     @Override
     public DraftTreeView genrateTree(ProjectExplorer projectExplorer) {
@@ -77,7 +79,6 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
 
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
-
 
     }
 
