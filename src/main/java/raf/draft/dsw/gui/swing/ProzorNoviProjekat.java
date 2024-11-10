@@ -1,6 +1,8 @@
 package raf.draft.dsw.gui.swing;
 
+import raf.draft.dsw.model.nodes.DraftNode;
 import raf.draft.dsw.model.structures.Project;
+import raf.draft.dsw.tree.model.DraftTreeItem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,11 +10,11 @@ import java.awt.*;
 public class ProzorNoviProjekat extends JDialog {
     private JButton dugmeNoviProzor = new JButton("Napravi projekat");
     private boolean ucitano = false;
-    public ProzorNoviProjekat(){initialize();}
+    public ProzorNoviProjekat(String editOrMake){initialize(editOrMake);}
 
     private JTextField fieldAutor,fieldNaziv,fieldPutanja;
 
-    public void initialize(){
+    public void initialize(String editOrMake){
         this.setModal(true);
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
@@ -49,6 +51,8 @@ public class ProzorNoviProjekat extends JDialog {
     }
     public Project getProject()
     {
+        DraftTreeItem selected = MainFrame.getInstanca().getDraftTree().getSelectedNode();
+        if(fieldNaziv.getText().isEmpty()) return new Project(fieldAutor.getText(),null,"Project" + selected.getChildCount(),fieldNaziv.getText());
         return new Project(fieldAutor.getText(),null,fieldNaziv.getText(),fieldPutanja.getText());
     }
 

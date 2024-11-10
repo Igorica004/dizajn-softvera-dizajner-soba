@@ -103,10 +103,17 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
             Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"Ne moze da se obrise root!");
             ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
         }
+        //((DraftTreeItem)selectedTreeItem.getParent()).remove(selectedTreeItem);
         selectedTreeItem.removeFromParent();
         SwingUtilities.updateComponentTreeUI(treeView);
+        notifySubscribers(null);
     }
 
+    public void editSelectedNode()
+    {
+        DraftTreeItem selectedTreeItem = getSelectedNode();
+
+    }
 
     @Override
     public DraftTreeItem getSelectedNode() {

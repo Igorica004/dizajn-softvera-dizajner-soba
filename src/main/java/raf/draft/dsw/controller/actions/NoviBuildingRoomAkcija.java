@@ -8,6 +8,7 @@ public class NoviBuildingRoomAkcija {
         ProzorNoviBuildingRoom prozorNoviBuildingRoom = new ProzorNoviBuildingRoom();
         prozorNoviBuildingRoom.setVisible(true);
         return prozorNoviBuildingRoom.getDraftNode();
+
     }
 }
 

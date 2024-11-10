@@ -7,7 +7,7 @@ import raf.draft.dsw.model.structures.Project;
 public class NoviProjekatAkcija {
 
     public Project getProject(){
-        ProzorNoviProjekat prozorNoviProjekat = new ProzorNoviProjekat();
+        ProzorNoviProjekat prozorNoviProjekat = new ProzorNoviProjekat("Make");
         prozorNoviProjekat.setVisible(true);
         return prozorNoviProjekat.getProject();
     }

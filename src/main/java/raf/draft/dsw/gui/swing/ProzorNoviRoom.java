@@ -3,6 +3,7 @@ package raf.draft.dsw.gui.swing;
 import raf.draft.dsw.model.nodes.DraftNode;
 import raf.draft.dsw.model.structures.Building;
 import raf.draft.dsw.model.structures.Room;
+import raf.draft.dsw.tree.model.DraftTreeItem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,6 +34,8 @@ public class ProzorNoviRoom extends JDialog{
 
     }
     public Room getRoom() {
+        DraftTreeItem selected = MainFrame.getInstanca().getDraftTree().getSelectedNode();
+        if(tfNaziv.getText().isEmpty()) return new Room("Room" + selected.getChildCount(),null);
         return new Room(tfNaziv.getText(),null);
     }
 }
