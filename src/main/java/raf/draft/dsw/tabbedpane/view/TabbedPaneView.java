@@ -23,10 +23,10 @@ public class TabbedPaneView extends JTabbedPane {
     public void initialize(ArrayList<DraftNode> tabovi){
         removeAll();
         for(DraftNode child : tabovi)
-            addTab(child.getIme(),child);
+            addTab(child.getIme(),new TabPanel(child));
         for(int i=0; i<getTabCount(); i++){
-            setBackgroundAt(i,((DraftNode)getComponentAt(i)).getColor());
-            setForegroundAt(i, ColorUtils.getContrastingTextColor(((DraftNode) getComponentAt(i)).getColor()));
+            setBackgroundAt(i,((TabPanel)getComponentAt(i)).getRoom().getColor());
+            setForegroundAt(i, ColorUtils.getContrastingTextColor(((TabPanel) getComponentAt(i)).getRoom().getColor()));
         }
     }
 

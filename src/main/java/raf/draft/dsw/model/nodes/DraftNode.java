@@ -5,7 +5,7 @@ import lombok.Data;
 import java.awt.*;
 
 @Data
-public abstract class DraftNode extends Component {
+public abstract class DraftNode {
     private String ime;
     private DraftNode roditelj;
     private Color color;
