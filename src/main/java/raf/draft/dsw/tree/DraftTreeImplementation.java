@@ -2,9 +2,7 @@ package raf.draft.dsw.tree;
 
 import lombok.Getter;
 import lombok.Setter;
-import raf.draft.dsw.controller.actions.NoviBuildingRoomAkcija;
-import raf.draft.dsw.controller.actions.NoviProjekatAkcija;
-import raf.draft.dsw.controller.actions.NoviRoomAkcija;
+import raf.draft.dsw.controller.actions.*;
 import raf.draft.dsw.controller.observer.IPublisher;
 import raf.draft.dsw.controller.observer.ISubscriber;
 import raf.draft.dsw.controller.observer.Notification;
@@ -109,11 +107,29 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         notifySubscribers(null);
     }
 
-    public void editSelectedNode()
-    {
+    @Override
+    public void editSelectedNode() {
         DraftTreeItem selectedTreeItem = getSelectedNode();
-
+        if(selectedTreeItem.getDraftNode() instanceof Project)
+        {
+            EditProjekatAkcija editRoomAkcija = MainFrame.getInstanca().getActionManager().getEditProjekatAkcija();
+            editRoomAkcija.setProjekat();
+            notifySubscribers(null);
+        }
+        else if(selectedTreeItem.getDraftNode() instanceof Building)
+        {
+            EditBuildingAkcija editBuildingAkcija = MainFrame.getInstanca().getActionManager().getEditBuildingAkcija();
+            editBuildingAkcija.setBuilding();
+            notifySubscribers(null);
+        }
+        else{
+            EditRoomAkcija editRoomAkcija = MainFrame.getInstanca().getActionManager().getEditRoomAkcija();
+            editRoomAkcija.setRoom();
+            notifySubscribers(null);
+        }
+        SwingUtilities.updateComponentTreeUI(treeView);
     }
+
 
     @Override
     public DraftTreeItem getSelectedNode() {

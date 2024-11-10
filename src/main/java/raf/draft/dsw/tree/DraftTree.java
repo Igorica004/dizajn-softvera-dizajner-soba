@@ -8,5 +8,6 @@ public interface DraftTree {
     DraftTreeView genrateTree(ProjectExplorer projectExplorer);
     void addChild();
     void removeChild();
+    void editSelectedNode();
     DraftTreeItem getSelectedNode();
 }

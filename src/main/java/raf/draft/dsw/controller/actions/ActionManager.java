@@ -11,6 +11,10 @@ public class ActionManager {
     private NoviBuildingRoomAkcija noviBuildingRoomAkcija;
     private NoviRoomAkcija noviRoomAkcija;
     private BrisanjeAkcija brisanjeAkcija;
+    private EditRoomAkcija editRoomAkcija;
+    private EditBuildingAkcija editBuildingAkcija;
+    private EditProjekatAkcija editProjekatAkcija;
+    private EditCvorAkcija editCvorAkcija;
     public ActionManager(){
         exitAction = new ExitAction();
         oNamaAkcija = new ONamaAkcija();
@@ -19,6 +23,10 @@ public class ActionManager {
         noviBuildingRoomAkcija = new NoviBuildingRoomAkcija();
         noviRoomAkcija = new NoviRoomAkcija();
         brisanjeAkcija = new BrisanjeAkcija();
+        editRoomAkcija = new EditRoomAkcija();
+        editBuildingAkcija = new EditBuildingAkcija();
+        editProjekatAkcija = new EditProjekatAkcija();
+        editCvorAkcija = new EditCvorAkcija();
     }
 
 }

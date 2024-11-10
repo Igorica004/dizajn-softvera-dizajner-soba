@@ -5,10 +5,9 @@ import raf.draft.dsw.model.nodes.DraftNode;
 
 public class NoviBuildingRoomAkcija {
     public DraftNode getDraftNode(){
-        ProzorNoviBuildingRoom prozorNoviBuildingRoom = new ProzorNoviBuildingRoom();
+        ProzorNoviBuildingRoom prozorNoviBuildingRoom = new ProzorNoviBuildingRoom("Make");
         prozorNoviBuildingRoom.setVisible(true);
         return prozorNoviBuildingRoom.getDraftNode();
-
     }
 }
 

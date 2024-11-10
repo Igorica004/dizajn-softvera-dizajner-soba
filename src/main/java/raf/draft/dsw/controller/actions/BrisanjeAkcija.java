@@ -11,7 +11,7 @@ public class BrisanjeAkcija extends AbstractRoomAction
 {
     public BrisanjeAkcija(){
         //bitno
-        putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK));
+        putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, ActionEvent.ALT_MASK));
         putValue(SMALL_ICON, loadIcon("/images/delete.png"));
         putValue(NAME, "Delete");
         putValue(SHORT_DESCRIPTION, "Delete selected Node");

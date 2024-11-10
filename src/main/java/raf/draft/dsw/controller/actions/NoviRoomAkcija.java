@@ -7,7 +7,7 @@ import raf.draft.dsw.model.structures.Room;
 
 public class NoviRoomAkcija {
     public Room getRoom(){
-        ProzorNoviRoom prozorNoviRoom = new ProzorNoviRoom();
+        ProzorNoviRoom prozorNoviRoom = new ProzorNoviRoom("Make");
         prozorNoviRoom.setVisible(true);
         return prozorNoviRoom.getRoom();
     }

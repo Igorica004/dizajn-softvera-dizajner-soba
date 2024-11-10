@@ -10,17 +10,17 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class ProzorNoviBuildingRoom extends JDialog {
-    public ProzorNoviBuildingRoom() {
-        initialize();
+    public ProzorNoviBuildingRoom(String editOrMake) {
+        initialize(editOrMake);
     }
 
     JTextField tfNaziv = new JTextField(20);
-    JButton button = new JButton("Napravi");
+    JButton button;
     JRadioButton radioButton1 = new JRadioButton("Building");
     JRadioButton radioButton2 = new JRadioButton("Room");
     ButtonGroup group = new ButtonGroup();
 
-    private void initialize() {
+    private void initialize(String editOrMake) {
         group.add(radioButton1);
         group.add(radioButton2);
 
@@ -42,9 +42,13 @@ public class ProzorNoviBuildingRoom extends JDialog {
         JPanel panel1 = new JPanel();
         panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
 
-        panel.add(new JLabel("Tip:"));
-        panel1.add(radioButton1);
-        panel1.add(radioButton2);
+        if (editOrMake.equals("Make")) {
+            button = new JButton("Napravi");
+            panel.add(new JLabel("Tip:"));
+            panel1.add(radioButton1);
+            panel1.add(radioButton2);
+        }
+        else button = new JButton("Izmeni");
         button.addActionListener(e->{dispose();});
         panel.add(panel1);
         panel.add(button);
@@ -62,5 +66,10 @@ public class ProzorNoviBuildingRoom extends JDialog {
             if(tfNaziv.getText().isEmpty()) draftNode = new Room("Room" + selectedNode.getChildCount(), null);
             else draftNode = new Room(tfNaziv.getText(),null);
         return draftNode;
+    }
+
+    public void setBuilding()
+    {
+        MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode().setNaziv(tfNaziv.getText());
     }
 }

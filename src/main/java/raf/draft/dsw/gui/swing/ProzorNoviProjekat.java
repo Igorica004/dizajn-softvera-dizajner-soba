@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ProzorNoviProjekat extends JDialog {
-    private JButton dugmeNoviProzor = new JButton("Napravi projekat");
+    private JButton dugmeNoviProzor;
     private boolean ucitano = false;
     public ProzorNoviProjekat(String editOrMake){initialize(editOrMake);}
 
@@ -42,6 +42,10 @@ public class ProzorNoviProjekat extends JDialog {
         panel2.add(fieldNaziv);
         panel2.add(labelPutanja);
         panel2.add(fieldPutanja);
+        if(editOrMake.equals("Make")){
+            dugmeNoviProzor = new JButton("Napravi projekat");
+        }
+        else dugmeNoviProzor = new JButton("Izmeni");
         dugmeNoviProzor.addActionListener(e->{dispose();});
         panel1.add(panel2);
         panel1.add(dugmeNoviProzor);
@@ -55,5 +59,10 @@ public class ProzorNoviProjekat extends JDialog {
         if(fieldNaziv.getText().isEmpty()) return new Project(fieldAutor.getText(),null,"Project" + selected.getChildCount(),fieldNaziv.getText());
         return new Project(fieldAutor.getText(),null,fieldNaziv.getText(),fieldPutanja.getText());
     }
-
+    public void setProject()
+    {
+        ((Project)MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode()).setAutor(fieldAutor.getText());
+        MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode().setNaziv(fieldNaziv.getText());
+        ((Project)MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode()).setPutanja(fieldPutanja.getText());
+    }
 }
