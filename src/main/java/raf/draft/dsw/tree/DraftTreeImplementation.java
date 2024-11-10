@@ -1,6 +1,7 @@
 package raf.draft.dsw.tree;
 
 import lombok.Getter;
+import lombok.Setter;
 import raf.draft.dsw.controller.actions.NoviBuildingRoomAkcija;
 import raf.draft.dsw.controller.actions.NoviProjekatAkcija;
 import raf.draft.dsw.controller.actions.NoviRoomAkcija;
@@ -31,6 +32,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 @Getter
+@Setter
 public class DraftTreeImplementation implements DraftTree, IPublisher {
     private DraftTreeView treeView;
     private DefaultTreeModel treeModel;

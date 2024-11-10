@@ -11,3 +11,4 @@
 [GRESKA][2024-11-10T16:29:16.571169] Nema selectovan cvor za brisanje!
 [GRESKA][2024-11-10T16:29:34.983802] Nema selectovan cvor za brisanje!
 [GRESKA][2024-11-10T16:29:40.549609100] Ne moze da se obrise root!
+[GRESKA][2024-11-10T16:43:15.671517356] Soba ne moze da ima dete

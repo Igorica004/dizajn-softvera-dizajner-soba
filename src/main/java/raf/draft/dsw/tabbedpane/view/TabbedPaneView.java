@@ -17,16 +17,8 @@ public class TabbedPaneView extends JTabbedPane {
     public void initialize(ArrayList<TabPanel> tabovi){
         if(tabovi == null) return;
         removeAll();
-        String label;
         for(TabPanel child : tabovi) {
-            if (child.getRoom().getRoditelj() instanceof Project) {
-                label = child.getRoom().getRoditelj().getNaziv() + "\\";
-            }
-            else{
-                label = child.getRoom().getRoditelj().getRoditelj().getNaziv() + "\\" + child.getRoom().getRoditelj().getNaziv();
-            }
-            //addTab(child.getRoom().getIme(),child);
-            addTab(child.getRoom().getNaziv(), new JLabel(label));
+            addTab(child.getRoom().getNaziv(), child);
         }
         for(int i=0; i<getTabCount(); i++){
             setBackgroundAt(i,((TabPanel)getComponentAt(i)).getRoom().getColor());
