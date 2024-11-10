@@ -91,13 +91,13 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         if(draftNode instanceof Project){
             Project project = (Project) draftNode;
             factory = new FactoryProject();
-            return factory.createNode(getSelectedNode().getDraftNode(),project.getIme(),project.getAutor(),project.getPutanja());
+            return factory.createNode(getSelectedNode().getDraftNode(),project.getNaziv(),project.getAutor(),project.getPutanja());
         }
         if(draftNode instanceof Building)
             factory = new FactoryBuilding();
         else
             factory = new FactoryRoom();
-        return factory.createNode(getSelectedNode().getDraftNode(),draftNode.getIme(),"","");
+        return factory.createNode(getSelectedNode().getDraftNode(),draftNode.getNaziv(),"","");
     }
 
     @Override

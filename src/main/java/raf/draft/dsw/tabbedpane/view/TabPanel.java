@@ -9,7 +9,10 @@ import java.util.Objects;
 @Data
 public class TabPanel extends JPanel {
     private DraftNode room;
-    public TabPanel(DraftNode room) {this.room = room;}
+    public TabPanel(DraftNode room) {this();this.room = room;}
+    public TabPanel(){
+
+    }
 
     @Override
     public boolean equals(Object o) {

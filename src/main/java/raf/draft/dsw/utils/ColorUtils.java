@@ -1,4 +1,4 @@
-package raf.draft.dsw.tabbedpane;
+package raf.draft.dsw.utils;
 
 import java.awt.*;
 import java.util.Random;

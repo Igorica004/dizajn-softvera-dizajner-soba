@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 @Data
-public class TabbedPaneImplementation implements TabbedPaneInterface, ISubscriber {
+public class TabbedPaneImplementation implements TabbedPaneInterface {
     private TabbedPaneView tabbedPaneView = new TabbedPaneView();
     private TabbedPaneModel tabbedPaneModel = new TabbedPaneModel();
     private static Color bojaProjekta=null;
@@ -21,10 +21,5 @@ public class TabbedPaneImplementation implements TabbedPaneInterface, ISubscribe
     public void updateTabbedPane() {
         tabbedPaneModel.update();
         tabbedPaneView.initialize(tabbedPaneModel.getTabovi());
-    }
-
-    @Override
-    public void update(Notification notification) {
-        updateTabbedPane();
     }
 }

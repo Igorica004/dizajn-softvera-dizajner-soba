@@ -6,12 +6,12 @@ import java.awt.*;
 
 @Data
 public abstract class DraftNode {
-    private String ime;
+    private String naziv;
     private DraftNode roditelj;
     private Color color;
 
-    public DraftNode(String ime, DraftNode roditelj) {
-        this.ime = ime;
+    public DraftNode(String naziv, DraftNode roditelj) {
+        this.naziv = naziv;
         this.roditelj = roditelj;
     }
 }

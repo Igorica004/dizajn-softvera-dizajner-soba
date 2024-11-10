@@ -14,7 +14,7 @@ public class DraftTreeItem extends DefaultMutableTreeNode {
     public DraftTreeItem(DraftNode draftNode) {this.draftNode = draftNode;}
 
     @Override
-    public String toString() {return draftNode.getIme();}
+    public String toString() {return draftNode.getNaziv();}
 
-    public void setIme(String ime) {this.draftNode.setIme(ime);}
+    public void setIme(String ime) {this.draftNode.setNaziv(ime);}
 }

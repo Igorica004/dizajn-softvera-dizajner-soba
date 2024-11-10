@@ -8,13 +8,13 @@ import raf.draft.dsw.model.nodes.DraftNodeComposite;
 @Getter
 @Setter
 public class Project extends DraftNodeComposite {
-    private String ime;
+    private String naziv;
     private String autor;
     private String putanja;
-    public Project(String ime, DraftNode roditelj){super(ime,roditelj);}
-    public Project(String autor, DraftNode roditelj, String ime, String putanja) {
-        super(ime, roditelj);
-        this.ime = ime;
+    public Project(String naziv, DraftNode roditelj){super(naziv,roditelj);}
+    public Project(String autor, DraftNode roditelj, String naziv, String putanja) {
+        super(naziv, roditelj);
+        this.naziv = naziv;
         this.autor = autor;
         this.putanja = putanja;
     }

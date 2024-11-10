@@ -5,7 +5,7 @@ import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.model.nodes.DraftNode;
 import raf.draft.dsw.model.structures.Building;
 import raf.draft.dsw.model.structures.Project;
-import raf.draft.dsw.tabbedpane.ColorUtils;
+import raf.draft.dsw.utils.ColorUtils;
 import raf.draft.dsw.tabbedpane.view.TabPanel;
 
 import java.awt.*;

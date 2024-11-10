@@ -20,7 +20,7 @@ public class MainFrame extends JFrame implements ISubscriber {
     private static MainFrame instanca = null;
     private ActionManager actionManager = new ActionManager();
     private DraftTree draftTree = new DraftTreeImplementation();
-    private TabbedPaneInterface tabbedPane = new TabbedPaneImplementation();
+    private DesniPanel desniPanel = new DesniPanel();
     private MainFrame(){}
     public static MainFrame getInstanca(){
         if(instanca == null){
@@ -31,7 +31,7 @@ public class MainFrame extends JFrame implements ISubscriber {
     }
 
     private void initialize(){
-        ((DraftTreeImplementation)draftTree).addSubscriber((ISubscriber)tabbedPane);
+        ((DraftTreeImplementation)draftTree).addSubscriber(desniPanel);
         ApplicationFramework.getInstanca().getMessageGenerator().addSubscriber(this);
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
@@ -55,7 +55,7 @@ public class MainFrame extends JFrame implements ISubscriber {
         //JPanel desktop = new JPanel();
         JScrollPane scroll=new JScrollPane(projectExplorer);
         scroll.setMinimumSize(new Dimension(200,150));
-        JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scroll, ((TabbedPaneImplementation)tabbedPane).getTabbedPaneView());
+        JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scroll, desniPanel);
 
         getContentPane().add(split,BorderLayout.CENTER);
 
