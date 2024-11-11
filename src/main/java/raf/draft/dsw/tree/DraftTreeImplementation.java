@@ -35,6 +35,7 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
     private DraftTreeView treeView;
     private DefaultTreeModel treeModel;
     private ArrayList<ISubscriber> subscriberList = new ArrayList<>();
+    private DraftNode selektovaniProjekat;
 
     @Override
     public DraftTreeView genrateTree(ProjectExplorer projectExplorer) {
@@ -47,6 +48,7 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
     @Override
     public void addChild() {
         DraftTreeItem selectedTreeItem = getSelectedNode();
+        Notification notification = null;
         if (selectedTreeItem == null) {
             Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"Nije selektovana grana!");
             ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
@@ -64,23 +66,18 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         if(selectedNode instanceof ProjectExplorer){
             NoviProjekatAkcija noviProjekatAkcija = MainFrame.getInstanca().getActionManager().getNoviProjekatAkcija();
             Project project = noviProjekatAkcija.getProject();
-            if(selectedNode.getChildren().contains(project)){
-                Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"Greska pri imenovanju!");
-                ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
-                return;
-            };
             newNode = createChild(project);
             newNode.setColor(ColorUtils.randomColor());
+            if(selektovaniProjekat == null){
+                selektovaniProjekat = newNode;
+                notification = new Notification(new Message(null,null,"selekcijaProjekta"));
+            }
+
         }
 
         else if(selectedNode instanceof Project){
             NoviBuildingRoomAkcija noviBuildingRoomAkcija = MainFrame.getInstanca().getActionManager().getNoviBuildingRoomAkcija();
             DraftNode tempDraftTree = noviBuildingRoomAkcija.getDraftNode();
-            if(selectedNode.getChildren().contains(tempDraftTree)){
-                Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"Greska pri imenovanju!");
-                ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
-                return;
-            }
             newNode = createChild(tempDraftTree);
             if(tempDraftTree instanceof Building)
                 newNode.setColor(ColorUtils.randomColor());
@@ -92,13 +89,15 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
 
             NoviRoomAkcija noviRoomAkcija = MainFrame.getInstanca().getActionManager().getNoviRoomAkcija();
             Room room = noviRoomAkcija.getRoom();
-            if(selectedNode.getChildren().contains(room)){
-                Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"Greska pri imenovanju!");
-                ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
-                return;
-            }
             newNode = createChild(room);
             newNode.setColor(newNode.getRoditelj().getColor());
+
+        }
+
+        if(selectedNode.getChildren().contains(newNode)){
+            Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"Greska pri imenovanju!");
+            ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
+            return;
         }
 
         selectedNode.addChild(newNode);
@@ -106,7 +105,7 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
 
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
-        notifySubscribers(null);
+        notifySubscribers(notification);
     }
 
     @Override
@@ -121,8 +120,9 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
             Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"Ne moze da se obrise root!");
             ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
         }
-        //((DraftTreeItem)selectedTreeItem.getParent()).remove(selectedTreeItem);
         selectedTreeItem.removeFromParent();
+        ((DraftNodeComposite)selectedTreeItem.getDraftNode().getRoditelj()).removeChild(selectedTreeItem.getDraftNode());
+
         SwingUtilities.updateComponentTreeUI(treeView);
         notifySubscribers(null);
     }
@@ -161,7 +161,9 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         if(draftNode instanceof Project){
             Project project = (Project) draftNode;
             factory = new FactoryProject();
-            return factory.createNode(getSelectedNode().getDraftNode(),project.getNaziv(),project.getAutor(),project.getPutanja());
+            DraftNode newNode = factory.createNode(getSelectedNode().getDraftNode(),project.getNaziv(),project.getAutor(),project.getPutanja());
+            newNode.setRoditelj(getSelectedNode().getDraftNode());
+            return newNode;
         }
         if(draftNode instanceof Building)
             factory = new FactoryBuilding();

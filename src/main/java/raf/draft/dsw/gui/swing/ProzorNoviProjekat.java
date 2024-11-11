@@ -1,11 +1,16 @@
 package raf.draft.dsw.gui.swing;
 
+import raf.draft.dsw.core.ApplicationFramework;
+import raf.draft.dsw.model.messages.Message;
+import raf.draft.dsw.model.messages.MessageType;
 import raf.draft.dsw.model.nodes.DraftNode;
 import raf.draft.dsw.model.structures.Project;
 import raf.draft.dsw.tree.model.DraftTreeItem;
+import raf.draft.dsw.utils.DraftNodeUtils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDateTime;
 
 public class ProzorNoviProjekat extends JDialog {
     private JButton dugmeNoviProzor;
@@ -56,13 +61,27 @@ public class ProzorNoviProjekat extends JDialog {
     public Project getProject()
     {
         DraftTreeItem selected = MainFrame.getInstanca().getDraftTree().getSelectedNode();
-        if(fieldNaziv.getText().isEmpty()) return new Project(fieldAutor.getText(),null,"Project" + selected.getChildCount(),fieldNaziv.getText());
-        return new Project(fieldAutor.getText(),null,fieldNaziv.getText(),fieldPutanja.getText());
+        if(fieldNaziv.getText().isEmpty()) return new Project(fieldAutor.getText(), "Project" + selected.getChildCount(), fieldNaziv.getText(), null);
+        return new Project(fieldAutor.getText(), fieldNaziv.getText(), fieldPutanja.getText(), null);
     }
     public void setProject()
     {
-        ((Project)MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode()).setAutor(fieldAutor.getText());
-        MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode().setNaziv(fieldNaziv.getText());
-        ((Project)MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode()).setPutanja(fieldPutanja.getText());
+        //((Project)MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode()).setAutor(fieldAutor.getText());
+        //MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode().setNaziv(fieldNaziv.getText());
+        //((Project)MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode()).setPutanja(fieldPutanja.getText());
+
+
+        DraftNode cvor = MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode();
+        String naziv = fieldNaziv.getText(), autor = fieldAutor.getText(), putanja = fieldPutanja.getText();
+        DraftNode dn = new Project(autor,naziv,putanja,cvor.getRoditelj());
+        if(!DraftNodeUtils.nameIsValid(dn)){
+            Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"Greska pri imenovanju!");
+            ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
+            return;
+        }
+        Project project = (Project) cvor;
+        project.setNaziv(naziv);
+        project.setAutor(autor);
+        project.setPutanja(putanja);
     }
 }

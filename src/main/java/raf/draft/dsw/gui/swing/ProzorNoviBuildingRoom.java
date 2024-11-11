@@ -1,13 +1,18 @@
 package raf.draft.dsw.gui.swing;
 
+import raf.draft.dsw.core.ApplicationFramework;
+import raf.draft.dsw.model.messages.Message;
+import raf.draft.dsw.model.messages.MessageType;
 import raf.draft.dsw.model.nodes.DraftNode;
 import raf.draft.dsw.model.structures.Building;
 import raf.draft.dsw.model.structures.Room;
 import raf.draft.dsw.tree.model.DraftTreeItem;
+import raf.draft.dsw.utils.DraftNodeUtils;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 
 public class ProzorNoviBuildingRoom extends JDialog {
     public ProzorNoviBuildingRoom(String editOrMake) {
@@ -70,6 +75,14 @@ public class ProzorNoviBuildingRoom extends JDialog {
 
     public void setBuilding()
     {
-        MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode().setNaziv(tfNaziv.getText());
+        DraftNode cvor = MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode();
+        String naziv = tfNaziv.getText();
+        DraftNode dn = new Building(naziv,cvor.getRoditelj());
+        if(!DraftNodeUtils.nameIsValid(dn)){
+            Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"Greska pri imenovanju!");
+            ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
+            return;
+        }
+        cvor.setNaziv(naziv);
     }
 }

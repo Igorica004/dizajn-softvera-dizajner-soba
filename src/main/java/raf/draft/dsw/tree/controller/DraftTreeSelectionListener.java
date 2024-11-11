@@ -13,8 +13,8 @@ public class DraftTreeSelectionListener implements TreeSelectionListener {
         TreePath path = e.getPath();
         //DraftTreeItem treeItemSelected = (DraftTreeItem) path.getLastPathComponent();
         DraftTreeItem treeItemSelected = MainFrame.getInstanca().getDraftTree().getSelectedNode();
-        System.out.println("Selektovan cvor:"+ treeItemSelected.getDraftNode().getNaziv());
-        System.out.println("getPath: "+e.getPath());
+        System.out.println("Selektovan cvor:"+ treeItemSelected.getDraftNode().getPutanja());
+        //System.out.println("getPath: "+e.getPath());
 
     }
 }

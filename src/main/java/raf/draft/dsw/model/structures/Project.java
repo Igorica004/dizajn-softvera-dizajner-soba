@@ -12,7 +12,7 @@ public class Project extends DraftNodeComposite {
     private String autor;
     private String putanja;
     public Project(String naziv, DraftNode roditelj){super(naziv,roditelj);}
-    public Project(String autor, DraftNode roditelj, String naziv, String putanja) {
+    public Project(String autor, String naziv, String putanja, DraftNode roditelj) {
         super(naziv, roditelj);
         this.naziv = naziv;
         this.autor = autor;

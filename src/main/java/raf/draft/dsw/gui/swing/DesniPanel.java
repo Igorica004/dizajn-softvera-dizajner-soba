@@ -35,13 +35,17 @@ public class DesniPanel extends JPanel implements ISubscriber {
     @Override
     public void update(Notification notification) {
         tabbedPane.updateTabbedPane();
-        DraftTreeImplementation draftTreeImplementation = (DraftTreeImplementation) MainFrame.getInstanca().getDraftTree();
-        DraftNode selektovan = draftTreeImplementation.getSelectedNode().getDraftNode();
-        Project projekat = null;
-        if(selektovan instanceof Project project) {projekat = project;}
-        else if(selektovan instanceof Building building) {projekat = (Project)building.getRoditelj();}
-        if(projekat == null) {return;}
-        naziv.setText(projekat.getNaziv());
-        autor.setText(projekat.getAutor());
+        if(notification != null && notification.getPoruka().getSadrzaj().equals("selekcijaProjekta")){
+            popuniNazivAutor();
+        }
+    }
+
+    private void popuniNazivAutor(){
+        DraftNode selektovanProjekat = ((DraftTreeImplementation) MainFrame.getInstanca().getDraftTree()).getSelektovaniProjekat();
+        if(selektovanProjekat != null){
+            Project project = (Project) selektovanProjekat;
+            naziv.setText(project.getNaziv());
+            autor.setText(project.getAutor());
+        }
     }
 }

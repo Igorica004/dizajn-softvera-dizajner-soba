@@ -5,17 +5,21 @@ import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.model.nodes.DraftNode;
 import raf.draft.dsw.model.structures.Building;
 import raf.draft.dsw.model.structures.Project;
+import raf.draft.dsw.model.structures.ProjectExplorer;
+import raf.draft.dsw.model.structures.Room;
 import raf.draft.dsw.tree.DraftTreeImplementation;
 import raf.draft.dsw.utils.ColorUtils;
 import raf.draft.dsw.tabbedpane.view.TabPanel;
+import raf.draft.dsw.utils.DraftNodeUtils;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 @Data
 public class TabbedPaneModel {
-    private HashMap<DraftNode,ArrayList<TabPanel>> sviTabovi = new HashMap<>();
+    private HashMap<DraftNode,HashMap<DraftNode,TabPanel>> sviTabovi = new HashMap<>();
     //private HashMap<DraftNode,Color> projektneBoje = new HashMap<>();
     //public Color getBojaProjekta(){
     //    DraftNode selektovan = MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode();
@@ -24,47 +28,51 @@ public class TabbedPaneModel {
     //    return projektneBoje.get(selektovan);
     //}
 
+    //1. nalazenje projekta
+    //2. od projekta se spustati ka dole 
     public void update(){
         DraftNode selektovan = MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode();
-        if(selektovan instanceof Building)
-            selektovan = selektovan.getRoditelj();
-        else if(!(selektovan instanceof Project))
+        if(DraftNodeUtils.getProjectParent(selektovan) == null){
             return;
-        ArrayList<TabPanel> stariTabovi = new ArrayList<>();
-        ArrayList<TabPanel> tabovi = new ArrayList<>();
-        if(sviTabovi.containsKey(selektovan))
-            stariTabovi = sviTabovi.get(selektovan);
-        for (DraftNode child : ((Project) selektovan).getChildren()) {
-            if(child instanceof Building build)
+        }
+        Project project = DraftNodeUtils.getProjectParent(selektovan);
+        HashMap<DraftNode,TabPanel> stariTabovi = sviTabovi.get(project);
+        HashMap<DraftNode,TabPanel> noviTabovi = new HashMap<>();
+        if(stariTabovi == null){
+            stariTabovi = new HashMap<>();
+        }
+
+        for(DraftNode child:project.getChildren()){
+            if(child instanceof Building build){
                 for(DraftNode room:build.getChildren()){
-                    if(stariTabovi.contains(new TabPanel(room))){
-                        for(TabPanel tp:stariTabovi){
-                            if(tp.getRoom().equals(room))
-                                tabovi.add(tp);
-                        }
+                    if(stariTabovi.containsKey(room)){
+                        noviTabovi.put(room,(TabPanel)stariTabovi.get(room));
                     }
                     else{
-                        tabovi.add(new TabPanel(room));
+                        noviTabovi.put(room, new TabPanel(room));
                     }
                 }
+            }
             else{
-                if(stariTabovi.contains(new TabPanel(child))) {
-                    for(TabPanel tp:stariTabovi){
-                        if(tp.getRoom().equals(child))
-                            tabovi.add(tp);
-                    }
+                if(stariTabovi.containsKey(child)){
+                    noviTabovi.put(child,(TabPanel)stariTabovi.get(child));
                 }
                 else{
-                    tabovi.add(new TabPanel(child));
+                    noviTabovi.put(child, new TabPanel(child));
                 }
             }
         }
-        sviTabovi.put(selektovan, tabovi);
+        sviTabovi.put(project, noviTabovi);
     }
-    public ArrayList<TabPanel> getTabovi(){
+
+    public HashMap<DraftNode,TabPanel> getTabovi(){
         DraftNode selektovan = MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode();
-        if(selektovan instanceof Building)
-            selektovan = selektovan.getRoditelj();
+        selektovan = DraftNodeUtils.getProjectParent(selektovan);
+        DraftTreeImplementation stablo = (DraftTreeImplementation) MainFrame.getInstanca().getDraftTree();
+        if(selektovan != stablo.getSelektovaniProjekat())
+            return null;
         return sviTabovi.get(selektovan);
     }
+
+
 }
