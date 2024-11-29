@@ -7,7 +7,6 @@ import raf.draft.dsw.utils.ColorUtils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,28 +16,28 @@ public class TabbedPaneView extends JTabbedPane {
         super(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
         setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
-    public void initialize(HashMap<DraftNode,TabPanel> tabovi){
+    public void initialize(HashMap<DraftNode, RoomView> tabovi){
         if(tabovi == null) return;
         removeAll();
         String label,punNaziv;
-        for(Map.Entry<DraftNode,TabPanel> child: tabovi.entrySet()) {
-            TabPanel tabPanel = child.getValue();
-            tabPanel.removeAll();
-            if(tabPanel.getRoom().getRoditelj() instanceof Project)
+        for(Map.Entry<DraftNode, RoomView> child: tabovi.entrySet()) {
+            RoomView roomView = child.getValue();
+            roomView.removeAll();
+            if(roomView.getRoom().getRoditelj() instanceof Project)
             {
-                label = tabPanel.getRoom().getRoditelj().getNaziv() + "/";
-                punNaziv = tabPanel.getRoom().getNaziv();
+                label = roomView.getRoom().getRoditelj().getNaziv() + "/";
+                punNaziv = roomView.getRoom().getNaziv();
             }
             else{
-                label = tabPanel.getRoom().getRoditelj().getRoditelj().getNaziv() + "/" + tabPanel.getRoom().getRoditelj().getNaziv();
-                punNaziv = String.format("%s/%s", tabPanel.getRoom().getRoditelj().getNaziv(),tabPanel.getRoom().getNaziv());
+                label = roomView.getRoom().getRoditelj().getRoditelj().getNaziv() + "/" + roomView.getRoom().getRoditelj().getNaziv();
+                punNaziv = String.format("%s/%s", roomView.getRoom().getRoditelj().getNaziv(), roomView.getRoom().getNaziv());
             }
-            tabPanel.add(new JLabel(label));
-            addTab(punNaziv, tabPanel);
+            roomView.add(new JLabel(label));
+            addTab(punNaziv, roomView);
         }
         for(int i=0; i<getTabCount(); i++){
-            setBackgroundAt(i,((TabPanel)getComponentAt(i)).getRoom().getColor());
-            setForegroundAt(i, ColorUtils.getContrastingTextColor(((TabPanel) getComponentAt(i)).getRoom().getColor()));
+            setBackgroundAt(i,((RoomView)getComponentAt(i)).getRoom().getColor());
+            setForegroundAt(i, ColorUtils.getContrastingTextColor(((RoomView) getComponentAt(i)).getRoom().getColor()));
         }
     }
 
