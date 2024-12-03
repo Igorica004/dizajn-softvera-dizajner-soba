@@ -19,14 +19,8 @@ import java.util.HashMap;
 
 @Data
 public class TabbedPaneModel {
-    private HashMap<DraftNode,HashMap<DraftNode,TabPanel>> sviTabovi = new HashMap<>();
-    //private HashMap<DraftNode,Color> projektneBoje = new HashMap<>();
-    //public Color getBojaProjekta(){
-    //    DraftNode selektovan = MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode();
-    //    if(!projektneBoje.containsKey(selektovan))
-    //        projektneBoje.put(selektovan, ColorUtils.randomColor());
-    //    return projektneBoje.get(selektovan);
-    //}
+    private HashMap<DraftNode,TabPanel> sviTabovi = new HashMap<>();
+    private HashMap<DraftNode,TabPanel> noviTabovi = new HashMap<>();
 
     //1. nalazenje projekta
     //2. od projekta se spustati ka dole 
@@ -36,33 +30,31 @@ public class TabbedPaneModel {
             return;
         }
         Project project = DraftNodeUtils.getProjectParent(selektovan);
-        HashMap<DraftNode,TabPanel> stariTabovi = sviTabovi.get(project);
-        HashMap<DraftNode,TabPanel> noviTabovi = new HashMap<>();
-        if(stariTabovi == null){
-            stariTabovi = new HashMap<>();
-        }
-
+        noviTabovi.clear();
         for(DraftNode child:project.getChildren()){
             if(child instanceof Building build){
                 for(DraftNode room:build.getChildren()){
-                    if(stariTabovi.containsKey(room)){
-                        noviTabovi.put(room,(TabPanel)stariTabovi.get(room));
+                    if(sviTabovi.containsKey(room)){
+                        noviTabovi.put(room,sviTabovi.get(room));
                     }
                     else{
-                        noviTabovi.put(room, new TabPanel(room));
+                        TabPanel tabPanel = new TabPanel(room);
+                        noviTabovi.put(room, tabPanel);
+                        sviTabovi.put(room, tabPanel);
                     }
                 }
             }
             else{
-                if(stariTabovi.containsKey(child)){
-                    noviTabovi.put(child,(TabPanel)stariTabovi.get(child));
+                if(sviTabovi.containsKey(child)){
+                    noviTabovi.put(child,sviTabovi.get(child));
                 }
                 else{
-                    noviTabovi.put(child, new TabPanel(child));
+                    TabPanel tabPanel = new TabPanel(child);
+                    noviTabovi.put(child, tabPanel);
+                    sviTabovi.put(child, tabPanel);
                 }
             }
         }
-        sviTabovi.put(project, noviTabovi);
     }
 
     public HashMap<DraftNode,TabPanel> getTabovi(){
@@ -71,7 +63,7 @@ public class TabbedPaneModel {
         DraftTreeImplementation stablo = (DraftTreeImplementation) MainFrame.getInstanca().getDraftTree();
         if(selektovan != stablo.getSelektovaniProjekat())
             return null;
-        return sviTabovi.get(selektovan);
+        return noviTabovi;
     }
 
 

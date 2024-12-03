@@ -1,4 +1,4 @@
-package raf.draft.dsw.state.Concrete;
+package raf.draft.dsw.state.concrete;
 
 import raf.draft.dsw.state.State;
 

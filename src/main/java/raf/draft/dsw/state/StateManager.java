@@ -1,7 +1,7 @@
 package raf.draft.dsw.state;
 
 import lombok.Getter;
-import raf.draft.dsw.state.Concrete.*;
+import raf.draft.dsw.state.concrete.*;
 
 @Getter
 public class StateManager {
