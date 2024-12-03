@@ -1,10 +1,11 @@
 package raf.draft.dsw.tabbedpane.view;
 
 import lombok.Data;
-import raf.draft.dsw.model.factory.Prototype;
+import raf.draft.dsw.model.painters.DevicePainter;
+import raf.draft.dsw.model.painters.KadaPainter;
+import raf.draft.dsw.model.painters.KrevetPainter;
+import raf.draft.dsw.model.roomobjects.*;
 import raf.draft.dsw.model.nodes.DraftNode;
-import raf.draft.dsw.model.nodes.RoomElement;
-import raf.draft.dsw.model.painters.ElementPainter;
 import raf.draft.dsw.model.structures.Room;
 
 import javax.swing.*;
@@ -27,10 +28,25 @@ public class RoomView extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        Iterator<Prototype> i = ((Room)room).getObjects().iterator();
-        while(i.hasNext()){
-            RoomElement element = (RoomElement) i.next();
-            //ElementPainter elementPainter = element.getPainter();
+        DevicePainter painter;
+        /*g2d.setPaint(Color.BLACK);
+        g2d.drawRect(10, 0, 25, 25);
+        g2d.fillRect(10, 0, 25, 25);*/
+//        if(((Room)room).getObjects()!=null){
+//            KrevetPainter k = new KrevetPainter(new Krevet("krevet",room,new Dimension(25,25),new Point(10,10),Color.BLACK,2.2,new BasicStroke()));
+//            k.paint(g2d);
+//        }
+        for(RoomElement r:((Room)room).getObjects())
+        {
+            if(r instanceof Krevet)
+            {
+                painter = new KrevetPainter((Krevet)r);
+            }
+            else
+            {
+                painter = new KadaPainter((Kada)r);
+            }
+            painter.paint(g2d);
         }
     }
 

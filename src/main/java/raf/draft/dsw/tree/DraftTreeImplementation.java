@@ -16,6 +16,7 @@ import raf.draft.dsw.model.messages.Message;
 import raf.draft.dsw.model.messages.MessageType;
 import raf.draft.dsw.model.nodes.DraftNode;
 import raf.draft.dsw.model.nodes.DraftNodeComposite;
+import raf.draft.dsw.model.roomobjects.Krevet;
 import raf.draft.dsw.model.structures.Building;
 import raf.draft.dsw.model.structures.Project;
 import raf.draft.dsw.model.structures.ProjectExplorer;
@@ -26,6 +27,7 @@ import raf.draft.dsw.utils.ColorUtils;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
