@@ -20,7 +20,7 @@ public class MainFrame extends JFrame implements ISubscriber {
     private static MainFrame instanca = null;
     private ActionManager actionManager = new ActionManager();
     private DraftTree draftTree = new DraftTreeImplementation();
-    private DesniPanel desniPanel = new DesniPanel();
+    private DesniPanel desniPanel;
     private MainFrame(){}
     public static MainFrame getInstanca(){
         if(instanca == null){
@@ -31,6 +31,7 @@ public class MainFrame extends JFrame implements ISubscriber {
     }
 
     private void initialize(){
+        desniPanel = new DesniPanel();
         ((DraftTreeImplementation)draftTree).addSubscriber(desniPanel);
         ApplicationFramework.getInstanca().getMessageGenerator().addSubscriber(this);
         Toolkit kit = Toolkit.getDefaultToolkit();

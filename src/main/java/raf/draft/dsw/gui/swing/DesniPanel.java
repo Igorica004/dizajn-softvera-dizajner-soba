@@ -6,6 +6,7 @@ import raf.draft.dsw.controller.observer.Notification;
 import raf.draft.dsw.model.nodes.DraftNode;
 import raf.draft.dsw.model.structures.Building;
 import raf.draft.dsw.model.structures.Project;
+import raf.draft.dsw.state.StateManager;
 import raf.draft.dsw.tabbedpane.TabbedPaneImplementation;
 import raf.draft.dsw.tabbedpane.TabbedPaneInterface;
 import raf.draft.dsw.tree.DraftTreeImplementation;
@@ -18,6 +19,7 @@ public class DesniPanel extends JPanel implements ISubscriber {
     TabbedPaneInterface tabbedPane = new TabbedPaneImplementation();
     private JLabel naziv = new JLabel();
     private JLabel autor = new JLabel();
+    StateManager stateManager = new StateManager();
 
     public DesniPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -29,7 +31,10 @@ public class DesniPanel extends JPanel implements ISubscriber {
                 new JLabel("Autor: "),
                 autor
         ));
-        add(((TabbedPaneImplementation)tabbedPane).getTabbedPaneView());
+        add(JPanelUtils.makeHBox(
+                ((TabbedPaneImplementation)tabbedPane).getTabbedPaneView(),
+                new StateToolBar()
+        ));
     }
 
     @Override
@@ -48,4 +53,10 @@ public class DesniPanel extends JPanel implements ISubscriber {
             autor.setText(project.getAutor());
         }
     }
+
+    public void startAddState(){stateManager.setAddState();}
+    public void startEditRoomState(){stateManager.setEditRoomState();}
+    public void startMoveState(){stateManager.setMoveState();}
+    public void startResizeState(){stateManager.setResizeState();}
+    public void startSelectState(){stateManager.setSelectState();}
 }

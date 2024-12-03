@@ -16,7 +16,7 @@ public abstract class AbstractRoomAction extends AbstractAction {
         }
         else
         {
-            System.err.println("File " + "images/exit.png" + " not found");
+            System.err.println("File " + path + " not found");
         }
         return icon;
     }
