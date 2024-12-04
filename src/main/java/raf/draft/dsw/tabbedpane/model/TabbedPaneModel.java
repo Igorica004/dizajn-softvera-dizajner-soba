@@ -5,22 +5,17 @@ import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.model.nodes.DraftNode;
 import raf.draft.dsw.model.structures.Building;
 import raf.draft.dsw.model.structures.Project;
-import raf.draft.dsw.model.structures.ProjectExplorer;
-import raf.draft.dsw.model.structures.Room;
 import raf.draft.dsw.tree.DraftTreeImplementation;
-import raf.draft.dsw.utils.ColorUtils;
-import raf.draft.dsw.tabbedpane.view.TabPanel;
+import raf.draft.dsw.tabbedpane.view.RoomView;
 import raf.draft.dsw.utils.DraftNodeUtils;
 
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 
 @Data
 public class TabbedPaneModel {
-    private HashMap<DraftNode,TabPanel> sviTabovi = new HashMap<>();
-    private HashMap<DraftNode,TabPanel> noviTabovi = new HashMap<>();
+    private HashMap<DraftNode, RoomView> sviTabovi = new HashMap<>();
+    private HashMap<DraftNode, RoomView> noviTabovi = new HashMap<>();
 
     //1. nalazenje projekta
     //2. od projekta se spustati ka dole 
@@ -38,9 +33,9 @@ public class TabbedPaneModel {
                         noviTabovi.put(room,sviTabovi.get(room));
                     }
                     else{
-                        TabPanel tabPanel = new TabPanel(room);
-                        noviTabovi.put(room, tabPanel);
-                        sviTabovi.put(room, tabPanel);
+                        RoomView roomView = new RoomView(room);
+                        noviTabovi.put(room, roomView);
+                        sviTabovi.put(room, roomView);
                     }
                 }
             }
@@ -49,15 +44,15 @@ public class TabbedPaneModel {
                     noviTabovi.put(child,sviTabovi.get(child));
                 }
                 else{
-                    TabPanel tabPanel = new TabPanel(child);
-                    noviTabovi.put(child, tabPanel);
-                    sviTabovi.put(child, tabPanel);
+                    RoomView roomView = new RoomView(child);
+                    noviTabovi.put(child, roomView);
+                    sviTabovi.put(child, roomView);
                 }
             }
         }
     }
 
-    public HashMap<DraftNode,TabPanel> getTabovi(){
+    public HashMap<DraftNode, RoomView> getTabovi(){
         DraftNode selektovan = MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode();
         selektovan = DraftNodeUtils.getProjectParent(selektovan);
         DraftTreeImplementation stablo = (DraftTreeImplementation) MainFrame.getInstanca().getDraftTree();

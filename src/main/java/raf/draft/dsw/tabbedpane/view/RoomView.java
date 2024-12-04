@@ -10,7 +10,6 @@ import raf.draft.dsw.model.structures.Room;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Iterator;
 import java.util.Objects;
 
 @Data
