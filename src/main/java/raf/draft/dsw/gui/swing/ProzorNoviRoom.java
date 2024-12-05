@@ -8,6 +8,7 @@ import raf.draft.dsw.model.structures.Building;
 import raf.draft.dsw.model.structures.Room;
 import raf.draft.dsw.tree.model.DraftTreeItem;
 import raf.draft.dsw.utils.DraftNodeUtils;
+import raf.draft.dsw.utils.JPanelUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +18,8 @@ public class ProzorNoviRoom extends JDialog{
     public ProzorNoviRoom(String editOrMake){initialize(editOrMake);}
 
     JTextField tfNaziv = new JTextField(20);
+    JTextField tfDimenzijaX = new JTextField(20);
+    JTextField tfDimenzijaY = new JTextField(20);
     JButton button;
 
     private void initialize(String editOrMake) {
@@ -36,9 +39,23 @@ public class ProzorNoviRoom extends JDialog{
 
         JPanel panel = new JPanel();
         setContentPane(panel);
-        panel.add(new JLabel("Naziv: "));
-        panel.add(tfNaziv);
-        panel.add(button);
+        panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+        panel.add(JPanelUtils.makeVBox(
+                JPanelUtils.makeHBox(
+                        new JLabel("Naziv: "),
+                        tfNaziv
+                ),
+                JPanelUtils.makeHBox(
+                        new JLabel("Sirina: "),
+                        tfDimenzijaX
+                ),
+                JPanelUtils.makeHBox(
+                        new JLabel("Visina:"),
+                        tfDimenzijaY
+                ),
+                button
+
+        ));
         pack();
 
     }

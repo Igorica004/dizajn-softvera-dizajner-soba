@@ -28,6 +28,7 @@ public class RoomView extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         DevicePainter painter;
+
         /*g2d.setPaint(Color.BLACK);
         g2d.drawRect(10, 0, 25, 25);
         g2d.fillRect(10, 0, 25, 25);*/
@@ -35,6 +36,7 @@ public class RoomView extends JPanel {
 //            KrevetPainter k = new KrevetPainter(new Krevet("krevet",room,new Dimension(25,25),new Point(10,10),Color.BLACK,2.2,new BasicStroke()));
 //            k.paint(g2d);
 //        }
+
         for(RoomElement r:((Room)room).getObjects())
         {
             if(r instanceof Krevet)

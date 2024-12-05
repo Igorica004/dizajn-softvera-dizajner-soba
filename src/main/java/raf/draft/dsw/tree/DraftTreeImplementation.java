@@ -16,7 +16,6 @@ import raf.draft.dsw.model.messages.Message;
 import raf.draft.dsw.model.messages.MessageType;
 import raf.draft.dsw.model.nodes.DraftNode;
 import raf.draft.dsw.model.nodes.DraftNodeComposite;
-import raf.draft.dsw.model.roomobjects.Krevet;
 import raf.draft.dsw.model.structures.Building;
 import raf.draft.dsw.model.structures.Project;
 import raf.draft.dsw.model.structures.ProjectExplorer;
@@ -80,6 +79,10 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         else if(selectedNode instanceof Project){
             NoviBuildingRoomAkcija noviBuildingRoomAkcija = MainFrame.getInstanca().getActionManager().getNoviBuildingRoomAkcija();
             DraftNode tempDraftTree = noviBuildingRoomAkcija.getDraftNode();
+            if(tempDraftTree instanceof Room){
+                Dimension d = noviBuildingRoomAkcija.getDimenzijaSobe();
+                ((Room)tempDraftTree).setDimenzija(d);
+            }
             newNode = createChild(tempDraftTree);
             if(tempDraftTree instanceof Building)
                 newNode.setColor(ColorUtils.randomColor());
@@ -163,15 +166,18 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         if(draftNode instanceof Project){
             Project project = (Project) draftNode;
             factory = new FactoryProject();
-            DraftNode newNode = factory.createNode(getSelectedNode().getDraftNode(),project.getNaziv(),project.getAutor(),project.getPutanja());
+            DraftNode newNode = factory.createNode(getSelectedNode().getDraftNode(),project.getNaziv(),project.getAutor(),project.getPutanja(),null );
             newNode.setRoditelj(getSelectedNode().getDraftNode());
             return newNode;
         }
+        Dimension dimenzija = null;
         if(draftNode instanceof Building)
             factory = new FactoryBuilding();
-        else
+        else{
             factory = new FactoryRoom();
-        DraftNode newNode = factory.createNode(getSelectedNode().getDraftNode(),draftNode.getNaziv(),"","");
+            dimenzija = ((Room)draftNode).getDimenzija();
+        }
+        DraftNode newNode = factory.createNode(getSelectedNode().getDraftNode(),draftNode.getNaziv(),"","",dimenzija);
         newNode.setRoditelj(getSelectedNode().getDraftNode());
         return newNode;
     }

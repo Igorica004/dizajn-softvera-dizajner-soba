@@ -3,6 +3,7 @@ package raf.draft.dsw.tabbedpane.view;
 import lombok.Data;
 import raf.draft.dsw.model.nodes.DraftNode;
 import raf.draft.dsw.model.structures.Project;
+import raf.draft.dsw.model.structures.Room;
 import raf.draft.dsw.utils.ColorUtils;
 
 import javax.swing.*;
@@ -33,6 +34,8 @@ public class TabbedPaneView extends JTabbedPane {
                 punNaziv = String.format("%s/%s", roomView.getRoom().getRoditelj().getNaziv(), roomView.getRoom().getNaziv());
             }
             roomView.add(new JLabel(label));
+            Room rum = (Room)(roomView.getRoom());
+            roomView.add(new JLabel(rum.getDimenzija().toString()));
             addTab(punNaziv, roomView);
         }
         for(int i=0; i<getTabCount(); i++){
