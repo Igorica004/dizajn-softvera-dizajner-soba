@@ -9,6 +9,6 @@ public class FactoryRoom extends Factory {
 
     @Override
     public DraftNode createNode(DraftNode parent, String ime, String autor, String putanja, Dimension dimenzija) {
-        return new Room(ime,parent);
+        return new Room(ime,parent,dimenzija);
     }
 }

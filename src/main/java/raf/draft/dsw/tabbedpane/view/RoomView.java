@@ -14,8 +14,8 @@ import java.util.Objects;
 
 @Data
 public class RoomView extends JPanel {
-    private DraftNode room;
-    public RoomView(DraftNode room) {
+    private Room room;
+    public RoomView(Room room) {
         this();
         this.room = room;
     }

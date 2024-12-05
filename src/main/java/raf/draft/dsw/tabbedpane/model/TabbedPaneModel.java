@@ -5,6 +5,7 @@ import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.model.nodes.DraftNode;
 import raf.draft.dsw.model.structures.Building;
 import raf.draft.dsw.model.structures.Project;
+import raf.draft.dsw.model.structures.Room;
 import raf.draft.dsw.tree.DraftTreeImplementation;
 import raf.draft.dsw.tabbedpane.view.RoomView;
 import raf.draft.dsw.utils.DraftNodeUtils;
@@ -33,7 +34,7 @@ public class TabbedPaneModel {
                         noviTabovi.put(room,sviTabovi.get(room));
                     }
                     else{
-                        RoomView roomView = new RoomView(room);
+                        RoomView roomView = new RoomView((Room)room);
                         noviTabovi.put(room, roomView);
                         sviTabovi.put(room, roomView);
                     }
@@ -44,7 +45,7 @@ public class TabbedPaneModel {
                     noviTabovi.put(child,sviTabovi.get(child));
                 }
                 else{
-                    RoomView roomView = new RoomView(child);
+                    RoomView roomView = new RoomView((Room)child);
                     noviTabovi.put(child, roomView);
                     sviTabovi.put(child, roomView);
                 }
