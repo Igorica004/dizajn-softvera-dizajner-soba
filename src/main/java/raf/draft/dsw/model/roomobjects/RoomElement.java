@@ -9,16 +9,16 @@ import java.awt.*;
 @Getter
 @Setter
 public abstract class RoomElement extends DraftLeaf implements Prototype{
-    protected Point locacija;
+    protected Point lokacija;
     protected Dimension dimenzija;
     protected double rotateRatio;
     protected Stroke stroke;
     protected Paint paint;
 
-    public RoomElement(String ime, DraftNode roditelj, Dimension dimenzija, Point locacija, Paint paint, double rotateRatio, Stroke stroke) {
+    public RoomElement(String ime, DraftNode roditelj, Dimension dimenzija, Point lokacija, Paint paint, double rotateRatio, Stroke stroke) {
         super(ime, roditelj);
         this.dimenzija = dimenzija;
-        this.locacija = locacija;
+        this.lokacija = lokacija;
         this.paint = paint;
         this.rotateRatio = rotateRatio;
         this.stroke = stroke;

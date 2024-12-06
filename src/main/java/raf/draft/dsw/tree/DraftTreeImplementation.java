@@ -80,7 +80,14 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
             NoviBuildingRoomAkcija noviBuildingRoomAkcija = MainFrame.getInstanca().getActionManager().getNoviBuildingRoomAkcija();
             DraftNode tempDraftTree = noviBuildingRoomAkcija.getDraftNode();
             if(tempDraftTree instanceof Room){
+
                 Dimension d = noviBuildingRoomAkcija.getDimenzijaSobe();
+                if(d==null)
+                {
+                    Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"pogresno uneta dimenzija");
+                    ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
+                    return;
+                }
                 ((Room)tempDraftTree).setDimenzija(d);
             }
             newNode = createChild(tempDraftTree);

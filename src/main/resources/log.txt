@@ -28,3 +28,5 @@
 [GRESKA][2024-11-11T21:15:23.456435097] Greska pri imenovanju!
 [GRESKA][2024-11-11T21:30:02.999012729] Ne moze da se obrise root!
 [GRESKA][2024-11-29T16:53:54.066362500] Soba ne moze da ima dete
+[GRESKA][2024-12-06T19:19:37.114947900] pogresno uneta dimenzija
+[GRESKA][2024-12-06T19:19:50.380574300] pogresno uneta dimenzija

@@ -7,6 +7,6 @@ import java.awt.geom.Ellipse2D;
 public class KadaPainter extends DevicePainter{
     public KadaPainter(RoomElement prototype) {
         super(prototype);
-        shape = new Ellipse2D.Double(prototype.getLocacija().x,prototype.getLocacija().y,prototype.getDimenzija().width,prototype.getDimenzija().height);
+        shape = new Ellipse2D.Double(prototype.getLokacija().x,prototype.getLokacija().y,prototype.getDimenzija().width,prototype.getDimenzija().height);
     }
 }

@@ -1,15 +1,13 @@
 package raf.draft.dsw.model.painters;
 
-import raf.draft.dsw.model.roomobjects.Prototype;
 import raf.draft.dsw.model.roomobjects.RoomElement;
 
 import java.awt.*;
-import java.awt.geom.GeneralPath;
 
 public class KrevetPainter extends DevicePainter{
     public KrevetPainter(RoomElement prototype) {
         super(prototype);
-        shape = new Rectangle(prototype.getLocacija().x,prototype.getLocacija().y,prototype.getLocacija().x+prototype.getDimenzija().width,prototype.getLocacija().y+prototype.getDimenzija().height);
+        shape = new Rectangle(prototype.getLokacija().x,prototype.getLokacija().y,prototype.getLokacija().x+prototype.getDimenzija().width,prototype.getLokacija().y+prototype.getDimenzija().height);
     }
 
 //    @Override
