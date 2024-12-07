@@ -1,28 +1,35 @@
 package raf.draft.dsw.state.concrete;
 
-import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.state.State;
-import raf.draft.dsw.tabbedpane.view.RoomView;
+
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
 public class AddState implements State {
 
     @Override
-    public void misPrevucen() {
+    public void misPrevucen(MouseEvent e, Graphics2D g2d) {
 
     }
 
     @Override
-    public void misOtpusten() {
+    public void misOtpusten(MouseEvent e, Graphics2D g2d) {
 
     }
 
     @Override
-    public void misSkrolGore() {
+    public void misSkrolGore(MouseWheelEvent e, Graphics2D g2d) {
 
     }
 
     @Override
-    public void misSkrolDole() {
+    public void misSkrolDole(MouseWheelEvent e, Graphics2D g2d) {
+
+    }
+
+    @Override
+    public void misPressed(MouseEvent e, Graphics2D g2d) {
 
     }
 }
