@@ -1,10 +1,13 @@
 package raf.draft.dsw.state;
 
-import raf.draft.dsw.model.roomobjects.RoomElement;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
 public interface State {
-    void misPrevucen();
-    void misOtpusten();
-    void misSkrolGore();
-    void misSkrolDole();
+    void misPrevucen(MouseEvent e, Graphics2D g2d);
+    void misOtpusten(MouseEvent e, Graphics2D g2d);
+    void misSkrolGore(MouseWheelEvent e, Graphics2D g2d);
+    void misSkrolDole(MouseWheelEvent e, Graphics2D g2d);
+    void misPressed(MouseEvent e, Graphics2D g2d);
 }
