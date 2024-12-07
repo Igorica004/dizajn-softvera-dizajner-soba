@@ -1,13 +1,19 @@
 package raf.draft.dsw.gui.swing;
 
+import raf.draft.dsw.core.ApplicationFramework;
+import raf.draft.dsw.model.messages.Message;
+import raf.draft.dsw.model.messages.MessageType;
+import raf.draft.dsw.model.roomobjects.RoomElement;
 import raf.draft.dsw.utils.JPanelUtils;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 
 public class NoviObjekatProzor extends JDialog {
-    JTextField tfDimenzijaX = new JTextField(20);
-    JTextField tfDimenzijaY = new JTextField(20);
+    JTextField tfDimenzijaX = new JTextField(10);
+    JTextField tfDimenzijaY = new JTextField(10);
     JButton button = new JButton("Dodaj");
     JRadioButton radioButton1 = new JRadioButton("Bojler");
     JRadioButton radioButton2 = new JRadioButton("Kada");
@@ -36,7 +42,7 @@ public class NoviObjekatProzor extends JDialog {
 
         JPanel panel = new JPanel();
         setContentPane(panel);
-        panel.setLayout(new BoxLayout(panel,BoxLayout.X_AXIS));
+        panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
         add(JPanelUtils.makeVBox(
                 JPanelUtils.makeHBox(
                         new JLabel("Sirina:"),
@@ -56,5 +62,25 @@ public class NoviObjekatProzor extends JDialog {
         ));
         add(button);
         pack();
+    }
+    public String getOdabrani() {
+        for (java.util.Enumeration<AbstractButton> buttons = group.getElements(); buttons.hasMoreElements(); ) {
+            AbstractButton button = buttons.nextElement();
+            if (button.isSelected()) {
+                return button.getText();
+            }
+        }
+        return null;
+    }
+    public Dimension getDimension(){
+        int x,y;
+        try{
+            x = Integer.parseInt(tfDimenzijaX.getText());
+            y = Integer.parseInt(tfDimenzijaY.getText());
+            return new Dimension(x,y);
+        }
+        catch(Exception e){
+            return null;
+        }
     }
 }

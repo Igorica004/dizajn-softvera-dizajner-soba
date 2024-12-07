@@ -4,6 +4,7 @@ import lombok.Data;
 import raf.draft.dsw.controller.observer.ISubscriber;
 import raf.draft.dsw.controller.observer.Notification;
 import raf.draft.dsw.model.nodes.DraftNode;
+import raf.draft.dsw.model.roomobjects.RoomElement;
 import raf.draft.dsw.model.structures.Building;
 import raf.draft.dsw.model.structures.Project;
 import raf.draft.dsw.state.StateManager;
@@ -13,13 +14,17 @@ import raf.draft.dsw.tree.DraftTreeImplementation;
 import raf.draft.dsw.utils.JPanelUtils;
 
 import javax.swing.*;
+import java.awt.*;
 
 @Data
 public class DesniPanel extends JPanel implements ISubscriber {
     TabbedPaneInterface tabbedPane = new TabbedPaneImplementation();
     private JLabel naziv = new JLabel();
     private JLabel autor = new JLabel();
+
     StateManager stateManager = new StateManager();
+    String elementToAdd = null;
+    Dimension dimensionToAdd = null;
 
     public DesniPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

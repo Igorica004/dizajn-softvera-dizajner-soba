@@ -16,6 +16,8 @@ import java.time.LocalDateTime;
 public class DraftTreeMouseListener extends MouseAdapter {
     @Override
     public void mouseClicked(MouseEvent e) {
+        if(MainFrame.getInstanca().getDraftTree().getSelectedNode() == null)
+            return;
         DraftNode selektovani = MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode();
         if (e.getClickCount() == 2 && selektovani instanceof Project){
             DraftTreeImplementation stablo = (DraftTreeImplementation)MainFrame.getInstanca().getDraftTree();

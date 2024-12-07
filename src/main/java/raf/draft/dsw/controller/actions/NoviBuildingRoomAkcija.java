@@ -20,10 +20,14 @@ public class NoviBuildingRoomAkcija {
         if(dn instanceof Room){
             ProzorDimenzijeSobe pds = new ProzorDimenzijeSobe();
             pds.setVisible(true);
-            if(pds.getTfDimenzijaX().getText().matches("[0-9]+")) {
+            try{
                 dimenzija = new Dimension();
                 dimenzija.width = Integer.parseInt(pds.getTfDimenzijaX().getText());
                 dimenzija.height = Integer.parseInt(pds.getTfDimenzijaY().getText());
+            } catch(Exception e){
+                dimenzija = null;
+                ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(new Message(MessageType.GRESKA,LocalDateTime.now(),"Nisu dobre dimenzije sobe"));
+                return null;
             }
         }
         return dn;

@@ -79,6 +79,8 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         else if(selectedNode instanceof Project){
             NoviBuildingRoomAkcija noviBuildingRoomAkcija = MainFrame.getInstanca().getActionManager().getNoviBuildingRoomAkcija();
             DraftNode tempDraftTree = noviBuildingRoomAkcija.getDraftNode();
+            if(tempDraftTree == null)
+                return;
             if(tempDraftTree instanceof Room){
 
                 Dimension d = noviBuildingRoomAkcija.getDimenzijaSobe();

@@ -30,3 +30,27 @@
 [GRESKA][2024-11-29T16:53:54.066362500] Soba ne moze da ima dete
 [GRESKA][2024-12-06T19:19:37.114947900] pogresno uneta dimenzija
 [GRESKA][2024-12-06T19:19:50.380574300] pogresno uneta dimenzija
+[GRESKA][2024-12-07T15:57:13.925939300] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T15:57:25.080596600] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T15:57:37.977287100] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T16:12:07.959867600] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T16:12:27.530551100] pogresno uneta dimenzija
+[GRESKA][2024-12-07T16:19:24.669726900] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T16:19:36.104027900] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-07T16:19:38.465417200] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T16:19:48.625498100] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-07T16:20:02.310093200] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-07T16:22:30.679890600] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-07T16:47:58.747335900] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T16:49:47.191988200] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T16:49:55.260911] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-07T16:50:07.533354500] Nije odabrana vrsta elementa
+[GRESKA][2024-12-07T16:51:08.535815600] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T16:51:10.365659300] Nije selektovana grana!
+[GRESKA][2024-12-07T16:51:58.043581500] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T16:52:05.550101400] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T16:52:19.400736100] Nije odabrana vrsta elementa
+[GRESKA][2024-12-07T16:53:18.874660900] Nije odabrana vrsta elementa
+[GRESKA][2024-12-07T16:53:23.981266400] Nije odabrana vrsta elementa
+[GRESKA][2024-12-07T17:11:26.067404900] Nije odabrana vrsta elementa
+[GRESKA][2024-12-07T17:11:30.902965] Nije odabrana dimenzija elementa
