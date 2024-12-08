@@ -4,7 +4,7 @@ import raf.draft.dsw.model.nodes.DraftNode;
 
 import java.awt.*;
 
-public class Ormar extends RoomElement{
+public class Ormar extends RoomDevice{
     public Ormar(String ime, DraftNode roditelj) {
         super(ime, roditelj);
     }

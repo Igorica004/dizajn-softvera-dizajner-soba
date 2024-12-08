@@ -3,7 +3,11 @@ package raf.draft.dsw.tabbedpane.view;
 import lombok.Data;
 import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.model.painters.DevicePainter;
+import raf.draft.dsw.model.painters.ElementPainter;
+import raf.draft.dsw.model.painters.RectanglePainter;
+import raf.draft.dsw.model.roomobjects.RoomElement;
 import raf.draft.dsw.model.structures.Room;
+import raf.draft.dsw.utils.MisaListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,18 +15,21 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Objects;
 
 @Data
 public class RoomView extends JPanel {
     private Room room;
-    private ArrayList<DevicePainter> painters = new ArrayList<>();
-    private Graphics2D g2d;
+    private ArrayList<ElementPainter> painters = new ArrayList<>();
+    private ArrayList<RoomElement> selektovani = new ArrayList<>();
+
     public RoomView(Room room) {
         this();
         this.room = room;
-        addMouseListener(new MisaListener());
-        addMouseMotionListener(new MisaListener());
+        MisaListener listener = new MisaListener();
+        addMouseListener(listener);
+        addMouseMotionListener(listener);
     }
     public RoomView(){
 
@@ -32,13 +39,22 @@ public class RoomView extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g2d = (Graphics2D) g;
+        Graphics2D g2d = (Graphics2D) g;
         g2d.drawRect(10,10,room.getDimenzija().width,room.getDimenzija().height);
-        g2d.setPaint(Color.BLUE);
-        g2d.setComposite(AlphaComposite.SrcOver.derive(0.6f));
+        for (ElementPainter elementPainter : painters) {
+            elementPainter.paint(g2d);
+        }
 
     }
 
+    public void addPainter(ElementPainter elementPainter) {
+        painters.add(elementPainter);
+        repaint();
+    }
+    public void removePainter(ElementPainter elementPainter) {
+        painters.remove(elementPainter);
+        repaint();
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -49,41 +65,5 @@ public class RoomView extends JPanel {
     @Override
     public int hashCode() {
         return Objects.hashCode(room);
-    }
-
-    public class MisaListener extends MouseAdapter {
-        public MisaListener() {
-        }
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            super.mouseClicked(e);
-        }
-
-        @Override
-        public void mouseDragged(MouseEvent e) {
-            super.mouseDragged(e);
-            MainFrame.getInstanca().getDesniPanel().getStateManager().getCurrentState().misPrevucen(e,g2d);
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-            super.mousePressed(e);
-
-            MainFrame.getInstanca().getDesniPanel().getStateManager().getCurrentState().misPressed(e,g2d);
-
-        }
-
-        @Override
-        public void mouseWheelMoved(MouseWheelEvent e) {
-            super.mouseWheelMoved(e);
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-            super.mouseReleased(e);
-            repaint();
-            MainFrame.getInstanca().getDesniPanel().getStateManager().getCurrentState().misOtpusten(e,g2d);
-        }
     }
 }
