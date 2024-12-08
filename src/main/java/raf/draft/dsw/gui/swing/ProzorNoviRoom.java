@@ -61,8 +61,11 @@ public class ProzorNoviRoom extends JDialog{
     }
     public Room getRoom() {
         DraftTreeItem selected = MainFrame.getInstanca().getDraftTree().getSelectedNode();
-        if(tfNaziv.getText().isEmpty()) return new Room("Room" + selected.getChildCount(),null);
-        return new Room(tfNaziv.getText(),null);
+        Dimension dimenzija = new Dimension();
+        dimenzija.width = Integer.parseInt(tfDimenzijaX.getText());
+        dimenzija.height = Integer.parseInt(tfDimenzijaY.getText());
+        if(tfNaziv.getText().isEmpty()) return new Room("Room" + selected.getChildCount(),null, dimenzija);
+        return new Room(tfNaziv.getText(),null, dimenzija);
     }
     public void setRoom()
     {

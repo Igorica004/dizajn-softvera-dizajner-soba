@@ -4,7 +4,7 @@ import raf.draft.dsw.model.nodes.DraftNode;
 
 import java.awt.*;
 
-public class Lavabo extends RoomElement{
+public class Lavabo extends RoomDevice{
     public Lavabo(String ime, DraftNode roditelj) {
         super(ime, roditelj);
     }

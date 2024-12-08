@@ -4,7 +4,7 @@ import raf.draft.dsw.model.nodes.DraftNode;
 
 import java.awt.*;
 
-public class Bojler extends RoomElement{
+public class Bojler extends RoomDevice{
 
     public Bojler(String ime, DraftNode roditelj) {
         super(ime, roditelj);

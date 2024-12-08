@@ -4,7 +4,7 @@ import raf.draft.dsw.model.nodes.DraftNode;
 
 import java.awt.*;
 
-public class Sto extends RoomElement {
+public class Sto extends RoomDevice {
 
     public Sto(String ime, DraftNode roditelj) {
         super(ime, roditelj);

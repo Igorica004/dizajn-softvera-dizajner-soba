@@ -1,6 +1,13 @@
 package raf.draft.dsw.state.concrete;
 
+import raf.draft.dsw.gui.swing.MainFrame;
+import raf.draft.dsw.gui.swing.NoviObjekatProzor;
+import raf.draft.dsw.model.painters.DevicePainter;
+import raf.draft.dsw.model.painters.KrevetPainter;
+import raf.draft.dsw.model.roomobjects.*;
 import raf.draft.dsw.state.State;
+import raf.draft.dsw.tabbedpane.TabbedPaneImplementation;
+import raf.draft.dsw.tabbedpane.view.RoomView;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -9,27 +16,102 @@ import java.awt.event.MouseWheelEvent;
 public class AddState implements State {
 
     @Override
-    public void misPrevucen(MouseEvent e, Graphics2D g2d) {
+    public void misPrevucen(MouseEvent e) {
 
     }
 
     @Override
-    public void misOtpusten(MouseEvent e, Graphics2D g2d) {
+    public void misOtpusten(MouseEvent e) {
 
     }
 
     @Override
-    public void misSkrolGore(MouseWheelEvent e, Graphics2D g2d) {
+    public void misSkrolGore(MouseWheelEvent e) {
 
     }
 
     @Override
-    public void misSkrolDole(MouseWheelEvent e, Graphics2D g2d) {
+    public void misSkrolDole(MouseWheelEvent e) {
 
     }
 
     @Override
-    public void misPressed(MouseEvent e, Graphics2D g2d) {
+    public void misKliknut(MouseEvent e) {
+
+    }
+
+    @Override
+    public void misPressed(MouseEvent e) {
+        String s = MainFrame.getInstanca().getDesniPanel().getElementToAdd();
+        Dimension d = MainFrame.getInstanca().getDesniPanel().getDimensionToAdd();
+        RoomDevice k;
+        DevicePainter p;
+        switch (s) {
+            case "Bojler":
+                k = new Bojler("bojler", null,
+                        d, new Point(e.getX(), e.getY()),
+                        Color.RED, 0, new BasicStroke());
+                p = new KrevetPainter(k);
+                System.out.println("bojer");
+                break;
+            case "Kada":
+                k = new Kada("bojler", null,
+                        d, new Point(e.getX(), e.getY()),
+                        Color.RED, 0, new BasicStroke());
+                p = new KrevetPainter(k);
+                System.out.println("kada");
+                break;
+            case "Krevet":
+                k = new Krevet("krevet", null,
+                        d, new Point(e.getX(), e.getY()),
+                        Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
+                p = new KrevetPainter(k);
+                System.out.println("krevet");
+                break;
+            case "Lavabo":
+                k = new Lavabo("lavabo", null,
+                        d, new Point(e.getX(), e.getY()),
+                        Color.RED, 0, new BasicStroke());
+                p = new KrevetPainter(k);
+                System.out.println("lavabo");
+                break;
+            case "Ormar":
+                k = new Ormar("ormar", null,
+                        d, new Point(e.getX(), e.getY()),
+                        Color.RED, 0, new BasicStroke());
+                p = new KrevetPainter(k);
+                System.out.println("ormar");
+                break;
+            case "Sto":
+                k = new Sto("sto", null,
+                        d, new Point(e.getX(), e.getY()),
+                        Color.RED, 0, new BasicStroke());
+                p = new KrevetPainter(k);
+                break;
+            case "Ves Masina":
+                k = new VesMasina("ves masina", null,
+                        d, new Point(e.getX(), e.getY()),
+                        Color.RED, 0, new BasicStroke());
+                p = new KrevetPainter(k);
+                break;
+            case "Vrata":
+                k = new Vrata("vrata", null,
+                        d, new Point(e.getX(), e.getY()),
+                        Color.RED, 0, new BasicStroke());
+                p = new KrevetPainter(k);
+                break;
+            case "WC solja":
+                k = new WCSolja("krevet", null,
+                        d, new Point(e.getX(), e.getY()),
+                        Color.RED, 0, new BasicStroke());
+                p = new KrevetPainter(k);
+                break;
+            default:
+                k = null;
+                p = new KrevetPainter(k);
+                System.out.println("nesto nije u redu");
+        }
+        ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent()).addPainter(p);
 
     }
 }

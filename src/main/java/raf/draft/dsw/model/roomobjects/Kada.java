@@ -4,7 +4,7 @@ import raf.draft.dsw.model.nodes.DraftNode;
 
 import java.awt.*;
 
-public class Kada extends RoomElement{
+public class Kada extends RoomDevice{
     public Kada(String ime, DraftNode roditelj, Dimension dimenzija, Point locacija, Paint paint, double rotateRatio, Stroke stroke) {
         super(ime, roditelj, dimenzija, locacija, paint, rotateRatio, stroke);
     }
