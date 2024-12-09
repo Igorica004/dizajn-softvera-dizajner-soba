@@ -58,6 +58,10 @@
 [GRESKA][2024-12-07T20:41:32.692705100] Nije otvoren prikaz sobe.
 [GRESKA][2024-12-07T20:41:55.935084500] Nije odabrana vrsta elementa
 [GRESKA][2024-12-07T21:43:35.595357200] Nije selektovana grana!
+[GRESKA][2024-12-08T13:05:51.973923252] Nisu dobre dimenzije sobe
 [GRESKA][2024-12-08T20:55:08.273548700] Nije odabrana dimenzija elementa
 [GRESKA][2024-12-08T22:31:52.676064300] Nije otvoren prikaz sobe.
 [GRESKA][2024-12-08T23:44:27.249204100] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-09T17:33:39.793791901] Nije selektovana grana!
+[GRESKA][2024-12-09T17:41:47.426280495] Nije odabrana vrsta elementa
+[GRESKA][2024-12-09T17:59:26.822306001] Nije selektovana grana!
