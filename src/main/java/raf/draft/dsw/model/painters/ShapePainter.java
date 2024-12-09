@@ -7,19 +7,14 @@ import raf.draft.dsw.model.roomobjects.RoomElement;
 import java.awt.*;
 @Getter
 @Setter
-public class ShapePainter extends ElementPainter {
+abstract class ShapePainter extends ElementPainter {
     protected Point lokacija;
     protected Dimension dimenzija;
     protected Shape shape;
 
-    public ShapePainter(Point lokacija) {
+    public ShapePainter(Point lokacija, Shape shape) {
         super(null);
         this.lokacija = lokacija;
-    }
-
-    @Override
-    public void paint(Graphics2D g) {
-        g.setColor(Color.black);
-        g.draw(shape);
+        this.shape = shape;
     }
 }
