@@ -31,12 +31,6 @@ public class AddStateAction extends AbstractRoomAction {
             ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(new Message(MessageType.GRESKA,LocalDateTime.now(),"Nije otvoren prikaz sobe."));
             return;
         }
-        if(rv.getOkvirSobe().getShape() == null)
-        {
-            Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"nije nadjen okvir sobe u koju se dodaje");
-            ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
-            return;
-        }
         MainFrame.getInstanca().getDesniPanel().startAddState();
         NoviObjekatProzor prozor = new NoviObjekatProzor();
         prozor.setVisible(true);

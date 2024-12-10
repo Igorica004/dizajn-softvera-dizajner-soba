@@ -42,14 +42,9 @@ public class RoomView extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
         Graphics2D g2d = (Graphics2D) g;
-        super.paintComponent(g);
-        if(okvirSobe.getShape()!=null){
-            okvirSobe.paint(g2d);
-        }
-        /*g2d.drawRect(10,10,(int)(room.getDimenzija().width*getScale()),
-                    (int)(room.getDimenzija().height*getScale()));*/ //painter sobe mora da postoji kao promenljiva da bismo proveravali da li je element unutra
+        g2d.drawRect(10,10,(int)(room.getDimenzija().width*getScale()),
+                    (int)(room.getDimenzija().height*getScale())); //painter sobe mora da postoji kao promenljiva da bismo proveravali da li je element unutra
         for (ElementPainter elementPainter : painters) {
             elementPainter.paint(g2d);
         }
