@@ -65,3 +65,6 @@
 [GRESKA][2024-12-09T17:33:39.793791901] Nije selektovana grana!
 [GRESKA][2024-12-09T17:41:47.426280495] Nije odabrana vrsta elementa
 [GRESKA][2024-12-09T17:59:26.822306001] Nije selektovana grana!
+[GRESKA][2024-12-10T00:59:36.780408900] Nije selektovana grana!
+[GRESKA][2024-12-10T02:08:14.009735600] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-10T02:19:33.084508300] Nije odabrana dimenzija elementa

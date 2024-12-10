@@ -2,8 +2,7 @@ package raf.draft.dsw.state.concrete;
 
 import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.gui.swing.NoviObjekatProzor;
-import raf.draft.dsw.model.painters.DevicePainter;
-import raf.draft.dsw.model.painters.KrevetPainter;
+import raf.draft.dsw.model.painters.*;
 import raf.draft.dsw.model.roomobjects.*;
 import raf.draft.dsw.state.State;
 import raf.draft.dsw.tabbedpane.TabbedPaneImplementation;
@@ -50,15 +49,15 @@ public class AddState implements State {
             case "Bojler":
                 k = new Bojler("bojler", null,
                         d, new Point(e.getX(), e.getY()),
-                        Color.RED, 0, new BasicStroke());
-                p = new KrevetPainter(k);
+                        Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
+                p = new BojlerPainter(k);
                 System.out.println("bojer");
                 break;
             case "Kada":
                 k = new Kada("bojler", null,
                         d, new Point(e.getX(), e.getY()),
-                        Color.RED, 0, new BasicStroke());
-                p = new KrevetPainter(k);
+                        Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
+                p = new KadaPainter(k);
                 System.out.println("kada");
                 break;
             case "Krevet":
@@ -71,39 +70,39 @@ public class AddState implements State {
             case "Lavabo":
                 k = new Lavabo("lavabo", null,
                         d, new Point(e.getX(), e.getY()),
-                        Color.RED, 0, new BasicStroke());
+                        Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
                 p = new KrevetPainter(k);
                 System.out.println("lavabo");
                 break;
             case "Ormar":
                 k = new Ormar("ormar", null,
                         d, new Point(e.getX(), e.getY()),
-                        Color.RED, 0, new BasicStroke());
+                        Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
                 p = new KrevetPainter(k);
                 System.out.println("ormar");
                 break;
             case "Sto":
                 k = new Sto("sto", null,
                         d, new Point(e.getX(), e.getY()),
-                        Color.RED, 0, new BasicStroke());
+                        Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
                 p = new KrevetPainter(k);
                 break;
             case "Ves Masina":
                 k = new VesMasina("ves masina", null,
                         d, new Point(e.getX(), e.getY()),
-                        Color.RED, 0, new BasicStroke());
+                        Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
                 p = new KrevetPainter(k);
                 break;
             case "Vrata":
                 k = new Vrata("vrata", null,
                         d, new Point(e.getX(), e.getY()),
-                        Color.RED, 0, new BasicStroke());
-                p = new KrevetPainter(k);
+                        Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
+                p = new VrataPainter(k);
                 break;
             case "WC solja":
                 k = new WCSolja("krevet", null,
                         d, new Point(e.getX(), e.getY()),
-                        Color.RED, 0, new BasicStroke());
+                        Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
                 p = new KrevetPainter(k);
                 break;
             default:
