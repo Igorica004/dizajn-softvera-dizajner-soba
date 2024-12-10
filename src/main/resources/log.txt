@@ -75,3 +75,4 @@
 [GRESKA][2024-12-10T19:48:48.385154600] Nije selektovana grana!
 [GRESKA][2024-12-10T19:48:56.681112700] Nije selektovana grana!
 [GRESKA][2024-12-10T20:11:30.040936600] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-10T21:39:24.135695200] Nije selektovana grana!

@@ -29,7 +29,7 @@ public class RoomView extends JPanel {
     public RoomView(){
 
     }
-    private Double getScale(){
+    public Double getScale(){
         double scaleX = getWidth()/room.getDimenzija().getWidth();
         double scaleY = getHeight()/room.getDimenzija().getHeight();
         double manje1 = Math.min(scaleX, scaleY);

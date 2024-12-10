@@ -43,6 +43,9 @@ public class AddState implements State {
     public void misPritisnut(MouseEvent e) {
         String s = MainFrame.getInstanca().getDesniPanel().getElementToAdd();
         Dimension d = MainFrame.getInstanca().getDesniPanel().getDimensionToAdd();
+        RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
+        d.width*=rv.getScale();
+        d.height*=rv.getScale();
         RoomDevice k;
         DevicePainter p;
         switch (s) {
