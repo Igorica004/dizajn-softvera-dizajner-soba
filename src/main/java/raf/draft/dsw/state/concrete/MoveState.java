@@ -28,10 +28,7 @@ public class MoveState implements State {
         for(ElementPainter r : rv.getSelektovani())
         {
             //((RoomDevice)r.getShape()).setLokacija(new Point(razlikaX + stareKoordinate.get(i).x, razlikaY + stareKoordinate.get(i).y));
-            Point p = r.getLokacija();
-            p.x += razlikaX;
-            p.y += razlikaY;
-            r.setLokacija(p);
+            r.setLokacija(new Point(stareKoordinate.get(i).x + razlikaX, stareKoordinate.get(i).y + razlikaY));
             i++;
         }
         rv.repaint();

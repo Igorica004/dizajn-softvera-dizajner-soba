@@ -14,7 +14,8 @@ import java.util.*;
 @Data
 public class RoomView extends JPanel {
     private Room room;
-    private double scale;
+    private double scaleX;
+    private double scaleY;
     private ArrayList<ElementPainter> painters = new ArrayList<>();
     private Set<ElementPainter> selektovani = new HashSet<>();
 
