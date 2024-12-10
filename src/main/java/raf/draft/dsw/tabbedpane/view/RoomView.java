@@ -1,10 +1,8 @@
 package raf.draft.dsw.tabbedpane.view;
 
 import lombok.Data;
-import raf.draft.dsw.gui.swing.MainFrame;
-import raf.draft.dsw.model.painters.DevicePainter;
 import raf.draft.dsw.model.painters.ElementPainter;
-import raf.draft.dsw.model.painters.RectanglePainter;
+import raf.draft.dsw.model.roomobjects.RoomDevice;
 import raf.draft.dsw.model.roomobjects.RoomElement;
 import raf.draft.dsw.model.structures.Room;
 import raf.draft.dsw.utils.MisaListener;
@@ -16,8 +14,9 @@ import java.util.*;
 @Data
 public class RoomView extends JPanel {
     private Room room;
+    private double scale;
     private ArrayList<ElementPainter> painters = new ArrayList<>();
-    private Set<RoomElement> selektovani = new HashSet<>();
+    private Set<ElementPainter> selektovani = new HashSet<>();
 
     public RoomView(Room room) {
         this();
@@ -51,13 +50,18 @@ public class RoomView extends JPanel {
         repaint();
     }
 
-    public void addSelktovani(RoomElement selektovani) {
-        selektovani.setStroke(new BasicStroke(3));
+    public void addSelektovani(ElementPainter selektovani) {
+        ((RoomDevice)selektovani.getRoomElement()).setStroke(new BasicStroke(3));
         this.selektovani.add(selektovani);
+        for(ElementPainter r: this.selektovani)
+        {
+            System.out.print(r.getRoomElement().getNaziv()+" ");
+        }
+        System.out.println("\n");
     }
-    public void removeSelktovani() {
-        for (RoomElement selektovani : selektovani) {
-            selektovani.setStroke(new BasicStroke(BasicStroke.CAP_BUTT));
+    public void removeSelektovani() {
+        for (ElementPainter selektovani : selektovani) {
+            ((RoomDevice)selektovani.getRoomElement()).setStroke(new BasicStroke(BasicStroke.CAP_BUTT));
         }
         this.selektovani.clear();
         repaint();

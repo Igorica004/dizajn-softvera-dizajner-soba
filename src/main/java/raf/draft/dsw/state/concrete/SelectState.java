@@ -8,7 +8,6 @@ import raf.draft.dsw.state.State;
 import raf.draft.dsw.tabbedpane.TabbedPaneImplementation;
 import raf.draft.dsw.tabbedpane.view.RoomView;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
@@ -59,7 +58,7 @@ public class SelectState implements State {
         p.setShape(r);
 
         RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
-        rv.removeSelktovani();
+        rv.removeSelektovani();
         selektuj(rv);
 
         rv.addPainter(p);
@@ -75,7 +74,8 @@ public class SelectState implements State {
         for(ElementPainter ep : rv.getPainters()) {
             if(r.intersects(ep.getShape().getBounds2D()) && ep instanceof DevicePainter)
             {
-                rv.addSelktovani(ep.getRoomElement());
+                rv.addSelektovani(ep);
+
             }
         }
     }
