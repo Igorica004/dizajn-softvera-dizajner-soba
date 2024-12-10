@@ -34,7 +34,7 @@ public class RoomView extends JPanel {
         super.paintComponent(g);
 
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawRect(10,10,room.getDimenzija().width,room.getDimenzija().height);
+        g2d.drawRect(10,10,room.getDimenzija().width,room.getDimenzija().height); //painter sobe mora da postoji kao promenljiva da bismo proveravali da li je element unutra
         for (ElementPainter elementPainter : painters) {
             elementPainter.paint(g2d);
         }
@@ -53,11 +53,11 @@ public class RoomView extends JPanel {
     public void addSelektovani(ElementPainter selektovani) {
         ((RoomDevice)selektovani.getRoomElement()).setStroke(new BasicStroke(3));
         this.selektovani.add(selektovani);
-        for(ElementPainter r: this.selektovani)
-        {
-            System.out.print(r.getRoomElement().getNaziv()+" ");
-        }
-        System.out.println("\n");
+        //for(ElementPainter r: this.selektovani)
+        //{
+        //    System.out.print(r.getRoomElement().getNaziv()+" ");
+        //}
+        //System.out.println("\n");
     }
     public void removeSelektovani() {
         for (ElementPainter selektovani : selektovani) {

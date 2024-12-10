@@ -12,7 +12,7 @@ abstract class ShapePainter extends ElementPainter {
     protected Dimension dimenzija;
 
     public ShapePainter(Point lokacija, Shape shape1) {
-        super(null);
+        super(null,lokacija);
         this.lokacija = lokacija;
         shape = shape1;
     }

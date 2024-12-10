@@ -27,7 +27,7 @@ public class ResizeState implements State {
     }
 
     @Override
-    public void misPressed(MouseEvent e) {
+    public void misPritisnut(MouseEvent e) {
 
     }
 

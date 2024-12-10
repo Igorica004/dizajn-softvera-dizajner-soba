@@ -9,14 +9,13 @@ import java.awt.*;
 @Setter
 public class DevicePainter extends ElementPainter {
     public DevicePainter(RoomDevice roomDevice) {
-        super(roomDevice);
+        super(roomDevice,roomDevice.getLokacija());
     }
 
     @Override
     public void paint(Graphics2D g) {
         g.setStroke(roomElement.getStroke());
         g.setPaint(roomElement.getPaint());
-
         g.fill(shape);
 
         g.setPaint(Color.black);

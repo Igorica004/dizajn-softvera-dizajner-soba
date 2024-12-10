@@ -40,7 +40,7 @@ public class AddState implements State {
     }
 
     @Override
-    public void misPressed(MouseEvent e) {
+    public void misPritisnut(MouseEvent e) {
         String s = MainFrame.getInstanca().getDesniPanel().getElementToAdd();
         Dimension d = MainFrame.getInstanca().getDesniPanel().getDimensionToAdd();
         RoomDevice k;

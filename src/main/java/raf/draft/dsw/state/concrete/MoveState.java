@@ -15,20 +15,23 @@ import java.util.ArrayList;
 
 public class MoveState implements State {
     int pocetniX, pocetniY;
-    int razlikaX, razlikaY;
     private ArrayList<Point> stareKoordinate = new ArrayList<>();
     @Override
     public void misPrevucen(MouseEvent e) {
         int trenutniX = e.getX();
         int trenutniY = e.getY();
-        razlikaX = trenutniX - pocetniX;
-        razlikaY = trenutniY - pocetniY;
+        int razlikaX = trenutniX - pocetniX;
+        int razlikaY = trenutniY - pocetniY;
 
         RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
         int i = 0;
         for(ElementPainter r : rv.getSelektovani())
         {
-            ((RoomDevice)r.getRoomElement()).setLokacija(new Point(razlikaX + stareKoordinate.get(i).x, razlikaY + stareKoordinate.get(i).y));
+            //((RoomDevice)r.getShape()).setLokacija(new Point(razlikaX + stareKoordinate.get(i).x, razlikaY + stareKoordinate.get(i).y));
+            Point p = r.getLokacija();
+            p.x += razlikaX;
+            p.y += razlikaY;
+            r.setLokacija(p);
             i++;
         }
         rv.repaint();
@@ -55,7 +58,7 @@ public class MoveState implements State {
     }
 
     @Override
-    public void misPressed(MouseEvent e) {
+    public void misPritisnut(MouseEvent e) {
         RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
         pocetniX=e.getX();
         pocetniY=e.getY();

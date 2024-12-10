@@ -10,7 +10,9 @@ import java.awt.*;
 public abstract class ElementPainter {
     protected RoomElement roomElement;
     protected Shape shape;
-    public ElementPainter(RoomElement element) {
+    protected Point lokacija;
+    public ElementPainter(RoomElement element, Point lokacija) {
+        this.lokacija = lokacija;
         this.roomElement = element;
     }
     public abstract void paint(Graphics2D g);
