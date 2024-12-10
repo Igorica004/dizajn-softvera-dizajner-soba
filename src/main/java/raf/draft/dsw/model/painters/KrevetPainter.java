@@ -7,6 +7,6 @@ import java.awt.*;
 public class KrevetPainter extends DevicePainter{
     public KrevetPainter(RoomDevice roomDevice) {
         super(roomDevice);
-        shape = new Rectangle(roomDevice.getLokacija(),roomDevice.getDimenzija());
+        shape = new Rectangle(roomDevice.getDimenzija());
     }
 }

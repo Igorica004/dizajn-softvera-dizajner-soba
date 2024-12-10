@@ -8,6 +8,6 @@ public interface State {
     void misOtpusten(MouseEvent e);
     void misSkrolGore(MouseWheelEvent e);
     void misSkrolDole(MouseWheelEvent e);
-    void misPressed(MouseEvent e);
+    void misPritisnut(MouseEvent e);
     void misKliknut(MouseEvent e);
 }

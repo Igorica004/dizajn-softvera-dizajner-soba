@@ -22,9 +22,7 @@ public class SelectState implements State {
     @Override
     public void misPrevucen(MouseEvent e) {
         RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
-
         updateSize(e);
-        selektuj(rv);
     }
 
     @Override
@@ -35,6 +33,8 @@ public class SelectState implements State {
         //    rv.removePainter(rv.getPainters().getLast());
         //}
         rv.getPainters().remove(p);
+        selektuj(rv);
+        System.out.println(rv.getSelektovani());
         rv.repaint();
     }
 
@@ -49,7 +49,7 @@ public class SelectState implements State {
     }
 
     @Override
-    public void misPressed(MouseEvent e) {
+    public void misPritisnut(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
         klik.setLocation(x, y);

@@ -36,7 +36,7 @@ public class EditRoomState implements State {
     }
 
     @Override
-    public void misPressed(MouseEvent e) {
+    public void misPritisnut(MouseEvent e) {
         RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
         Dimension d = rv.getSize();
 

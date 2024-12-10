@@ -26,7 +26,7 @@ public class MisaListener extends MouseAdapter {
     public void mousePressed(MouseEvent e) {
         State current = MainFrame.getInstanca().getDesniPanel().getStateManager().getCurrentState();
         if(current != null)
-            current.misPressed(e);
+            current.misPritisnut(e);
 
     }
 
