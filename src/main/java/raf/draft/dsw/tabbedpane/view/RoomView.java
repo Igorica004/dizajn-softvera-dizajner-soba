@@ -2,6 +2,7 @@ package raf.draft.dsw.tabbedpane.view;
 
 import lombok.Data;
 import raf.draft.dsw.model.painters.ElementPainter;
+import raf.draft.dsw.model.painters.RectanglePainter;
 import raf.draft.dsw.model.roomobjects.RoomDevice;
 import raf.draft.dsw.model.roomobjects.RoomElement;
 import raf.draft.dsw.model.structures.Room;
@@ -14,8 +15,7 @@ import java.util.*;
 @Data
 public class RoomView extends JPanel {
     private Room room;
-    private double scaleX;
-    private double scaleY;
+    private RectanglePainter okvirSobe;
     private ArrayList<ElementPainter> painters = new ArrayList<>();
     private Set<ElementPainter> selektovani = new HashSet<>();
 
@@ -29,13 +29,22 @@ public class RoomView extends JPanel {
     public RoomView(){
 
     }
+    private Double getScale(){
+        double scaleX = getWidth()/room.getDimenzija().getWidth();
+        double scaleY = getHeight()/room.getDimenzija().getHeight();
+        double manje1 = Math.min(scaleX, scaleY);
+        scaleX = (1.0*getWidth()-20)/getWidth();
+        scaleY = (1.0*getHeight()-20)/getHeight();
+        double manje2 = Math.min(scaleX, scaleY);
+        return manje1*manje2;
+    }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawRect(10,10,room.getDimenzija().width,room.getDimenzija().height); //painter sobe mora da postoji kao promenljiva da bismo proveravali da li je element unutra
+        g2d.drawRect(10,10,(int)(room.getDimenzija().width*getScale()),(int)(room.getDimenzija().height*getScale())); //painter sobe mora da postoji kao promenljiva da bismo proveravali da li je element unutra
         for (ElementPainter elementPainter : painters) {
             elementPainter.paint(g2d);
         }
