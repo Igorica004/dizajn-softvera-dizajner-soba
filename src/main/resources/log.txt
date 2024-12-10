@@ -75,4 +75,13 @@
 [GRESKA][2024-12-10T19:48:48.385154600] Nije selektovana grana!
 [GRESKA][2024-12-10T19:48:56.681112700] Nije selektovana grana!
 [GRESKA][2024-12-10T20:11:30.040936600] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-10T22:53:29.894414] pogresno uneta dimenzija
+[GRESKA][2024-12-10T22:53:40.790793500] pogresno uneta dimenzija
+[GRESKA][2024-12-10T23:06:59.186007400] Nije odabrana vrsta elementa
+[GRESKA][2024-12-10T23:07:10.241717500] nije nadjen okvir sobe u koju se dodaje
 [GRESKA][2024-12-10T21:39:24.135695200] Nije selektovana grana!
+[GRESKA][2024-12-10T23:25:00.012392] Nije odabrana vrsta elementa
+[GRESKA][2024-12-10T23:25:44.913982700] nije nadjen okvir sobe u koju se dodaje
+[GRESKA][2024-12-10T23:44:54.493415500] nije nadjen okvir sobe u koju se dodaje
+[GRESKA][2024-12-10T23:47:57.881998200] nije nadjen okvir sobe u koju se dodaje
+[GRESKA][2024-12-10T23:48:05.701758900] Nisu dobre dimenzije sobe

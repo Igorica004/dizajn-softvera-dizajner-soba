@@ -1,7 +1,11 @@
 package raf.draft.dsw.state.concrete;
 
+import raf.draft.dsw.core.ApplicationFramework;
 import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.gui.swing.NoviObjekatProzor;
+import raf.draft.dsw.gui.swing.ProzorGreska;
+import raf.draft.dsw.model.messages.Message;
+import raf.draft.dsw.model.messages.MessageType;
 import raf.draft.dsw.model.painters.*;
 import raf.draft.dsw.model.roomobjects.*;
 import raf.draft.dsw.state.State;
@@ -11,6 +15,7 @@ import raf.draft.dsw.tabbedpane.view.RoomView;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
+import java.time.LocalDateTime;
 
 public class AddState implements State {
 
@@ -41,6 +46,7 @@ public class AddState implements State {
 
     @Override
     public void misPritisnut(MouseEvent e) {
+
         String s = MainFrame.getInstanca().getDesniPanel().getElementToAdd();
         Dimension d = MainFrame.getInstanca().getDesniPanel().getDimensionToAdd();
         RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());

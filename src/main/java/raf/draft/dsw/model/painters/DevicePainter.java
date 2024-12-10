@@ -25,4 +25,8 @@ public class DevicePainter extends ElementPainter {
     public void setDimenzija(Dimension dimenzija) {
         ((RoomDevice)roomElement).setDimenzija(dimenzija);
     }
+    public void rotirajObjekat()
+    {
+
+    }
 }
