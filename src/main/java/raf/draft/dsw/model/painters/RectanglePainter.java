@@ -1,9 +1,12 @@
 package raf.draft.dsw.model.painters;
 
+import lombok.Getter;
+import lombok.Setter;
 import raf.draft.dsw.model.roomobjects.RoomElement;
 
 import java.awt.*;
-
+@Getter
+@Setter
 public class RectanglePainter extends ShapePainter {
 
     public RectanglePainter(Point lokacija, Rectangle rectangle) {

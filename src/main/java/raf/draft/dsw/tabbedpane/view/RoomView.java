@@ -11,18 +11,13 @@ import raf.draft.dsw.utils.MisaListener;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Objects;
+import java.util.*;
 
 @Data
 public class RoomView extends JPanel {
     private Room room;
     private ArrayList<ElementPainter> painters = new ArrayList<>();
-    private ArrayList<RoomElement> selektovani = new ArrayList<>();
+    private Set<RoomElement> selektovani = new HashSet<>();
 
     public RoomView(Room room) {
         this();
@@ -53,6 +48,18 @@ public class RoomView extends JPanel {
     }
     public void removePainter(ElementPainter elementPainter) {
         painters.remove(elementPainter);
+        repaint();
+    }
+
+    public void addSelktovani(RoomElement selektovani) {
+        selektovani.setStroke(new BasicStroke(3));
+        this.selektovani.add(selektovani);
+    }
+    public void removeSelktovani() {
+        for (RoomElement selektovani : selektovani) {
+            selektovani.setStroke(new BasicStroke(BasicStroke.CAP_BUTT));
+        }
+        this.selektovani.clear();
         repaint();
     }
     @Override

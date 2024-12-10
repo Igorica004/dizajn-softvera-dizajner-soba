@@ -10,11 +10,10 @@ import java.awt.*;
 abstract class ShapePainter extends ElementPainter {
     protected Point lokacija;
     protected Dimension dimenzija;
-    protected Shape shape;
 
-    public ShapePainter(Point lokacija, Shape shape) {
+    public ShapePainter(Point lokacija, Shape shape1) {
         super(null);
         this.lokacija = lokacija;
-        this.shape = shape;
+        shape = shape1;
     }
 }
