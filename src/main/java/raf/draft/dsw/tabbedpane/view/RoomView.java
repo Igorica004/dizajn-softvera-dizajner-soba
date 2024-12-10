@@ -15,7 +15,7 @@ import java.util.*;
 @Data
 public class RoomView extends JPanel {
     private Room room;
-    private RectanglePainter okvirSobe;
+    private RectanglePainter okvirSobe = null;
     private ArrayList<ElementPainter> painters = new ArrayList<>();
     private Set<ElementPainter> selektovani = new HashSet<>();
 
@@ -44,7 +44,8 @@ public class RoomView extends JPanel {
         super.paintComponent(g);
 
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawRect(10,10,(int)(room.getDimenzija().width*getScale()),(int)(room.getDimenzija().height*getScale())); //painter sobe mora da postoji kao promenljiva da bismo proveravali da li je element unutra
+        /*g2d.drawRect(10,10,(int)(room.getDimenzija().width*getScale()),
+                    (int)(room.getDimenzija().height*getScale()));*/ //painter sobe mora da postoji kao promenljiva da bismo proveravali da li je element unutra
         for (ElementPainter elementPainter : painters) {
             elementPainter.paint(g2d);
         }

@@ -51,10 +51,10 @@ public class AddState implements State {
                         d, new Point(e.getX(), e.getY()),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
                 p = new BojlerPainter(k);
-                System.out.println("bojer");
+                System.out.println("bojler");
                 break;
             case "Kada":
-                k = new Kada("bojler", null,
+                k = new Kada("kada", null,
                         d, new Point(e.getX(), e.getY()),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
                 p = new KadaPainter(k);
@@ -71,7 +71,7 @@ public class AddState implements State {
                 k = new Lavabo("lavabo", null,
                         d, new Point(e.getX(), e.getY()),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
-                p = new KrevetPainter(k);
+                p = new LavaboPainter(k);
                 System.out.println("lavabo");
                 break;
             case "Ormar":
@@ -100,10 +100,10 @@ public class AddState implements State {
                 p = new VrataPainter(k);
                 break;
             case "WC solja":
-                k = new WCSolja("krevet", null,
+                k = new WCSolja("WC solja", null,
                         d, new Point(e.getX(), e.getY()),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
-                p = new KrevetPainter(k);
+                p = new WCSoljaPainter(k);
                 break;
             default:
                 k = null;
