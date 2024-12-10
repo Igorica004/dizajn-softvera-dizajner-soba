@@ -26,4 +26,5 @@ public class RoomDevice extends RoomElement{
     public Prototype clone(RoomElement prototype) {
         return null;
     }
+
 }
