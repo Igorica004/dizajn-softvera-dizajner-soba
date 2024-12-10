@@ -1,6 +1,7 @@
 package raf.draft.dsw.state.concrete;
 
 import raf.draft.dsw.gui.swing.MainFrame;
+import raf.draft.dsw.gui.swing.ProzorDimenzijeSobe;
 import raf.draft.dsw.state.State;
 import raf.draft.dsw.tabbedpane.TabbedPaneImplementation;
 import raf.draft.dsw.tabbedpane.view.RoomView;
@@ -39,6 +40,7 @@ public class EditRoomState implements State {
     public void misPritisnut(MouseEvent e) {
         RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
         Dimension d = rv.getSize();
+        ProzorDimenzijeSobe prozor = new ProzorDimenzijeSobe();
 
     }
 }

@@ -14,4 +14,9 @@ public class KrevetPainter extends DevicePainter{
         ((RoomDevice)roomElement).setLokacija(lokacija);
         shape = new Rectangle(((RoomDevice)roomElement).getLokacija(),((RoomDevice)roomElement).getDimenzija());
     }
+    @Override
+    public void setDimenzija(Dimension dimenzija) {
+        ((RoomDevice)roomElement).setDimenzija(dimenzija);
+        shape = new Rectangle(((RoomDevice)roomElement).getLokacija(),((RoomDevice)roomElement).getDimenzija());
+    }
 }

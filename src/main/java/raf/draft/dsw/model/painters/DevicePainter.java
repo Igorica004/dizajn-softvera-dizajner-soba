@@ -22,4 +22,7 @@ public class DevicePainter extends ElementPainter {
         g.draw(shape);
     }
 
+    public void setDimenzija(Dimension dimenzija) {
+        ((RoomDevice)roomElement).setDimenzija(dimenzija);
+    }
 }
