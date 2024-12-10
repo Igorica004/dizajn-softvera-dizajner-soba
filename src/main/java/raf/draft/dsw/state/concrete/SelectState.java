@@ -4,6 +4,7 @@ import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.model.painters.DevicePainter;
 import raf.draft.dsw.model.painters.ElementPainter;
 import raf.draft.dsw.model.painters.RectanglePainter;
+import raf.draft.dsw.model.roomobjects.RoomDevice;
 import raf.draft.dsw.state.State;
 import raf.draft.dsw.tabbedpane.TabbedPaneImplementation;
 import raf.draft.dsw.tabbedpane.view.RoomView;
@@ -23,6 +24,11 @@ public class SelectState implements State {
     public void misPrevucen(MouseEvent e) {
         RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
         updateSize(e);
+        for(ElementPainter ep: rv.getPainters())
+        {
+            if(r.intersects(ep.getShape().getBounds2D()) && ep instanceof DevicePainter)
+                (ep.getRoomElement()).setStroke(new BasicStroke(3));
+        }
     }
 
     @Override
@@ -75,7 +81,6 @@ public class SelectState implements State {
             if(r.intersects(ep.getShape().getBounds2D()) && ep instanceof DevicePainter)
             {
                 rv.addSelektovani(ep);
-
             }
         }
     }

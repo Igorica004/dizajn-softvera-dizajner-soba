@@ -21,4 +21,5 @@ public class DevicePainter extends ElementPainter {
         g.setPaint(Color.black);
         g.draw(shape);
     }
+
 }
