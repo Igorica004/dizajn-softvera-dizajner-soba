@@ -21,7 +21,9 @@ public class ActionManager {
     private MoveStateAction moveStateAction;
     private ResizeStateAction resizeStateAction;
     private SelectStateAction selectStateAction;
-
+    private RotateStateAction rotateStateAction;
+    private KopiranjeElementaAkcija kopiranjeElementaAkcija;
+    private PasteElementaAkcija pasteElementaAkcija;
     public ActionManager(){
         exitAction = new ExitAction();
         oNamaAkcija = new ONamaAkcija();
@@ -39,6 +41,9 @@ public class ActionManager {
         moveStateAction = new MoveStateAction();
         resizeStateAction = new ResizeStateAction();
         selectStateAction = new SelectStateAction();
+        rotateStateAction = new RotateStateAction();
+        kopiranjeElementaAkcija = new KopiranjeElementaAkcija();
+        pasteElementaAkcija = new PasteElementaAkcija();
     }
 
 }

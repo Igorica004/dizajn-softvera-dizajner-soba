@@ -1,6 +1,7 @@
 package raf.draft.dsw.gui.swing;
 
 import raf.draft.dsw.controller.actions.StateActions.*;
+import raf.draft.dsw.state.concrete.DeleteState;
 
 import javax.swing.*;
 
@@ -15,11 +16,15 @@ public class StateToolBar extends JToolBar {
         MoveStateAction moveStateAction = MainFrame.getInstanca().getActionManager().getMoveStateAction();
         ResizeStateAction resizeStateAction = MainFrame.getInstanca().getActionManager().getResizeStateAction();
         SelectStateAction selectStateAction = MainFrame.getInstanca().getActionManager().getSelectStateAction();
+        RotateStateAction rotateStateAction = MainFrame.getInstanca().getActionManager().getRotateStateAction();
+        DeleteStateAction deleteStateAction = new DeleteStateAction();
 
         add(addStateAction);
         add(editRoomStateAction);
         add(moveStateAction);
         add(resizeStateAction);
         add(selectStateAction);
+        add(rotateStateAction);
+        add(deleteStateAction);
     }
 }

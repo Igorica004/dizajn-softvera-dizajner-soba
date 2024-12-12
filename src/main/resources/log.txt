@@ -88,3 +88,6 @@
 [GRESKA][2024-12-11T00:02:24.252635600] Nije odabrana vrsta elementa
 [GRESKA][2024-12-12T14:10:22.870942200] ne sme da se preklapa sa drugim elementom
 [GRESKA][2024-12-12T14:16:14.240337700] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-12T18:08:04.976850700] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-12T18:09:46.559883100] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-12T19:02:39.505080600] Nisu dobre dimenzije sobe

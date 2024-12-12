@@ -15,6 +15,8 @@ public class Lavabo extends RoomDevice{
 
     @Override
     public Prototype clone(RoomElement prototype) {
-        return new Lavabo(prototype.getNaziv(),null);
+        return new Lavabo(((RoomDevice)prototype).getNaziv(),null, ((RoomDevice)prototype).getDimenzija(),
+                new Point(((RoomDevice)prototype).getLokacija().x + 15, ((RoomDevice)prototype).getLokacija().y + 10),
+                ((RoomDevice)prototype).getPaint(), ((RoomDevice)prototype).getRotateRatio(),((RoomDevice)prototype).getStroke());
     }
 }

@@ -12,8 +12,12 @@ public class MyToolBar extends JToolBar {
         ExitAction ea = MainFrame.getInstanca().getActionManager().getExitAction();
         ONamaAkcija on = MainFrame.getInstanca().getActionManager().getONamaAkcija();
         NoviCvorAkcija nca = MainFrame.getInstanca().getActionManager().getNoviCvorAkcija();
+        KopiranjeElementaAkcija kea = MainFrame.getInstanca().getActionManager().getKopiranjeElementaAkcija();
+        PasteElementaAkcija pea = MainFrame.getInstanca().getActionManager().getPasteElementaAkcija();
         add(on);
         add(ea);
         add(nca);
+        add(kea);
+        add(pea);
     }
 }

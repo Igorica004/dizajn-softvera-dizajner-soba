@@ -15,6 +15,8 @@ public class Ormar extends RoomDevice{
 
     @Override
     public Prototype clone(RoomElement prototype) {
-        return new Ormar(prototype.getNaziv(),null);
+        return new Ormar(((RoomDevice)prototype).getNaziv(),null, ((RoomDevice)prototype).getDimenzija(),
+                new Point(((RoomDevice)prototype).getLokacija().x + 15, ((RoomDevice)prototype).getLokacija().y + 10),
+                ((RoomDevice)prototype).getPaint(), ((RoomDevice)prototype).getRotateRatio(),((RoomDevice)prototype).getStroke());
     }
 }

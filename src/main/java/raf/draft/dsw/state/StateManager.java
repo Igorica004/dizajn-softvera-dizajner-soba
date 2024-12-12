@@ -11,7 +11,8 @@ public class StateManager {
     MoveState moveState;
     ResizeState resizeState;
     SelectState selectState;
-
+    RotateState rotateState;
+    DeleteState deleteState;
     public StateManager() {
         initializeStates();
     }
@@ -21,6 +22,8 @@ public class StateManager {
         moveState = new MoveState();
         resizeState = new ResizeState();
         selectState = new SelectState();
+        rotateState = new RotateState();
+        deleteState = new DeleteState();
     }
 
     public void setAddState() {currentState = addState;}
@@ -28,5 +31,6 @@ public class StateManager {
     public void setMoveState() {currentState = moveState;}
     public void setResizeState() {currentState = resizeState;}
     public void setSelectState() {currentState = selectState;}
-
+    public void setRotateState() {currentState = rotateState;}
+    public void setDeleteState() {currentState = deleteState;}
 }

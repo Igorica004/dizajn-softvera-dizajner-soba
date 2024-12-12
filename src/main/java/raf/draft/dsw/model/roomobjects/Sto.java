@@ -16,6 +16,8 @@ public class Sto extends RoomDevice {
 
     @Override
     public Prototype clone(RoomElement prototype) {
-        return new Sto(prototype.getNaziv(),null);
+        return new Sto(((RoomDevice)prototype).getNaziv(),null, ((RoomDevice)prototype).getDimenzija(),
+                new Point(((RoomDevice)prototype).getLokacija().x + 15, ((RoomDevice)prototype).getLokacija().y + 10),
+                ((RoomDevice)prototype).getPaint(), ((RoomDevice)prototype).getRotateRatio(),((RoomDevice)prototype).getStroke());
     }
 }

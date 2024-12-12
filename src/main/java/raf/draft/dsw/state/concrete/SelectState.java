@@ -34,10 +34,6 @@ public class SelectState implements State {
     @Override
     public void misOtpusten(MouseEvent e) {
         RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
-        //updateSize(e);
-        //while(!rv.getPainters().isEmpty() && rv.getPainters().getLast() instanceof RectanglePainter) {
-        //    rv.removePainter(rv.getPainters().getLast());
-        //}
         rv.getPainters().remove(p);
         selektuj(rv);
         System.out.println(rv.getSelektovani());
