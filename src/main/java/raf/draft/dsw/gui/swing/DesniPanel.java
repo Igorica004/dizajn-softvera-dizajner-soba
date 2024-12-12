@@ -66,4 +66,5 @@ public class DesniPanel extends JPanel implements ISubscriber {
     public void startSelectState(){stateManager.setSelectState();}
     public void startRotateState(){stateManager.setRotateState();}
     public void startDeleteState(){stateManager.setDeleteState();}
+    public void startEditElementState(){stateManager.setEditElementState();}
 }

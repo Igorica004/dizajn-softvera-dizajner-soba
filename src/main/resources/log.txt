@@ -91,3 +91,5 @@
 [GRESKA][2024-12-12T18:08:04.976850700] Nije otvoren prikaz sobe.
 [GRESKA][2024-12-12T18:09:46.559883100] Nisu dobre dimenzije sobe
 [GRESKA][2024-12-12T19:02:39.505080600] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-12T22:59:35.055713700] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-12T23:57:23.308125] Nije odabrana vrsta elementa

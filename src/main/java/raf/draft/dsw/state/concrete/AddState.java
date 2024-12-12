@@ -70,7 +70,7 @@ public class AddState implements State {
                 System.out.println("kada");
                 break;
             case "Krevet":
-                k = new Krevet("krevet", null,
+                k = new Krevet("krevet", rv.getRoom(),
                         d, new Point(e.getX(), e.getY()),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
                 p = new KrevetPainter(k);
@@ -126,6 +126,7 @@ public class AddState implements State {
                 return;
             }
         }
+
         rv.addPainter(p);
 
     }

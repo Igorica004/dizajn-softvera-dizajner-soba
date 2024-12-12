@@ -47,5 +47,6 @@ public class AddStateAction extends AbstractRoomAction {
         System.out.println(odabraniElement);
         MainFrame.getInstanca().getDesniPanel().setElementToAdd(odabraniElement);
         MainFrame.getInstanca().getDesniPanel().setDimensionToAdd(odabranaDimenzija);
+
     }
 }

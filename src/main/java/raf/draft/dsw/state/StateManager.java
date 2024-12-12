@@ -13,6 +13,7 @@ public class StateManager {
     SelectState selectState;
     RotateState rotateState;
     DeleteState deleteState;
+    EditElementState editElementState;
     public StateManager() {
         initializeStates();
     }
@@ -24,6 +25,7 @@ public class StateManager {
         selectState = new SelectState();
         rotateState = new RotateState();
         deleteState = new DeleteState();
+        editElementState = new EditElementState();
     }
 
     public void setAddState() {currentState = addState;}
@@ -33,4 +35,5 @@ public class StateManager {
     public void setSelectState() {currentState = selectState;}
     public void setRotateState() {currentState = rotateState;}
     public void setDeleteState() {currentState = deleteState;}
+    public void setEditElementState() {currentState = editElementState;}
 }

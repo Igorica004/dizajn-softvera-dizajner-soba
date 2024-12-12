@@ -2,6 +2,7 @@ package raf.draft.dsw.controller.actions;
 
 import lombok.Data;
 import raf.draft.dsw.controller.actions.StateActions.*;
+import raf.draft.dsw.state.concrete.EditElementState;
 
 @Data
 public class ActionManager {
@@ -24,6 +25,7 @@ public class ActionManager {
     private RotateStateAction rotateStateAction;
     private KopiranjeElementaAkcija kopiranjeElementaAkcija;
     private PasteElementaAkcija pasteElementaAkcija;
+    private EditElementStateAction editElementStateAction;
     public ActionManager(){
         exitAction = new ExitAction();
         oNamaAkcija = new ONamaAkcija();
@@ -44,6 +46,7 @@ public class ActionManager {
         rotateStateAction = new RotateStateAction();
         kopiranjeElementaAkcija = new KopiranjeElementaAkcija();
         pasteElementaAkcija = new PasteElementaAkcija();
+        editElementStateAction = new EditElementStateAction();
     }
 
 }

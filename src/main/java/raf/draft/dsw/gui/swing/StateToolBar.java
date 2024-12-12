@@ -4,13 +4,13 @@ import raf.draft.dsw.controller.actions.StateActions.*;
 import raf.draft.dsw.state.concrete.DeleteState;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class StateToolBar extends JToolBar {
 
     public StateToolBar() {
         super(VERTICAL);
         setFloatable(false);
-
         AddStateAction addStateAction = MainFrame.getInstanca().getActionManager().getAddStateAction();
         EditRoomStateAction editRoomStateAction = MainFrame.getInstanca().getActionManager().getEditRoomStateAction();
         MoveStateAction moveStateAction = MainFrame.getInstanca().getActionManager().getMoveStateAction();
