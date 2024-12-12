@@ -56,7 +56,7 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
             return;
         }
         if(!(selectedTreeItem.getDraftNode() instanceof DraftNodeComposite)){
-            Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"Soba ne moze da ima dete");
+            Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"objekat ne moze da ima dete");
             ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
             return;
         }

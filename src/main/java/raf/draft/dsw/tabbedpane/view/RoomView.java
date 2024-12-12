@@ -16,6 +16,7 @@ import java.util.*;
 public class RoomView extends JPanel {
     private Room room;
     private RectanglePainter okvirSobe = new RectanglePainter(null,null);
+
     private ArrayList<ElementPainter> painters = new ArrayList<>();
     private Set<ElementPainter> selektovani = new HashSet<>();
 
@@ -48,7 +49,6 @@ public class RoomView extends JPanel {
         for (ElementPainter elementPainter : painters) {
             elementPainter.paint(g2d);
         }
-
     }
 
     public void addPainter(ElementPainter elementPainter) {

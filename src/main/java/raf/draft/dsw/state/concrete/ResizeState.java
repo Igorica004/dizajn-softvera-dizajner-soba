@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class ResizeState implements State {
     int pocetniX, pocetniY;
-    private ArrayList<Point> stareDimenzije = new ArrayList<>();
+    private ArrayList<Dimension> stareDimenzije = new ArrayList<>();
     @Override
     public void misPrevucen(MouseEvent e) {
         int trenutniX = e.getX();
@@ -28,7 +28,7 @@ public class ResizeState implements State {
         for(ElementPainter r : rv.getSelektovani())
         {
             //((RoomDevice)r.getShape()).setLokacija(new Point(razlikaX + stareKoordinate.get(i).x, razlikaY + stareKoordinate.get(i).y));
-            ((DevicePainter)r).setDimenzija(new Dimension(stareDimenzije.get(i).x + razlikaX, stareDimenzije.get(i).y + razlikaY));
+            ((DevicePainter)r).setDimenzija(new Dimension(stareDimenzije.get(i).width + razlikaX, stareDimenzije.get(i).height + razlikaY));
             i++;
         }
         rv.repaint();
@@ -61,7 +61,7 @@ public class ResizeState implements State {
         pocetniY=e.getY();
         for(ElementPainter r: rv.getSelektovani())
         {
-            stareDimenzije.add(new Point (((RoomDevice)r.getRoomElement()).getLokacija()));
+            stareDimenzije.add(new Dimension (((RoomDevice)r.getRoomElement()).getDimenzija()));
         }
     }
 }

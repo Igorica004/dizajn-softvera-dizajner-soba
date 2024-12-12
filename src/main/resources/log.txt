@@ -86,3 +86,5 @@
 [GRESKA][2024-12-10T23:47:57.881998200] nije nadjen okvir sobe u koju se dodaje
 [GRESKA][2024-12-10T23:48:05.701758900] Nisu dobre dimenzije sobe
 [GRESKA][2024-12-11T00:02:24.252635600] Nije odabrana vrsta elementa
+[GRESKA][2024-12-12T14:10:22.870942200] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-12T14:16:14.240337700] ne sme da se preklapa sa drugim elementom

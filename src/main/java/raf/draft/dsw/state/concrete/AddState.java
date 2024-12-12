@@ -48,7 +48,7 @@ public class AddState implements State {
     public void misPritisnut(MouseEvent e) {
 
         String s = MainFrame.getInstanca().getDesniPanel().getElementToAdd();
-        Dimension d = MainFrame.getInstanca().getDesniPanel().getDimensionToAdd();
+        Dimension d = new Dimension(MainFrame.getInstanca().getDesniPanel().getDimensionToAdd());
         RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
         d.width*=rv.getScale();
         d.height*=rv.getScale();
@@ -119,7 +119,14 @@ public class AddState implements State {
                 p = new KrevetPainter(k);
                 System.out.println("nesto nije u redu");
         }
-        ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent()).addPainter(p);
+        for(ElementPainter ep: rv.getPainters()) {
+            if (p.getShape().intersects(ep.getShape().getBounds2D()))
+            {
+                ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(new Message(MessageType.GRESKA,LocalDateTime.now(),"ne sme da se preklapa sa drugim elementom"));
+                return;
+            }
+        }
+        rv.addPainter(p);
 
     }
 }
