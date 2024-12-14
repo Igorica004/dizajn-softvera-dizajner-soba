@@ -10,6 +10,7 @@ import raf.draft.dsw.model.structures.Project;
 import raf.draft.dsw.state.StateManager;
 import raf.draft.dsw.tabbedpane.TabbedPaneImplementation;
 import raf.draft.dsw.tabbedpane.TabbedPaneInterface;
+import raf.draft.dsw.tabbedpane.view.RoomView;
 import raf.draft.dsw.tree.DraftTreeImplementation;
 import raf.draft.dsw.utils.JPanelUtils;
 
@@ -57,6 +58,9 @@ public class DesniPanel extends JPanel implements ISubscriber {
             naziv.setText(project.getNaziv());
             autor.setText(project.getAutor());
         }
+    }
+    public RoomView getSelectedTab(){
+        return (RoomView)((TabbedPaneImplementation)tabbedPane).getTabbedPaneView().getSelectedComponent();
     }
 
     public void startAddState(){stateManager.setAddState();}

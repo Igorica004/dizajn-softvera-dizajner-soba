@@ -11,6 +11,7 @@ import raf.draft.dsw.model.roomobjects.*;
 import raf.draft.dsw.state.State;
 import raf.draft.dsw.tabbedpane.TabbedPaneImplementation;
 import raf.draft.dsw.tabbedpane.view.RoomView;
+import raf.draft.dsw.tree.DraftTreeImplementation;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -126,7 +127,7 @@ public class AddState implements State {
                 return;
             }
         }
-
+        ((DraftTreeImplementation)MainFrame.getInstanca().getDraftTree()).addRoomElement(k);
         rv.addPainter(p);
 
     }

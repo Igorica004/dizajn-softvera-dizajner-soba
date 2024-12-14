@@ -93,3 +93,5 @@
 [GRESKA][2024-12-12T19:02:39.505080600] Nisu dobre dimenzije sobe
 [GRESKA][2024-12-12T22:59:35.055713700] Nisu dobre dimenzije sobe
 [GRESKA][2024-12-12T23:57:23.308125] Nije odabrana vrsta elementa
+[GRESKA][2024-12-14T12:41:06.487054869] Nije selektovan objekat, ili ih ima vise
+[GRESKA][2024-12-14T13:50:45.781712329] Nije odabrana vrsta elementa

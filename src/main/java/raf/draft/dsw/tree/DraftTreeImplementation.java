@@ -7,6 +7,7 @@ import raf.draft.dsw.controller.observer.IPublisher;
 import raf.draft.dsw.controller.observer.ISubscriber;
 import raf.draft.dsw.controller.observer.Notification;
 import raf.draft.dsw.core.ApplicationFramework;
+import raf.draft.dsw.gui.swing.DesniPanel;
 import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.model.factory.Factory;
 import raf.draft.dsw.model.factory.FactoryBuilding;
@@ -16,19 +17,23 @@ import raf.draft.dsw.model.messages.Message;
 import raf.draft.dsw.model.messages.MessageType;
 import raf.draft.dsw.model.nodes.DraftNode;
 import raf.draft.dsw.model.nodes.DraftNodeComposite;
+import raf.draft.dsw.model.roomobjects.RoomElement;
 import raf.draft.dsw.model.structures.Building;
 import raf.draft.dsw.model.structures.Project;
 import raf.draft.dsw.model.structures.ProjectExplorer;
 import raf.draft.dsw.model.structures.Room;
+import raf.draft.dsw.tabbedpane.view.RoomView;
 import raf.draft.dsw.tree.model.DraftTreeItem;
 import raf.draft.dsw.tree.view.DraftTreeView;
 import raf.draft.dsw.utils.ColorUtils;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Enumeration;
 
 @Getter
 @Setter
@@ -120,6 +125,23 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
         notifySubscribers(notification);
+    }
+
+    public void addRoomElement(RoomElement roomElement) {
+        RoomView selektovan = MainFrame.getInstanca().getDesniPanel().getSelectedTab();
+        Room room = selektovan.getRoom();
+        room.addChild(roomElement);
+        Enumeration<?> enumeration = ((DraftTreeItem)treeModel.getRoot()).depthFirstEnumeration();
+        while(enumeration.hasMoreElements()){
+            DraftTreeItem draftTreeItem = (DraftTreeItem) enumeration.nextElement();
+            DraftNode dn = draftTreeItem.getDraftNode();
+            if(dn == room){
+                draftTreeItem.add(new DraftTreeItem(roomElement));
+                TreePath treePath = new TreePath(draftTreeItem.getPath());
+                treeView.expandPath(treePath);
+                return;
+            }
+        }
     }
 
     @Override
