@@ -1,21 +1,21 @@
 package raf.draft.dsw.model.painters;
 
 import raf.draft.dsw.model.roomobjects.RoomDevice;
+import raf.draft.dsw.model.roomobjects.RoomElement;
 import raf.draft.dsw.model.shapes.RoomRectangle;
 
 import java.awt.*;
 import java.util.List;
 
 public class KrevetPainter extends DevicePainter{
-    public KrevetPainter(RoomDevice roomDevice) {
-        super(roomDevice);
-        shapes.addAll(List.of(new RoomRectangle(roomDevice.getLokacija(),roomDevice.getDimenzija())));
+    public KrevetPainter(RoomElement roomElement) {
+        super(roomElement);
         //shape = new Rectangle(roomDevice.getLokacija(),roomDevice.getDimenzija());
     }
 
     @Override
-    public void paint(Graphics2D g) {
-
+    public void azurirajVelicine() {
+        shapes.add(new RoomRectangle(lokacija,dimenzija));
     }
     //@Override
     //public void setLokacija(Point lokacija) {

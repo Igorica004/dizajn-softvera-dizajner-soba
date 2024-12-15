@@ -14,6 +14,7 @@ public abstract class ElementPainter {
     protected RoomElement roomElement;
     protected ArrayList<RoomShape> shapes = new ArrayList<>();
     protected Point lokacija;
+    protected Dimension dimenzija;
     public ElementPainter(RoomElement element, Point lokacija) {
         this.lokacija = lokacija;
         this.roomElement = element;

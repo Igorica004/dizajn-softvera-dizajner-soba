@@ -13,27 +13,30 @@ public abstract class DevicePainter extends ElementPainter {
         super(roomDevice,roomDevice.getLokacija());
     }
 
-    //@Override
-    //public void paint(Graphics2D g) {
-    //    g.setStroke(roomElement.getStroke());
-    //    g.setPaint(roomElement.getPaint());
-    //    g.rotate(roomElement.getRotateRatio(), ((RoomDevice)roomElement).getLokacija().x + ((RoomDevice)roomElement).getDimenzija().width/2,
-    //                                            ((RoomDevice)roomElement).getLokacija().y + ((RoomDevice)roomElement).getDimenzija().height/2);
-    //    g.fill(shape);
-    //    g.setPaint(Color.black);
-    //    g.draw(shape);
-    //    g.rotate(-roomElement.getRotateRatio(), ((RoomDevice)roomElement).getLokacija().x + ((RoomDevice)roomElement).getDimenzija().width/2,
-    //            ((RoomDevice)roomElement).getLokacija().y + ((RoomDevice)roomElement).getDimenzija().height/2);
-    //}
+    @Override
+    public void paint(Graphics2D g) {
+        for(RoomShape roomShape:shapes){
+            g.setStroke(roomElement.getStroke());
+            g.setPaint(roomElement.getPaint());
+            g.rotate(roomElement.getRotateRatio(), ((RoomDevice)roomElement).getLokacija().x + ((RoomDevice)roomElement).getDimenzija().width/2,
+                    ((RoomDevice)roomElement).getLokacija().y + ((RoomDevice)roomElement).getDimenzija().height/2);
+            g.fill(roomShape);
+            g.setPaint(Color.black);
+            g.draw(roomShape);
+            g.rotate(-roomElement.getRotateRatio(), ((RoomDevice)roomElement).getLokacija().x + ((RoomDevice)roomElement).getDimenzija().width/2,
+                    ((RoomDevice)roomElement).getLokacija().y + ((RoomDevice)roomElement).getDimenzija().height/2);
+        }
+    }
     public void setScale(double scale){
         for(RoomShape roomShape:shapes){
             roomShape.setScale(scale);
         }
     }
+    public abstract void azurirajVelicine();
     public void setSize(int width, int height){
-        for(RoomShape roomShape:shapes){
-            roomShape.setSize(width,height);
-        }
+        this.dimenzija.width = width;
+        this.dimenzija.height = height;
+        azurirajVelicine();
     }
     public void setDimenzija(Dimension dimenzija) {
         ((RoomDevice)roomElement).setDimenzija(dimenzija);
