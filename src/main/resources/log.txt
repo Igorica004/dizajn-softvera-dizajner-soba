@@ -112,7 +112,14 @@
 [GRESKA][2024-12-15T18:19:22.967800129] Nisu dobre dimenzije sobe
 [GRESKA][2024-12-15T18:19:41.859163579] Nije selektovan objekat, ili ih ima vise
 [GRESKA][2024-12-15T18:22:07.920681811] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-15T19:41:06.117954300] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T19:43:04.516019600] Nije odabrana dimenzija elementa
+[GRESKA][2024-12-15T19:43:48.942854600] Nije odabrana vrsta elementa
+[GRESKA][2024-12-15T20:07:20.240591500] Nije odabrana dimenzija elementa
+[GRESKA][2024-12-15T20:15:29.081406900] ne sme da se preklapa sa drugim elementom
 [GRESKA][2024-12-15T18:41:19.987437841] ne sme da se preklapa sa drugim elementom
 [GRESKA][2024-12-15T18:41:25.685940465] ne sme da se preklapa sa drugim elementom
 [GRESKA][2024-12-15T18:46:17.474014753] Nisu dobre dimenzije sobe
 [GRESKA][2024-12-15T18:52:35.833146139] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:52:11.022765900] Nije odabrana dimenzija elementa
+[GRESKA][2024-12-15T21:14:47.600309300] Nisu dobre dimenzije sobe

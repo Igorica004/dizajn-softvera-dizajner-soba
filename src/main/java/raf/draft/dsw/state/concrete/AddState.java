@@ -10,6 +10,7 @@ import raf.draft.dsw.state.State;
 import raf.draft.dsw.tabbedpane.TabbedPaneImplementation;
 import raf.draft.dsw.tabbedpane.view.RoomView;
 import raf.draft.dsw.tree.DraftTreeImplementation;
+import raf.draft.dsw.tree.model.DraftTreeItem;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -29,12 +30,7 @@ public class AddState implements State {
     }
 
     @Override
-    public void misSkrolGore(MouseWheelEvent e) {
-
-    }
-
-    @Override
-    public void misSkrolDole(MouseWheelEvent e) {
+    public void misSkrol(MouseWheelEvent e) {
 
     }
 
@@ -53,54 +49,55 @@ public class AddState implements State {
         d.height*=rv.getScale();
         RoomElement k;
         ElementPainter p;
+        DraftTreeItem room = new DraftTreeItem(rv.getRoom());
         switch (s) {
             case "Bojler":
-                k = new Bojler("bojler", rv.getRoom(),
+                k = new Bojler("bojler"+room.getChildCount(), rv.getRoom(),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
                 p = new BojlerPainter(k,e.getPoint(),d);
                 System.out.println("bojler");
                 break;
             case "Kada":
-                k = new Kada("kada", rv.getRoom(),
+                k = new Kada("kada"+room.getChildCount(), rv.getRoom(),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
                 p = new KadaPainter(k,e.getPoint(),d);
                 System.out.println("kada");
                 break;
             case "Krevet":
-                k = new Krevet("krevet", rv.getRoom(),
+                k = new Krevet("krevet"+room.getChildCount(), rv.getRoom(),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
                 p = new KrevetPainter(k,e.getPoint(),d);
                 System.out.println("krevet");
                 break;
             case "Lavabo":
-                k = new Lavabo("lavabo", rv.getRoom(),
+                k = new Lavabo("lavabo"+room.getChildCount(), rv.getRoom(),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
                 p = new LavaboPainter(k,e.getPoint(),d);
                 System.out.println("lavabo");
                 break;
             case "Ormar":
-                k = new Ormar("ormar", rv.getRoom(),
+                k = new Ormar("ormar"+room.getChildCount(), rv.getRoom(),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
                 p = new KrevetPainter(k,e.getPoint(),d);
                 System.out.println("ormar");
                 break;
             case "Sto":
-                k = new Sto("sto", rv.getRoom(),
+                k = new Sto("sto"+room.getChildCount(), rv.getRoom(),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
                 p = new KrevetPainter(k,e.getPoint(),d);
                 break;
             case "Ves Masina":
-                k = new VesMasina("ves masina", rv.getRoom(),
+                k = new VesMasina("ves masina"+room.getChildCount(), rv.getRoom(),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
                 p = new KrevetPainter(k,e.getPoint(),d);
                 break;
             case "Vrata":
-                k = new Vrata("vrata", rv.getRoom(),
+                k = new Vrata("vrata"+room.getChildCount(), rv.getRoom(),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
                 p = new VrataPainter(k,e.getPoint(),d);
                 break;
             case "WC solja":
-                k = new WCSolja("WC solja", rv.getRoom(),
+                k = new WCSolja("WC solja"+room.getChildCount(), rv.getRoom(),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
                 p = new WCSoljaPainter(k,e.getPoint(),d);
                 break;

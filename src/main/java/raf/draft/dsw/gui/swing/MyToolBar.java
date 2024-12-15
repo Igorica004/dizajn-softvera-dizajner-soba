@@ -2,6 +2,7 @@ package raf.draft.dsw.gui.swing;
 
 import raf.draft.dsw.controller.actions.*;
 import raf.draft.dsw.controller.actions.StateActions.EditElementStateAction;
+import raf.draft.dsw.controller.actions.StateActions.ZoomStateAction;
 import raf.draft.dsw.state.concrete.EditElementState;
 
 import javax.swing.*;
@@ -17,11 +18,13 @@ public class MyToolBar extends JToolBar {
         KopiranjeElementaAkcija kea = MainFrame.getInstanca().getActionManager().getKopiranjeElementaAkcija();
         PasteElementaAkcija pea = MainFrame.getInstanca().getActionManager().getPasteElementaAkcija();
         EditElementStateAction eea = MainFrame.getInstanca().getActionManager().getEditElementStateAction();
+        ZoomStateAction zsa = MainFrame.getInstanca().getActionManager().getZoomStateAction();
         add(on);
         add(ea);
         add(nca);
         add(kea);
         add(pea);
         add(eea);
+        add(zsa);
     }
 }

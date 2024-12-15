@@ -8,6 +8,7 @@ import raf.draft.dsw.utils.MisaListener;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.util.*;
 
 @Data
@@ -17,6 +18,7 @@ public class RoomView extends JPanel {
 
     private ArrayList<ElementPainter> painters = new ArrayList<>();
     private Set<ElementPainter> selektovani = new HashSet<>();
+    private double zoomFactor = 1;
 
     public RoomView(Room room) {
         this();
@@ -24,6 +26,7 @@ public class RoomView extends JPanel {
         MisaListener listener = new MisaListener();
         addMouseListener(listener);
         addMouseMotionListener(listener);
+        addMouseWheelListener(listener);
     }
     public RoomView(){
 
@@ -42,8 +45,12 @@ public class RoomView extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
+        AffineTransform at = new AffineTransform();
+        at.scale(zoomFactor, zoomFactor);
+        g2d.transform(at);
         g2d.drawRect(10,10,(int)(room.getDimenzija().width*getScale()),
                     (int)(room.getDimenzija().height*getScale())); //painter sobe mora da postoji kao promenljiva da bismo proveravali da li je element unutra
+        at.scale(1,1);
         for (ElementPainter elementPainter : painters) {
             elementPainter.paint(g2d);
         }

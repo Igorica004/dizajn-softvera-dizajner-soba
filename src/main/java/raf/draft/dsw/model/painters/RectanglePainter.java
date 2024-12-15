@@ -26,6 +26,6 @@ public class RectanglePainter extends ElementPainter {
     @Override
     public void initializeShape() {
         shapes.clear();
-        shapes.add(new Rectangle(lokacija,dimenzija));
+        shapes.add(new Rectangle(lokacija,new Dimension((int)(dimenzija.width*scaleRatio),(int)(dimenzija.height*scaleRatio))));
     }
 }

@@ -3,6 +3,7 @@ package raf.draft.dsw.state.concrete;
 import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.model.painters.ElementPainter;
 import raf.draft.dsw.state.State;
+import raf.draft.dsw.tabbedpane.view.RoomView;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
@@ -19,15 +20,26 @@ public class ZoomState implements State {
     }
 
     @Override
-    public void misSkrolGore(MouseWheelEvent e) {
-        for(ElementPainter elementPainter :MainFrame.getInstanca().getDesniPanel().getSelectedTab().getPainters()){
-            elementPainter.setScaleRatio(elementPainter.getScaleRatio()+e.getWheelRotation()*0.1);
+    public void misSkrol(MouseWheelEvent e) {
+        RoomView rv = MainFrame.getInstanca().getDesniPanel().getSelectedTab();
+        if(e.getWheelRotation()<0)
+        {
+            rv.setZoomFactor(rv.getZoomFactor()*1.1);
+            for(ElementPainter ep:rv.getPainters())
+            {
+                ep.setScaleRatio(rv.getZoomFactor()*1.1);
+            }
         }
-    }
-
-    @Override
-    public void misSkrolDole(MouseWheelEvent e) {
-
+        if(e.getWheelRotation()>0)
+        {
+            rv.setZoomFactor(rv.getZoomFactor()/1.1);
+            for(ElementPainter ep:rv.getPainters())
+            {
+                ep.setScaleRatio(rv.getZoomFactor()/1.1);
+            }
+        }
+        rv.repaint();
+        System.out.println("skorl");
     }
 
     @Override

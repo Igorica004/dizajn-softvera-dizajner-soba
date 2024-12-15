@@ -6,8 +6,7 @@ import java.awt.event.MouseWheelEvent;
 public interface State {
     void misPrevucen(MouseEvent e);
     void misOtpusten(MouseEvent e);
-    void misSkrolGore(MouseWheelEvent e);
-    void misSkrolDole(MouseWheelEvent e);
+    void misSkrol(MouseWheelEvent e);
     void misPritisnut(MouseEvent e);
     void misKliknut(MouseEvent e);
 }

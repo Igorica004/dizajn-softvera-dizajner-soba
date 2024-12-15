@@ -14,7 +14,7 @@ public abstract class ElementPainter {
     protected Point lokacija;
     protected Dimension dimenzija;
     protected double rotateRatio;
-    protected double scaleRatio=1;
+    protected double scaleRatio = 1;
 
     public ElementPainter(RoomElement element, Point lokacija, Dimension dimenzija) {
         this.lokacija = lokacija;

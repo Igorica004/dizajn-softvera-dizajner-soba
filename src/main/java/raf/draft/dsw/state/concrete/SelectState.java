@@ -35,7 +35,7 @@ public class SelectState implements State {
     }
 
     @Override
-    public void misSkrolGore(MouseWheelEvent e) {
+    public void misSkrol(MouseWheelEvent e) {
         for(ElementPainter elementPainter :MainFrame.getInstanca().getDesniPanel().getSelectedTab().getPainters()){
             elementPainter.setScaleRatio(elementPainter.getScaleRatio()+e.getWheelRotation()*0.1);
         }
@@ -44,10 +44,6 @@ public class SelectState implements State {
 
     }
 
-    @Override
-    public void misSkrolDole(MouseWheelEvent e) {
-
-    }
 
     @Override
     public void misPritisnut(MouseEvent e) {
@@ -94,7 +90,7 @@ public class SelectState implements State {
         }
         p.setDimenzija(new Dimension(r.width,r.height));
         p.setLokacija(new Point(r.x,r.y));
-        RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
+        RoomView rv = MainFrame.getInstanca().getDesniPanel().getSelectedTab();
         rv.repaint();
     }
 }

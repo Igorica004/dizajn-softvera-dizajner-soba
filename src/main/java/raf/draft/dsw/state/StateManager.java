@@ -14,6 +14,7 @@ public class StateManager {
     RotateState rotateState;
     DeleteState deleteState;
     EditElementState editElementState;
+    ZoomState zoomState;
     public StateManager() {
         initializeStates();
     }
@@ -26,6 +27,7 @@ public class StateManager {
         rotateState = new RotateState();
         deleteState = new DeleteState();
         editElementState = new EditElementState();
+        zoomState = new ZoomState();
     }
 
     public void setAddState() {currentState = addState;}
@@ -36,4 +38,5 @@ public class StateManager {
     public void setRotateState() {currentState = rotateState;}
     public void setDeleteState() {currentState = deleteState;}
     public void setEditElementState() {currentState = editElementState;}
+    public void setZoomState() {currentState = zoomState;}
 }

@@ -35,12 +35,7 @@ public class RotateState implements State {
     }
 
     @Override
-    public void misSkrolGore(MouseWheelEvent e) {
-
-    }
-
-    @Override
-    public void misSkrolDole(MouseWheelEvent e) {
+    public void misSkrol(MouseWheelEvent e) {
 
     }
 

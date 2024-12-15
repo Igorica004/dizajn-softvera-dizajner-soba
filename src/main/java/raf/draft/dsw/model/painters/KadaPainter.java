@@ -13,6 +13,7 @@ public class KadaPainter extends ElementPainter {
 
     @Override
     public void initializeShape() {
+        shapes.clear();
        shapes.add(new Ellipse2D.Double(lokacija.x,lokacija.y,dimenzija.width*scaleRatio,dimenzija.height*scaleRatio));
     }
 }
