@@ -1,5 +1,7 @@
 package raf.draft.dsw.state.concrete;
 
+import raf.draft.dsw.controller.observer.ISubscriber;
+import raf.draft.dsw.controller.observer.Notification;
 import raf.draft.dsw.core.ApplicationFramework;
 import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.model.messages.Message;
@@ -15,8 +17,10 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class AddState implements State {
+    private ArrayList<ISubscriber> subscribers = new ArrayList<>();
 
     @Override
     public void misPrevucen(MouseEvent e) {
@@ -123,5 +127,21 @@ public class AddState implements State {
         ((DraftTreeImplementation)MainFrame.getInstanca().getDraftTree()).addRoomElement(k);
         rv.addPainter(p);
 
+    }
+
+    @Override
+    public void addSubscriber(ISubscriber sub) {
+        subscribers.add(sub);
+    }
+
+    @Override
+    public void removeSubscriber(ISubscriber sub) {
+        subscribers.remove(sub);
+    }
+
+    @Override
+    public void notifySubscribers(Notification notification) {
+        for(ISubscriber sub: subscribers)
+            sub.update(null);
     }
 }

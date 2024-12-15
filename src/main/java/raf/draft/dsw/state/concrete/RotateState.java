@@ -1,5 +1,7 @@
 package raf.draft.dsw.state.concrete;
 
+import raf.draft.dsw.controller.observer.ISubscriber;
+import raf.draft.dsw.controller.observer.Notification;
 import raf.draft.dsw.core.ApplicationFramework;
 import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.model.messages.Message;
@@ -13,8 +15,11 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class RotateState implements State {
+
+    private ArrayList<ISubscriber> subscribers = new ArrayList<>();
     Point centarObjekta;
     @Override
     public void misPrevucen(MouseEvent e) {
@@ -26,7 +31,7 @@ public class RotateState implements State {
         {
             ep.setRotateRatio(angle);
         }
-        rv.repaint();
+        notifySubscribers(null);
     }
 
     @Override
@@ -60,5 +65,21 @@ public class RotateState implements State {
     @Override
     public void misKliknut(MouseEvent e) {
 
+    }
+
+    @Override
+    public void addSubscriber(ISubscriber sub) {
+        subscribers.add(sub);
+    }
+
+    @Override
+    public void removeSubscriber(ISubscriber sub) {
+        subscribers.remove(sub);
+    }
+
+    @Override
+    public void notifySubscribers(Notification notification) {
+        for(ISubscriber sub: subscribers)
+            sub.update(null);
     }
 }

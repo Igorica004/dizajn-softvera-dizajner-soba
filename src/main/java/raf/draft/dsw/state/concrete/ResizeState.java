@@ -1,5 +1,7 @@
 package raf.draft.dsw.state.concrete;
 
+import raf.draft.dsw.controller.observer.ISubscriber;
+import raf.draft.dsw.controller.observer.Notification;
 import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.model.painters.ElementPainter;
 import raf.draft.dsw.state.State;
@@ -12,6 +14,8 @@ import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
 
 public class ResizeState implements State {
+
+    private ArrayList<ISubscriber> subscribers = new ArrayList<>();
     int pocetniX, pocetniY;
     private ArrayList<Dimension> stareDimenzije = new ArrayList<>();
     @Override
@@ -29,7 +33,7 @@ public class ResizeState implements State {
             r.setDimenzija(new Dimension(stareDimenzije.get(i).width + razlikaX, stareDimenzije.get(i).height + razlikaY));
             i++;
         }
-        rv.repaint();
+        notifySubscribers(null);
     }
 
     @Override
@@ -61,5 +65,21 @@ public class ResizeState implements State {
         {
             stareDimenzije.add(new Dimension (r.getDimenzija()));
         }
+    }
+
+    @Override
+    public void addSubscriber(ISubscriber sub) {
+        subscribers.add(sub);
+    }
+
+    @Override
+    public void removeSubscriber(ISubscriber sub) {
+        subscribers.remove(sub);
+    }
+
+    @Override
+    public void notifySubscribers(Notification notification) {
+        for(ISubscriber sub: subscribers)
+            sub.update(null);
     }
 }
