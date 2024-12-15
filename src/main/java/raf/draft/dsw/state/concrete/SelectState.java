@@ -12,6 +12,7 @@ import raf.draft.dsw.tabbedpane.view.RoomView;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
 import static java.lang.Math.abs;

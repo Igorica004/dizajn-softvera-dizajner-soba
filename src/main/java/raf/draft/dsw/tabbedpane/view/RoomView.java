@@ -21,7 +21,12 @@ public class RoomView extends JPanel implements ISubscriber {
 
     private ArrayList<ElementPainter> painters = new ArrayList<>();
     private Set<ElementPainter> selektovani = new HashSet<>();
+    private ArrayList<ElementPainter> kopirani = new ArrayList<>();
     private double zoomFactor = 1;
+    private double prevZoomFactor = 1;
+    private double xOffset = 0;
+    private double yOffset = 0;
+    private AffineTransform transform = new AffineTransform();
 
     public RoomView(Room room) {
         this();
@@ -48,15 +53,25 @@ public class RoomView extends JPanel implements ISubscriber {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        AffineTransform at = new AffineTransform();
-        at.scale(zoomFactor, zoomFactor);
-        g2d.transform(at);
+//        double xRel = MouseInfo.getPointerInfo().getLocation().getX() - getLocationOnScreen().getX();
+//        double yRel = MouseInfo.getPointerInfo().getLocation().getY() - getLocationOnScreen().getY();
+//
+//        double zoomDiv = zoomFactor / prevZoomFactor;
+//
+//        xOffset = (zoomDiv) * (xOffset) + (1 - zoomDiv) * xRel;
+//        yOffset = (zoomDiv) * (yOffset) + (1 - zoomDiv) * yRel;
+
+        //at.translate(xOffset, yOffset);
+       // at.scale(zoomFactor, zoomFactor);
+        g2d.transform(getTransform());
         g2d.drawRect(10,10,(int)(room.getDimenzija().width*getScale()),
-                    (int)(room.getDimenzija().height*getScale())); //painter sobe mora da postoji kao promenljiva da bismo proveravali da li je element unutra
-        at.scale(1,1);
+                    (int)(room.getDimenzija().height*getScale()));
+
         for (ElementPainter elementPainter : painters) {
+            elementPainter.setScaleRatio(zoomFactor);
             elementPainter.paint(g2d);
         }
+
     }
 
     public void addPainter(ElementPainter elementPainter) {

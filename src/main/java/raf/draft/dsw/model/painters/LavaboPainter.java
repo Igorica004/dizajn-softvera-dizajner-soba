@@ -14,6 +14,7 @@ public class LavaboPainter extends ElementPainter {
     public void initializeShape() {
         shapes.clear();
         GeneralPath shape = new GeneralPath();
+
         shape.moveTo(lokacija.x, lokacija.y);
         shape.lineTo(lokacija.x + dimenzija.width*scaleRatio, lokacija.y);
         shape.lineTo(lokacija.x + (dimenzija.width*scaleRatio)/2, lokacija.y+dimenzija.height*scaleRatio);

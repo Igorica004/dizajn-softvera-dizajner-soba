@@ -2,8 +2,12 @@ package raf.draft.dsw.model.painters;
 
 import lombok.Getter;
 import lombok.Setter;
+import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.model.roomobjects.RoomElement;
+import raf.draft.dsw.tabbedpane.view.RoomView;
+
 import java.awt.*;
+import java.awt.geom.PathIterator;
 import java.util.ArrayList;
 
 @Getter
@@ -23,6 +27,9 @@ public abstract class ElementPainter {
     }
     public void paint(Graphics2D g) {
         for(Shape roomShape:shapes){
+            RoomView rv = MainFrame.getInstanca().getDesniPanel().getSelectedTab();
+
+
             g.setStroke(roomElement.getStroke());
             g.setPaint(roomElement.getPaint());
             g.rotate(rotateRatio, lokacija.x + 1.0*dimenzija.width/2,

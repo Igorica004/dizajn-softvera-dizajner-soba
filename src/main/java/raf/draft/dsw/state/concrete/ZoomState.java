@@ -7,8 +7,10 @@ import raf.draft.dsw.model.painters.ElementPainter;
 import raf.draft.dsw.state.State;
 import raf.draft.dsw.tabbedpane.view.RoomView;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
 public class ZoomState implements State {
@@ -27,24 +29,26 @@ public class ZoomState implements State {
     @Override
     public void misSkrol(MouseWheelEvent e) {
         RoomView rv = MainFrame.getInstanca().getDesniPanel().getSelectedTab();
+        Point zoomAnchor = e.getPoint();
+        rv.setPrevZoomFactor(rv.getZoomFactor());
+        double yOffset;
         if(e.getWheelRotation()<0)
         {
             rv.setZoomFactor(rv.getZoomFactor()*1.1);
-            for(ElementPainter ep:rv.getPainters())
-            {
-                ep.setScaleRatio(rv.getZoomFactor()*1.1);
-            }
+
         }
         if(e.getWheelRotation()>0)
         {
             rv.setZoomFactor(rv.getZoomFactor()/1.1);
-            for(ElementPainter ep:rv.getPainters())
-            {
-                ep.setScaleRatio(rv.getZoomFactor()/1.1);
-            }
+
         }
+        rv.setTransform(new AffineTransform());
+        double zoomDiv = rv.getZoomFactor() / rv.getPrevZoomFactor();
+        rv.setXOffset ((zoomDiv) * (rv.getXOffset()) + (1 - zoomDiv) * zoomAnchor.getX());
+        rv.setYOffset((zoomDiv) * (rv.getYOffset()) + (1 - zoomDiv) * zoomAnchor.getY());
+        rv.getTransform().translate(rv.getXOffset(), rv.getYOffset());
+        rv.getTransform().scale(rv.getZoomFactor(), rv.getZoomFactor());
         rv.repaint();
-        System.out.println("skorl");
     }
 
     @Override

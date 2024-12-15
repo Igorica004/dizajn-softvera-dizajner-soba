@@ -20,10 +20,9 @@ public class KopiranjeElementaAkcija extends AbstractRoomAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
-        for(ElementPainter ep: rv.getSelektovani())
-        {
-        }
+        RoomView rv = MainFrame.getInstanca().getDesniPanel().getSelectedTab();
+        rv.getKopirani().clear();
+        rv.getKopirani().addAll(rv.getSelektovani());
         System.out.println("Elementi kopirani");
     }
 }
