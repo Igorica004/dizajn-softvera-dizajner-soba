@@ -46,8 +46,8 @@ public class DeleteState implements State {
             for (Shape shape : ep.getShapes()) {
                 if (shape.contains(x, y)) {
                     ((DraftTreeImplementation)MainFrame.getInstanca().getDraftTree()).removeRoomElement(ep.getRoomElement());
-                    iterator.remove();// Bezbedno uklanja element tokom iteracije
-                    break; // Izađi iz unutrašnje petlje jer je ep već uklonjen
+                    iterator.remove();
+                    break;
                 }
             }
         }

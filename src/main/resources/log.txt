@@ -189,3 +189,7 @@
 [GRESKA][2024-12-15T20:21:55.356378386] ne sme da se preklapa sa drugim elementom
 [GRESKA][2024-12-15T20:21:55.525683075] ne sme da se preklapa sa drugim elementom
 [GRESKA][2024-12-15T20:21:56.017802315] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T22:32:43.570486094] Elementi se seku
+[GRESKA][2024-12-15T22:32:47.227896263] Elementi se seku
+[GRESKA][2024-12-15T22:32:51.094054283] Elementi se seku
+[GRESKA][2024-12-15T22:32:56.109685083] Elementi se seku

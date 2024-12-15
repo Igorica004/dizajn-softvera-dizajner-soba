@@ -2,7 +2,10 @@ package raf.draft.dsw.state.concrete;
 
 import raf.draft.dsw.controller.observer.ISubscriber;
 import raf.draft.dsw.controller.observer.Notification;
+import raf.draft.dsw.core.ApplicationFramework;
 import raf.draft.dsw.gui.swing.MainFrame;
+import raf.draft.dsw.model.messages.Message;
+import raf.draft.dsw.model.messages.MessageType;
 import raf.draft.dsw.model.painters.ElementPainter;
 import raf.draft.dsw.state.State;
 import raf.draft.dsw.tabbedpane.TabbedPaneImplementation;
@@ -11,6 +14,7 @@ import raf.draft.dsw.tabbedpane.view.RoomView;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class MoveState implements State {
@@ -38,6 +42,31 @@ public class MoveState implements State {
 
     @Override
     public void misOtpusten(MouseEvent e) {
+        boolean ok = true;
+        RoomView rv = MainFrame.getInstanca().getDesniPanel().getSelectedTab();
+        for(ElementPainter elementPainter:rv.getSelektovani()){
+            for(Shape shape: elementPainter.getShapes()){
+                for(ElementPainter elementPainter1:rv.getPainters()){
+                    for(Shape shape1:elementPainter1.getShapes()){
+                        if(elementPainter != elementPainter1 && shape.intersects(shape1.getBounds2D())){
+                            ok = false;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        if(!ok){
+            ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(new Message(MessageType.GRESKA, LocalDateTime.now(), "Elementi se seku"));
+            int i=0;
+            for(ElementPainter r : rv.getSelektovani())
+            {
+                r.setLokacija(stareKoordinate.get(i));
+                i++;
+            }
+            notifySubscribers(null);
+
+        }
         stareKoordinate.clear();
     }
 
