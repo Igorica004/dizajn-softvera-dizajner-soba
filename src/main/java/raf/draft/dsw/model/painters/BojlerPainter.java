@@ -1,7 +1,6 @@
 package raf.draft.dsw.model.painters;
 
 import raf.draft.dsw.model.roomobjects.RoomElement;
-import raf.draft.dsw.model.shapes.RoomEllipse;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
