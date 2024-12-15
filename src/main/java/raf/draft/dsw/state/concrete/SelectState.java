@@ -1,10 +1,8 @@
 package raf.draft.dsw.state.concrete;
 
 import raf.draft.dsw.gui.swing.MainFrame;
-import raf.draft.dsw.model.painters.DevicePainter;
 import raf.draft.dsw.model.painters.ElementPainter;
 import raf.draft.dsw.model.painters.RectanglePainter;
-import raf.draft.dsw.model.roomobjects.RoomDevice;
 import raf.draft.dsw.state.State;
 import raf.draft.dsw.tabbedpane.TabbedPaneImplementation;
 import raf.draft.dsw.tabbedpane.view.RoomView;
@@ -17,18 +15,14 @@ import static java.lang.Math.abs;
 
 public class SelectState implements State {
     Rectangle r = new Rectangle();
-    RectanglePainter p = new RectanglePainter(null,null);
+    RectanglePainter p = new RectanglePainter(new Point(1,1),new Dimension(1,1));
     Point klik = new Point();
 
     @Override
     public void misPrevucen(MouseEvent e) {
         RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
         updateSize(e);
-        for(ElementPainter ep: rv.getPainters())
-        {
-            if(r.intersects(ep.getShape().getBounds2D()) && ep instanceof DevicePainter)
-                (ep.getRoomElement()).setStroke(new BasicStroke(3));
-        }
+
     }
 
     @Override
@@ -55,9 +49,10 @@ public class SelectState implements State {
         int x = e.getX();
         int y = e.getY();
         klik.setLocation(x, y);
-        r.setLocation(x, y);
-        r.setSize(1,1);
-        p.setShape(r);
+        p.setDimenzija(new Dimension(0,0));
+        p.setLokacija(klik);
+        r.setLocation(klik);
+        r.setSize(new Dimension(1,1));
 
         RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
         rv.removeSelektovani();
@@ -68,15 +63,15 @@ public class SelectState implements State {
 
     @Override
     public void misKliknut(MouseEvent e) {
-        int x = e.getX();
-        int y = e.getY();
     }
 
     public void selektuj(RoomView rv){
         for(ElementPainter ep : rv.getPainters()) {
-            if(r.intersects(ep.getShape().getBounds2D()) && ep instanceof DevicePainter)
-            {
-                rv.addSelektovani(ep);
+            for(Shape shape: ep.getShapes()) {
+                if(r.intersects(shape.getBounds2D())){
+                    rv.addSelektovani(ep);
+                    (ep.getRoomElement()).setStroke(new BasicStroke(3));
+                }
             }
         }
     }
@@ -92,7 +87,8 @@ public class SelectState implements State {
             r.height = -r.height;
             r.y = y;
         }
-
+        p.setDimenzija(new Dimension(r.width,r.height));
+        p.setLokacija(new Point(r.x,r.y));
         RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
         rv.repaint();
     }

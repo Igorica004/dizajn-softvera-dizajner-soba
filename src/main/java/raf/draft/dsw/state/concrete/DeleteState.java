@@ -6,6 +6,7 @@ import raf.draft.dsw.state.State;
 import raf.draft.dsw.tabbedpane.TabbedPaneImplementation;
 import raf.draft.dsw.tabbedpane.view.RoomView;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.util.Iterator;
@@ -36,13 +37,13 @@ public class DeleteState implements State {
         int x = e.getX();
         int y = e.getY();
         RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
-        Iterator<ElementPainter> iterator = rv.getPainters().iterator();
 
-        while (iterator.hasNext()) {
-            ElementPainter ep = iterator.next();
-            if(ep.getShape().contains(x, y))
-            {
-                iterator.remove();
+        for (ElementPainter ep:rv.getPainters()) {
+            for(Shape shape:ep.getShapes()){
+                if(shape.contains(x, y))
+                {
+                    rv.getPainters().remove(ep);
+                }
             }
         }
         for(ElementPainter ep: rv.getSelektovani())

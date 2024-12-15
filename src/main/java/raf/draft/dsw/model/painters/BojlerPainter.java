@@ -1,27 +1,20 @@
 package raf.draft.dsw.model.painters;
 
-import raf.draft.dsw.model.roomobjects.RoomDevice;
+import raf.draft.dsw.model.roomobjects.RoomElement;
+import raf.draft.dsw.model.shapes.RoomEllipse;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
-public class BojlerPainter extends DevicePainter{
-    public BojlerPainter(RoomDevice roomDevice) {
-        super(roomDevice);
-        shape = new Ellipse2D.Double(roomDevice.getLokacija().x,roomDevice.getLokacija().y,roomDevice.getDimenzija().width,roomDevice.getDimenzija().width);
+public class BojlerPainter extends ElementPainter {
 
-    }
-
-    @Override
-    public void setLokacija(Point lokacija) {
-        ((RoomDevice)roomElement).setLokacija(lokacija);
-        shape = new Ellipse2D.Double(((RoomDevice)roomElement).getLokacija().x,((RoomDevice)roomElement).getLokacija().y,
-                                    ((RoomDevice)roomElement).getDimenzija().width,((RoomDevice)roomElement).getDimenzija().width);
+    public BojlerPainter(RoomElement roomElement, Point lokacija, Dimension dimenzija) {
+        super(roomElement, lokacija, dimenzija);
+        initializeShape();
     }
     @Override
-    public void setDimenzija(Dimension dimenzija) {
-        ((RoomDevice)roomElement).setDimenzija(dimenzija);
-        shape = new Ellipse2D.Double(((RoomDevice)roomElement).getLokacija().x,((RoomDevice)roomElement).getLokacija().y,
-                ((RoomDevice)roomElement).getDimenzija().width,((RoomDevice)roomElement).getDimenzija().width);
+    public void initializeShape(){
+        shapes.clear();
+        shapes.add(new Ellipse2D.Double(lokacija.x, lokacija.y, dimenzija.width*scaleRatio, dimenzija.height*scaleRatio));
     }
 }

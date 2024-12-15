@@ -24,7 +24,7 @@ public class RotateState implements State {
         double angle = Math.atan2(centarObjekta.y - y, centarObjekta.x - x) - Math.PI / 2;
         for(ElementPainter ep:rv.getSelektovani())
         {
-            ep.getRoomElement().setRotateRatio(angle);
+            ep.setRotateRatio(angle);
         }
         rv.repaint();
     }

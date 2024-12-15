@@ -1,32 +1,25 @@
 package raf.draft.dsw.model.painters;
 
-import raf.draft.dsw.model.roomobjects.RoomDevice;
+import raf.draft.dsw.model.roomobjects.RoomElement;
 
 import java.awt.*;
 import java.awt.geom.GeneralPath;
 
-public class LavaboPainter extends DevicePainter{
-    public LavaboPainter(RoomDevice roomDevice) {
-        super(roomDevice);
-        napraviShape(roomDevice);
+public class LavaboPainter extends ElementPainter {
+    public LavaboPainter(RoomElement roomElement, Point lokacija, Dimension dimenzija) {
+        super(roomElement, lokacija, dimenzija);
+        initializeShape();
     }
-    private void napraviShape(RoomDevice roomDevice) {
-        shape = new GeneralPath();
-        ((GeneralPath)shape).moveTo(roomDevice.getLokacija().x, roomDevice.getLokacija().y);
-        ((GeneralPath)shape).lineTo(roomDevice.getLokacija().x + roomDevice.getDimenzija().width, roomDevice.getLokacija().y+roomDevice.getDimenzija().height);
-        ((GeneralPath)shape).lineTo(roomDevice.getLokacija().x + roomDevice.getDimenzija().width, roomDevice.getLokacija().y-roomDevice.getDimenzija().height);
-        ((GeneralPath)shape).closePath();
-    }
+    @Override
+    public void initializeShape() {
+        shapes.clear();
+        GeneralPath shape = new GeneralPath();
+        shape.moveTo(lokacija.x, lokacija.y);
+        shape.lineTo(lokacija.x + dimenzija.width, lokacija.y+dimenzija.height);
+        shape.lineTo(lokacija.x + dimenzija.width, lokacija.y-dimenzija.height);
+        shape.closePath();
 
-    @Override
-    public void setLokacija(Point lokacija) {
-        ((RoomDevice)roomElement).setLokacija(lokacija);
-        napraviShape(((RoomDevice)roomElement));
-    }
-    @Override
-    public void setDimenzija(Dimension dimenzija) {
-        ((RoomDevice)roomElement).setDimenzija(dimenzija);
-        napraviShape(((RoomDevice)roomElement));
+        shapes.add(shape);
     }
 
 }

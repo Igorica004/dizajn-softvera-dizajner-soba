@@ -1,9 +1,7 @@
 package raf.draft.dsw.state.concrete;
 
 import raf.draft.dsw.gui.swing.MainFrame;
-import raf.draft.dsw.model.painters.DevicePainter;
 import raf.draft.dsw.model.painters.ElementPainter;
-import raf.draft.dsw.model.roomobjects.RoomDevice;
 import raf.draft.dsw.state.State;
 import raf.draft.dsw.tabbedpane.TabbedPaneImplementation;
 import raf.draft.dsw.tabbedpane.view.RoomView;
@@ -28,7 +26,7 @@ public class ResizeState implements State {
         for(ElementPainter r : rv.getSelektovani())
         {
             //((RoomDevice)r.getShape()).setLokacija(new Point(razlikaX + stareKoordinate.get(i).x, razlikaY + stareKoordinate.get(i).y));
-            ((DevicePainter)r).setDimenzija(new Dimension(stareDimenzije.get(i).width + razlikaX, stareDimenzije.get(i).height + razlikaY));
+            r.setDimenzija(new Dimension(stareDimenzije.get(i).width + razlikaX, stareDimenzije.get(i).height + razlikaY));
             i++;
         }
         rv.repaint();
@@ -61,7 +59,7 @@ public class ResizeState implements State {
         pocetniY=e.getY();
         for(ElementPainter r: rv.getSelektovani())
         {
-            stareDimenzije.add(new Dimension (((RoomDevice)r.getRoomElement()).getDimenzija()));
+            stareDimenzije.add(new Dimension (r.getDimenzija()));
         }
     }
 }

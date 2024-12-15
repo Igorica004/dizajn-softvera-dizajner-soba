@@ -2,8 +2,6 @@ package raf.draft.dsw.state.concrete;
 
 import raf.draft.dsw.core.ApplicationFramework;
 import raf.draft.dsw.gui.swing.MainFrame;
-import raf.draft.dsw.gui.swing.NoviObjekatProzor;
-import raf.draft.dsw.gui.swing.ProzorGreska;
 import raf.draft.dsw.model.messages.Message;
 import raf.draft.dsw.model.messages.MessageType;
 import raf.draft.dsw.model.painters.*;
@@ -50,81 +48,76 @@ public class AddState implements State {
 
         String s = MainFrame.getInstanca().getDesniPanel().getElementToAdd();
         Dimension d = new Dimension(MainFrame.getInstanca().getDesniPanel().getDimensionToAdd());
-        RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
+        RoomView rv = MainFrame.getInstanca().getDesniPanel().getSelectedTab();
         d.width*=rv.getScale();
         d.height*=rv.getScale();
-        RoomDevice k;
-        DevicePainter p;
+        RoomElement k;
+        ElementPainter p;
         switch (s) {
             case "Bojler":
-                k = new Bojler("bojler", null,
-                        d, new Point(e.getX(), e.getY()),
+                k = new Bojler("bojler", rv.getRoom(),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
-                p = new BojlerPainter(k);
+                p = new BojlerPainter(k,e.getPoint(),d);
                 System.out.println("bojler");
                 break;
             case "Kada":
-                k = new Kada("kada", null,
-                        d, new Point(e.getX(), e.getY()),
+                k = new Kada("kada", rv.getRoom(),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
-                p = new KadaPainter(k);
+                p = new KadaPainter(k,e.getPoint(),d);
                 System.out.println("kada");
                 break;
             case "Krevet":
                 k = new Krevet("krevet", rv.getRoom(),
-                        d, new Point(e.getX(), e.getY()),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
-                p = new KrevetPainter(k);
+                p = new KrevetPainter(k,e.getPoint(),d);
                 System.out.println("krevet");
                 break;
             case "Lavabo":
-                k = new Lavabo("lavabo", null,
-                        d, new Point(e.getX(), e.getY()),
+                k = new Lavabo("lavabo", rv.getRoom(),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
-                p = new LavaboPainter(k);
+                p = new LavaboPainter(k,e.getPoint(),d);
                 System.out.println("lavabo");
                 break;
             case "Ormar":
-                k = new Ormar("ormar", null,
-                        d, new Point(e.getX(), e.getY()),
+                k = new Ormar("ormar", rv.getRoom(),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
-                p = new KrevetPainter(k);
+                p = new KrevetPainter(k,e.getPoint(),d);
                 System.out.println("ormar");
                 break;
             case "Sto":
-                k = new Sto("sto", null,
-                        d, new Point(e.getX(), e.getY()),
+                k = new Sto("sto", rv.getRoom(),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
-                p = new KrevetPainter(k);
+                p = new KrevetPainter(k,e.getPoint(),d);
                 break;
             case "Ves Masina":
-                k = new VesMasina("ves masina", null,
-                        d, new Point(e.getX(), e.getY()),
+                k = new VesMasina("ves masina", rv.getRoom(),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
-                p = new KrevetPainter(k);
+                p = new KrevetPainter(k,e.getPoint(),d);
                 break;
             case "Vrata":
-                k = new Vrata("vrata", null,
-                        d, new Point(e.getX(), e.getY()),
+                k = new Vrata("vrata", rv.getRoom(),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
-                p = new VrataPainter(k);
+                p = new VrataPainter(k,e.getPoint(),d);
                 break;
             case "WC solja":
-                k = new WCSolja("WC solja", null,
-                        d, new Point(e.getX(), e.getY()),
+                k = new WCSolja("WC solja", rv.getRoom(),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
-                p = new WCSoljaPainter(k);
+                p = new WCSoljaPainter(k,e.getPoint(),d);
                 break;
             default:
                 k = null;
-                p = new KrevetPainter(k);
+                p = new KrevetPainter(k,e.getPoint(),d);
                 System.out.println("nesto nije u redu");
         }
         for(ElementPainter ep: rv.getPainters()) {
-            if (p.getShape().intersects(ep.getShape().getBounds2D()))
-            {
-                ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(new Message(MessageType.GRESKA,LocalDateTime.now(),"ne sme da se preklapa sa drugim elementom"));
-                return;
+            for(Shape shape: ep.getShapes()) {
+                for(Shape shape1:p.getShapes()) {
+                    if (shape.intersects(shape1.getBounds2D()))
+                    {
+                        ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(new Message(MessageType.GRESKA,LocalDateTime.now(),"ne sme da se preklapa sa drugim elementom"));
+                        return;
+                    }
+                }
             }
         }
         ((DraftTreeImplementation)MainFrame.getInstanca().getDraftTree()).addRoomElement(k);

@@ -1,10 +1,6 @@
 package raf.draft.dsw.gui.swing;
 
-import raf.draft.dsw.model.painters.DevicePainter;
 import raf.draft.dsw.model.painters.ElementPainter;
-import raf.draft.dsw.model.roomobjects.RoomDevice;
-import raf.draft.dsw.tabbedpane.TabbedPaneImplementation;
-import raf.draft.dsw.tabbedpane.view.RoomView;
 import raf.draft.dsw.utils.JPanelUtils;
 
 import javax.swing.*;
@@ -33,8 +29,8 @@ public class ProzorEditElement extends JDialog {
         setContentPane(panel);
         panel.setLayout(new BoxLayout(panel,BoxLayout.X_AXIS));
         tfNaziv.setText(ep.getRoomElement().getNaziv());
-        tfDimenzijaX.setText(String.valueOf(((RoomDevice)ep.getRoomElement()).getLokacija().x));
-        tfDimenzijaY.setText(String.valueOf(((RoomDevice)ep.getRoomElement()).getLokacija().y));
+        tfDimenzijaX.setText(String.valueOf((ep.getLokacija().x)));
+        tfDimenzijaY.setText(String.valueOf(ep.getLokacija().y));
         tfRotacija.setText(String.valueOf(ep.getRoomElement().getRotateRatio()));
         add(JPanelUtils.makeHBox(
                 JPanelUtils.makeVBox(
@@ -56,8 +52,8 @@ public class ProzorEditElement extends JDialog {
     public void setElement(ElementPainter ep)
     {
         Dimension d = new Dimension(Integer.parseInt(tfDimenzijaX.getText()), Integer.parseInt(tfDimenzijaY.getText()));
-        ((DevicePainter)ep).setDimenzija(d);
-        ((RoomDevice)ep.getRoomElement()).setDimenzija(d);
+        ep.setDimenzija(d);
+        ep.setDimenzija(d);
         ep.getRoomElement().setRotateRatio(Double.parseDouble(tfRotacija.getText()));
         ep.setRoomElement(ep.getRoomElement());
     }

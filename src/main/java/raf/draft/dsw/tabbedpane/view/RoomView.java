@@ -3,8 +3,6 @@ package raf.draft.dsw.tabbedpane.view;
 import lombok.Data;
 import raf.draft.dsw.model.painters.ElementPainter;
 import raf.draft.dsw.model.painters.RectanglePainter;
-import raf.draft.dsw.model.roomobjects.RoomDevice;
-import raf.draft.dsw.model.roomobjects.RoomElement;
 import raf.draft.dsw.model.structures.Room;
 import raf.draft.dsw.utils.MisaListener;
 
@@ -15,7 +13,7 @@ import java.util.*;
 @Data
 public class RoomView extends JPanel {
     private Room room;
-    private RectanglePainter okvirSobe = new RectanglePainter(null,null);
+    private RectanglePainter okvirSobe = new RectanglePainter(new Point(10,10),new Dimension(1,1));
 
     private ArrayList<ElementPainter> painters = new ArrayList<>();
     private Set<ElementPainter> selektovani = new HashSet<>();
@@ -61,7 +59,7 @@ public class RoomView extends JPanel {
     }
 
     public void addSelektovani(ElementPainter selektovani) {
-        ((RoomDevice)selektovani.getRoomElement()).setStroke(new BasicStroke(3));
+        selektovani.getRoomElement().setStroke(new BasicStroke(3));
         this.selektovani.add(selektovani);
         //for(ElementPainter r: this.selektovani)
         //{
@@ -71,7 +69,7 @@ public class RoomView extends JPanel {
     }
     public void removeSelektovani() {
         for (ElementPainter selektovani : selektovani) {
-            ((RoomDevice)selektovani.getRoomElement()).setStroke(new BasicStroke(BasicStroke.CAP_BUTT));
+            selektovani.getRoomElement().setStroke(new BasicStroke(BasicStroke.CAP_BUTT));
         }
         this.selektovani.clear();
         repaint();

@@ -1,31 +1,21 @@
 package raf.draft.dsw.model.painters;
 
-import raf.draft.dsw.model.roomobjects.RoomDevice;
 import raf.draft.dsw.model.roomobjects.RoomElement;
 import raf.draft.dsw.model.shapes.RoomRectangle;
 
 import java.awt.*;
-import java.util.List;
 
-public class KrevetPainter extends DevicePainter{
-    public KrevetPainter(RoomElement roomElement) {
-        super(roomElement);
-        //shape = new Rectangle(roomDevice.getLokacija(),roomDevice.getDimenzija());
+public class KrevetPainter extends ElementPainter {
+    public KrevetPainter(RoomElement roomElement, Point lokacija, Dimension dimenzija) {
+        super(roomElement,lokacija,dimenzija);
+        initializeShape();
     }
 
     @Override
-    public void azurirajVelicine() {
-        shapes.add(new RoomRectangle(lokacija,dimenzija));
+    public void initializeShape() {
+        shapes.clear();
+        shapes.add(new Rectangle(lokacija,dimenzija));
+        shapes.add(new Rectangle(new Point((int)(lokacija.x+0.1*dimenzija.width),(int)(lokacija.y+0.1*dimenzija.height)),new Dimension(dimenzija.width/3,dimenzija.height/3)));
     }
-    //@Override
-    //public void setLokacija(Point lokacija) {
-    //    ((RoomDevice)roomElement).setLokacija(lokacija);
-    //    shape = new Rectangle(((RoomDevice)roomElement).getLokacija(),((RoomDevice)roomElement).getDimenzija());
-    //}
-    //@Override
-    //public void setDimenzija(Dimension dimenzija) {
-    //    ((RoomDevice)roomElement).setDimenzija(dimenzija);
-    //    shape = new Rectangle(((RoomDevice)roomElement).getLokacija(),((RoomDevice)roomElement).getDimenzija());
-    //}
 
 }

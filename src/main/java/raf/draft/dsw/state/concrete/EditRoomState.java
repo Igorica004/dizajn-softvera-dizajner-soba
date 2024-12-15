@@ -59,7 +59,7 @@ public class EditRoomState implements State {
         rv.getOkvirSobe().setLokacija(new Point(10,10));
         //rv.getOkvirSobe().setShape(new Rectangle(10,10,(int)(rv.getRoom().getDimenzija().width*rv.getScale()),
         //        (int)(rv.getRoom().getDimenzija().height*rv.getScale())));
-        rv.getOkvirSobe().getShapes().getFirst().setSize(x,y);
+        rv.getOkvirSobe().setDimenzija(new Dimension(x,y));
         rv.repaint();
     }
 }

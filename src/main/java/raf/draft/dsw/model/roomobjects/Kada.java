@@ -4,9 +4,9 @@ import raf.draft.dsw.model.nodes.DraftNode;
 
 import java.awt.*;
 
-public class Kada extends RoomDevice{
-    public Kada(String ime, DraftNode roditelj, Dimension dimenzija, Point locacija, Paint paint, double rotateRatio, Stroke stroke) {
-        super(ime, roditelj, dimenzija, locacija, paint, rotateRatio, stroke);
+public class Kada extends RoomElement{
+    public Kada(String ime, DraftNode roditelj, Paint paint, double rotateRatio, Stroke stroke) {
+        super(ime, roditelj, paint, rotateRatio, stroke);
     }
 
     public Kada(String ime, DraftNode roditelj) {
@@ -15,8 +15,6 @@ public class Kada extends RoomDevice{
 
     @Override
     public Prototype clone(RoomElement prototype) {
-        return new Kada(((RoomDevice)prototype).getNaziv(),null, ((RoomDevice)prototype).getDimenzija(),
-                new Point(((RoomDevice)prototype).getLokacija().x + 15, ((RoomDevice)prototype).getLokacija().y + 10),
-                ((RoomDevice)prototype).getPaint(), ((RoomDevice)prototype).getRotateRatio(),((RoomDevice)prototype).getStroke());
+        return new Kada(prototype.getNaziv(),prototype.getRoditelj(), prototype.getPaint(), prototype.getRotateRatio(),prototype.getStroke());
     }
 }
