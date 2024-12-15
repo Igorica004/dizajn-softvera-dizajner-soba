@@ -1,5 +1,7 @@
 package raf.draft.dsw.state.concrete;
 
+import raf.draft.dsw.controller.observer.ISubscriber;
+import raf.draft.dsw.controller.observer.Notification;
 import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.model.painters.ElementPainter;
 import raf.draft.dsw.state.State;
@@ -12,6 +14,8 @@ import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
 
 public class MoveState implements State {
+
+    private ArrayList<ISubscriber> subscribers = new ArrayList<>();
     int pocetniX, pocetniY;
     private ArrayList<Point> stareKoordinate = new ArrayList<>();
     @Override
@@ -29,7 +33,7 @@ public class MoveState implements State {
             r.setLokacija(new Point(stareKoordinate.get(i).x + razlikaX, stareKoordinate.get(i).y + razlikaY));
             i++;
         }
-        rv.repaint();
+        notifySubscribers(null);
     }
 
     @Override
@@ -56,5 +60,21 @@ public class MoveState implements State {
         {
             stareKoordinate.add(new Point (r.getLokacija()));
         }
+    }
+
+    @Override
+    public void addSubscriber(ISubscriber sub) {
+        subscribers.add(sub);
+    }
+
+    @Override
+    public void removeSubscriber(ISubscriber sub) {
+        subscribers.remove(sub);
+    }
+
+    @Override
+    public void notifySubscribers(Notification notification) {
+        for(ISubscriber sub: subscribers)
+            sub.update(null);
     }
 }

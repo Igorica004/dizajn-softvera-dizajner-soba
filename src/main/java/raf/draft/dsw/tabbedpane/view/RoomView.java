@@ -1,6 +1,9 @@
 package raf.draft.dsw.tabbedpane.view;
 
 import lombok.Data;
+import raf.draft.dsw.controller.observer.ISubscriber;
+import raf.draft.dsw.controller.observer.Notification;
+import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.model.painters.ElementPainter;
 import raf.draft.dsw.model.painters.RectanglePainter;
 import raf.draft.dsw.model.structures.Room;
@@ -12,7 +15,7 @@ import java.awt.geom.AffineTransform;
 import java.util.*;
 
 @Data
-public class RoomView extends JPanel {
+public class RoomView extends JPanel implements ISubscriber {
     private Room room;
     private RectanglePainter okvirSobe = new RectanglePainter(new Point(10,10),new Dimension(1,1));
 
@@ -29,7 +32,7 @@ public class RoomView extends JPanel {
         addMouseWheelListener(listener);
     }
     public RoomView(){
-
+        MainFrame.getInstanca().getDesniPanel().subscribeToStates(this);
     }
     public Double getScale(){
         double scaleX = getWidth()/room.getDimenzija().getWidth();
@@ -91,5 +94,10 @@ public class RoomView extends JPanel {
     @Override
     public int hashCode() {
         return Objects.hashCode(room);
+    }
+
+    @Override
+    public void update(Notification notification) {
+        repaint();
     }
 }

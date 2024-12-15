@@ -1,5 +1,7 @@
 package raf.draft.dsw.state.concrete;
 
+import raf.draft.dsw.controller.observer.ISubscriber;
+import raf.draft.dsw.controller.observer.Notification;
 import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.model.painters.ElementPainter;
 import raf.draft.dsw.model.roomobjects.RoomElement;
@@ -11,9 +13,12 @@ import raf.draft.dsw.tree.DraftTreeImplementation;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class DeleteState implements State {
+
+    private ArrayList<ISubscriber> subscribers = new ArrayList<>();
     @Override
     public void misPrevucen(MouseEvent e) {
 
@@ -48,13 +53,35 @@ public class DeleteState implements State {
         }
         for(ElementPainter ep: rv.getSelektovani())
         {
+            iterator = rv.getPainters().iterator();
+            while (iterator.hasNext()) {
+                ElementPainter elementPainter = iterator.next();
+                if(elementPainter == ep)
+                    ((DraftTreeImplementation)MainFrame.getInstanca().getDraftTree()).removeRoomElement(ep.getRoomElement());
+            }
             rv.getPainters().remove(ep);
         }
-        rv.repaint();
+        notifySubscribers(null);
     }
 
     @Override
     public void misKliknut(MouseEvent e) {
 
+    }
+
+    @Override
+    public void addSubscriber(ISubscriber sub) {
+        subscribers.add(sub);
+    }
+
+    @Override
+    public void removeSubscriber(ISubscriber sub) {
+        subscribers.remove(sub);
+    }
+
+    @Override
+    public void notifySubscribers(Notification notification) {
+        for(ISubscriber sub: subscribers)
+            sub.update(null);
     }
 }

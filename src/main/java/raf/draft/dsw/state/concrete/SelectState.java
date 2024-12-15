@@ -1,5 +1,7 @@
 package raf.draft.dsw.state.concrete;
 
+import raf.draft.dsw.controller.observer.ISubscriber;
+import raf.draft.dsw.controller.observer.Notification;
 import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.model.painters.ElementPainter;
 import raf.draft.dsw.model.painters.RectanglePainter;
@@ -10,10 +12,13 @@ import raf.draft.dsw.tabbedpane.view.RoomView;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
+import java.util.ArrayList;
 
 import static java.lang.Math.abs;
 
 public class SelectState implements State {
+
+    private ArrayList<ISubscriber> subscribers = new ArrayList<>();
     Rectangle r = new Rectangle();
     RectanglePainter p = new RectanglePainter(new Point(1,1),new Dimension(1,1));
     Point klik = new Point();
@@ -31,7 +36,7 @@ public class SelectState implements State {
         rv.getPainters().remove(p);
         selektuj(rv);
         System.out.println(rv.getSelektovani());
-        rv.repaint();
+        notifySubscribers(null);
     }
 
     @Override
@@ -90,7 +95,23 @@ public class SelectState implements State {
         }
         p.setDimenzija(new Dimension(r.width,r.height));
         p.setLokacija(new Point(r.x,r.y));
-        RoomView rv = MainFrame.getInstanca().getDesniPanel().getSelectedTab();
-        rv.repaint();
+        RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
+        notifySubscribers(null);
+    }
+
+    @Override
+    public void addSubscriber(ISubscriber sub) {
+        subscribers.add(sub);
+    }
+
+    @Override
+    public void removeSubscriber(ISubscriber sub) {
+        subscribers.remove(sub);
+    }
+
+    @Override
+    public void notifySubscribers(Notification notification) {
+        for(ISubscriber sub: subscribers)
+            sub.update(null);
     }
 }

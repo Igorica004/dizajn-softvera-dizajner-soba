@@ -1,5 +1,7 @@
 package raf.draft.dsw.state.concrete;
 
+import raf.draft.dsw.controller.observer.ISubscriber;
+import raf.draft.dsw.controller.observer.Notification;
 import raf.draft.dsw.core.ApplicationFramework;
 import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.gui.swing.ProzorDimenzijeSobe;
@@ -14,8 +16,11 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class EditRoomState implements State {
+
+    private ArrayList<ISubscriber> subscribers = new ArrayList<>();
     @Override
     public void misPrevucen(MouseEvent e) {
 
@@ -55,6 +60,22 @@ public class EditRoomState implements State {
         //rv.getOkvirSobe().setShape(new Rectangle(10,10,(int)(rv.getRoom().getDimenzija().width*rv.getScale()),
         //        (int)(rv.getRoom().getDimenzija().height*rv.getScale())));
         rv.getOkvirSobe().setDimenzija(new Dimension(x,y));
-        rv.repaint();
+        notifySubscribers(null);
+    }
+
+    @Override
+    public void addSubscriber(ISubscriber sub) {
+        subscribers.add(sub);
+    }
+
+    @Override
+    public void removeSubscriber(ISubscriber sub) {
+        subscribers.remove(sub);
+    }
+
+    @Override
+    public void notifySubscribers(Notification notification) {
+        for(ISubscriber sub: subscribers)
+            sub.update(null);
     }
 }

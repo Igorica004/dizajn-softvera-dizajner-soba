@@ -1,5 +1,7 @@
 package raf.draft.dsw.state.concrete;
 
+import raf.draft.dsw.controller.observer.ISubscriber;
+import raf.draft.dsw.controller.observer.Notification;
 import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.gui.swing.ProzorEditElement;
 import raf.draft.dsw.model.painters.ElementPainter;
@@ -10,8 +12,11 @@ import raf.draft.dsw.tabbedpane.view.RoomView;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
+import java.util.ArrayList;
 
 public class EditElementState implements State {
+
+    private ArrayList<ISubscriber> subscribers = new ArrayList<>();
     @Override
     public void misPrevucen(MouseEvent e) {
 
@@ -40,7 +45,7 @@ public class EditElementState implements State {
                     ProzorEditElement prozor = new ProzorEditElement(ep);
                     prozor.setVisible(true);
                     prozor.setElement(ep);
-                    rv.repaint();
+                    notifySubscribers(null);
                 }
             }
         }
@@ -49,5 +54,21 @@ public class EditElementState implements State {
     @Override
     public void misKliknut(MouseEvent e) {
 
+    }
+
+    @Override
+    public void addSubscriber(ISubscriber sub) {
+        subscribers.add(sub);
+    }
+
+    @Override
+    public void removeSubscriber(ISubscriber sub) {
+        subscribers.remove(sub);
+    }
+
+    @Override
+    public void notifySubscribers(Notification notification) {
+        for(ISubscriber sub: subscribers)
+            sub.update(null);
     }
 }
