@@ -145,6 +145,18 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         }
     }
 
+    public void removeRoomElement(RoomElement roomElement) {
+        Enumeration<?> enumeration = ((DraftTreeItem)treeModel.getRoot()).depthFirstEnumeration();
+        while(enumeration.hasMoreElements()){
+            DraftTreeItem draftTreeItem = (DraftTreeItem) enumeration.nextElement();
+            DraftNode dn = draftTreeItem.getDraftNode();
+            if(dn == roomElement){
+                treeModel.removeNodeFromParent(draftTreeItem);
+                return;
+            }
+        }
+    }
+
     @Override
     public void removeChild() {
         DraftTreeItem selectedTreeItem = getSelectedNode();
