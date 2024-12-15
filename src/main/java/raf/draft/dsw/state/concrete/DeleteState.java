@@ -38,12 +38,13 @@ public class DeleteState implements State {
         int y = e.getY();
         RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
 
-        for (ElementPainter ep:rv.getPainters()) {
-            for(Shape shape:ep.getShapes()){
-                if(shape.contains(x, y))
-                {
-                    rv.getPainters().remove(ep);
-
+        Iterator<ElementPainter> iterator = rv.getPainters().iterator();
+        while (iterator.hasNext()) {
+            ElementPainter ep = iterator.next();
+            for (Shape shape : ep.getShapes()) {
+                if (shape.contains(x, y)) {
+                    iterator.remove(); // Bezbedno uklanja element tokom iteracije
+                    break; // Izađi iz unutrašnje petlje jer je ep već uklonjen
                 }
             }
         }
