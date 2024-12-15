@@ -57,8 +57,9 @@ public class EditRoomState implements State {
         Dimension d = new Dimension(x, y);
         rv.getRoom().setDimenzija(d);
         rv.getOkvirSobe().setLokacija(new Point(10,10));
-        rv.getOkvirSobe().setShape(new Rectangle(10,10,(int)(rv.getRoom().getDimenzija().width*rv.getScale()),
-                (int)(rv.getRoom().getDimenzija().height*rv.getScale())));
+        //rv.getOkvirSobe().setShape(new Rectangle(10,10,(int)(rv.getRoom().getDimenzija().width*rv.getScale()),
+        //        (int)(rv.getRoom().getDimenzija().height*rv.getScale())));
+        rv.getOkvirSobe().getShapes().getFirst().setSize(x,y);
         rv.repaint();
     }
 }

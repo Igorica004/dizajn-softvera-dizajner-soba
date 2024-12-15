@@ -3,13 +3,16 @@ package raf.draft.dsw.model.painters;
 import lombok.Getter;
 import lombok.Setter;
 import raf.draft.dsw.model.roomobjects.RoomElement;
+import raf.draft.dsw.model.shapes.RoomShape;
 
 import java.awt.*;
+import java.util.ArrayList;
+
 @Getter
 @Setter
 public abstract class ElementPainter {
     protected RoomElement roomElement;
-    protected Shape shape;
+    protected ArrayList<RoomShape> shapes = new ArrayList<>();
     protected Point lokacija;
     public ElementPainter(RoomElement element, Point lokacija) {
         this.lokacija = lokacija;
