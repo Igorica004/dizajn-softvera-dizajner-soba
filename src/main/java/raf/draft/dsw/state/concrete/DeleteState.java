@@ -43,6 +43,7 @@ public class DeleteState implements State {
                 if(shape.contains(x, y))
                 {
                     rv.getPainters().remove(ep);
+
                 }
             }
         }

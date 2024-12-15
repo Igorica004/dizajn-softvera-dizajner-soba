@@ -36,6 +36,11 @@ public class SelectState implements State {
 
     @Override
     public void misSkrolGore(MouseWheelEvent e) {
+        for(ElementPainter elementPainter :MainFrame.getInstanca().getDesniPanel().getSelectedTab().getPainters()){
+            elementPainter.setScaleRatio(elementPainter.getScaleRatio()+e.getWheelRotation()*0.1);
+        }
+        MainFrame.getInstanca().getDesniPanel().repaint();
+        System.out.println("skrol");
 
     }
 

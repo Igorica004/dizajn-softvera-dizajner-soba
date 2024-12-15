@@ -130,6 +130,7 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
     public void addRoomElement(RoomElement roomElement) {
         RoomView selektovan = MainFrame.getInstanca().getDesniPanel().getSelectedTab();
         Room room = selektovan.getRoom();
+        treeModel.reload();
         room.addChild(roomElement);
         Enumeration<?> enumeration = ((DraftTreeItem)treeModel.getRoot()).depthFirstEnumeration();
         while(enumeration.hasMoreElements()){

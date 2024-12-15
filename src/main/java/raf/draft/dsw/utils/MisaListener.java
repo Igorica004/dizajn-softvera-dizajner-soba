@@ -32,6 +32,12 @@ public class MisaListener extends MouseAdapter {
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
+        State current = MainFrame.getInstanca().getDesniPanel().getStateManager().getCurrentState();
+        if(e.getWheelRotation() < 0){
+            current.misSkrolDole(e);
+            return;
+        }
+        current.misPritisnut(e);
     }
 
     @Override
