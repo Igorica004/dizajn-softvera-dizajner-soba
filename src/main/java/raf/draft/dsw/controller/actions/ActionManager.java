@@ -27,6 +27,8 @@ public class ActionManager {
     private PasteElementaAkcija pasteElementaAkcija;
     private EditElementStateAction editElementStateAction;
     private ZoomStateAction zoomStateAction;
+    private UndoAction undoAction;
+    private RedoAction redoAction;
     public ActionManager(){
         exitAction = new ExitAction();
         oNamaAkcija = new ONamaAkcija();
@@ -49,6 +51,8 @@ public class ActionManager {
         pasteElementaAkcija = new PasteElementaAkcija();
         editElementStateAction = new EditElementStateAction();
         zoomStateAction = new ZoomStateAction();
+        undoAction = new UndoAction();
+        redoAction = new RedoAction();
     }
 
 }

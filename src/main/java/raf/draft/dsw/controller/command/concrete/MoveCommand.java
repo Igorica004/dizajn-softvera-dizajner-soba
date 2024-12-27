@@ -8,13 +8,13 @@ import raf.draft.dsw.tabbedpane.view.RoomView;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class ResizeCommand extends AbstractCommand {
-    ArrayList<Dimension> stareDimenzije = new ArrayList<>();
-    ArrayList<Dimension> noveDimenzije =  new ArrayList<>();
-    public ResizeCommand(ArrayList<Dimension> stareDimenzije, ArrayList<Dimension> noveDimenzije)
+public class MoveCommand extends AbstractCommand {
+    ArrayList<Point> stareKoordinate = new ArrayList<>();
+    ArrayList<Point> noveKoordinate =  new ArrayList<>();
+    public MoveCommand(ArrayList<Point> stareKoordinate, ArrayList<Point> noveKoordinate)
     {
-        this.stareDimenzije.addAll(stareDimenzije);
-        this.noveDimenzije.addAll(noveDimenzije);
+        this.stareKoordinate.addAll(stareKoordinate);
+        this.noveKoordinate.addAll(noveKoordinate);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class ResizeCommand extends AbstractCommand {
         for(ElementPainter r : rv.getSelektovani())
         {
             //((RoomDevice)r.getShape()).setLokacija(new Point(razlikaX + stareKoordinate.get(i).x, razlikaY + stareKoordinate.get(i).y));
-            r.setDimenzija(new Dimension(noveDimenzije.get(i).width, noveDimenzije.get(i).height));
+            r.setLokacija(new Point(noveKoordinate.get(i).x, noveKoordinate.get(i).y));
             i++;
         }
         rv.repaint();
@@ -37,7 +37,7 @@ public class ResizeCommand extends AbstractCommand {
         for(ElementPainter r : rv.getSelektovani())
         {
             //((RoomDevice)r.getShape()).setLokacija(new Point(razlikaX + stareKoordinate.get(i).x, razlikaY + stareKoordinate.get(i).y));
-            r.setDimenzija(new Dimension(stareDimenzije.get(i).width, stareDimenzije.get(i).height));
+            r.setLokacija(new Point(stareKoordinate.get(i).x, stareKoordinate.get(i).y));
             i++;
         }
         rv.repaint();

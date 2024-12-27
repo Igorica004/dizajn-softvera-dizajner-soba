@@ -1,6 +1,7 @@
 package raf.draft.dsw.tabbedpane.view;
 
 import lombok.Data;
+import raf.draft.dsw.controller.command.CommandManager;
 import raf.draft.dsw.controller.observer.ISubscriber;
 import raf.draft.dsw.controller.observer.Notification;
 import raf.draft.dsw.gui.swing.MainFrame;
@@ -22,6 +23,8 @@ public class RoomView extends JPanel implements ISubscriber {
     private ArrayList<ElementPainter> painters = new ArrayList<>();
     private Set<ElementPainter> selektovani = new HashSet<>();
     private ArrayList<ElementPainter> kopirani = new ArrayList<>();
+
+    private CommandManager commandManager = new CommandManager();
     private double zoomFactor = 1;
     private double prevZoomFactor = 1;
     private double xOffset = 0;

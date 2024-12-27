@@ -1,5 +1,6 @@
 package raf.draft.dsw.state.concrete;
 
+import raf.draft.dsw.controller.command.concrete.MoveCommand;
 import raf.draft.dsw.controller.observer.ISubscriber;
 import raf.draft.dsw.controller.observer.Notification;
 import raf.draft.dsw.core.ApplicationFramework;
@@ -67,6 +68,11 @@ public class MoveState implements State {
             notifySubscribers(null);
 
         }
+        ArrayList<Point> noveKoordinate = new ArrayList<>();
+        for(ElementPainter elementPainter:rv.getSelektovani()){
+            noveKoordinate.add(elementPainter.getLokacija());
+        }
+        rv.getCommandManager().addCommand(new MoveCommand(stareKoordinate, noveKoordinate));
         stareKoordinate.clear();
     }
 
