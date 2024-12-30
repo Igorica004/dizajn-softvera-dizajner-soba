@@ -29,6 +29,7 @@ public class ActionManager {
     private ZoomStateAction zoomStateAction;
     private UndoAction undoAction;
     private RedoAction redoAction;
+    private OrganizeMyRoomAction organizeMyRoomAction;
     public ActionManager(){
         exitAction = new ExitAction();
         oNamaAkcija = new ONamaAkcija();
@@ -53,6 +54,7 @@ public class ActionManager {
         zoomStateAction = new ZoomStateAction();
         undoAction = new UndoAction();
         redoAction = new RedoAction();
+        organizeMyRoomAction = new OrganizeMyRoomAction();
     }
 
 }

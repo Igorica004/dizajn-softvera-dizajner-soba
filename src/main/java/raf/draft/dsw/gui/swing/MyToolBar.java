@@ -21,6 +21,7 @@ public class MyToolBar extends JToolBar {
         ZoomStateAction zsa = MainFrame.getInstanca().getActionManager().getZoomStateAction();
         UndoAction ua = MainFrame.getInstanca().getActionManager().getUndoAction();
         RedoAction ra = MainFrame.getInstanca().getActionManager().getRedoAction();
+        OrganizeMyRoomAction omra= MainFrame.getInstanca().getActionManager().getOrganizeMyRoomAction();
         add(on);
         add(ea);
         add(nca);
@@ -30,5 +31,6 @@ public class MyToolBar extends JToolBar {
         add(zsa);
         add(ua);
         add(ra);
+        add(omra);
     }
 }
