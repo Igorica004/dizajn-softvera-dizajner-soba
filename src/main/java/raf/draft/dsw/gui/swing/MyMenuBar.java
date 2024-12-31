@@ -1,8 +1,9 @@
 package raf.draft.dsw.gui.swing;
 
-import raf.draft.dsw.controller.actions.BrisanjeAkcija;
-import raf.draft.dsw.controller.actions.EditCvorAkcija;
-import raf.draft.dsw.controller.actions.ExitAction;
+import raf.draft.dsw.controller.actions.*;
+import raf.draft.dsw.serializer.actions.OpenProjectAkcija;
+import raf.draft.dsw.serializer.actions.SaveAkcija;
+import raf.draft.dsw.serializer.actions.SaveAsAkcija;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
@@ -14,9 +15,15 @@ public class MyMenuBar extends JMenuBar {
         ExitAction ea = new ExitAction();
         BrisanjeAkcija ba = new BrisanjeAkcija();
         EditCvorAkcija eca = new EditCvorAkcija();
+        SaveAkcija sa = new SaveAkcija();
+        SaveAsAkcija saa = new SaveAsAkcija();
+        OpenProjectAkcija opa = new OpenProjectAkcija();
         fileMenu.add(ea);
         fileMenu.add(ba);
         fileMenu.add(eca);
+        fileMenu.add(sa);
+        fileMenu.add(saa);
+        fileMenu.add(opa);
         add(fileMenu);
     }
 }

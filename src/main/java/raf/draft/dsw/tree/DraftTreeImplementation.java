@@ -168,6 +168,7 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         else if(selectedTreeItem.getDraftNode() instanceof ProjectExplorer){
             Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"Ne moze da se obrise root!");
             ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
+            return;
         }
         selectedTreeItem.removeFromParent();
         ((DraftNodeComposite)selectedTreeItem.getDraftNode().getRoditelj()).removeChild(selectedTreeItem.getDraftNode());

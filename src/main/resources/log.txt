@@ -205,3 +205,6 @@
 [GRESKA][2024-12-30T11:46:09.869071700] Nije odabrana vrsta elementa
 [GRESKA][2024-12-30T11:49:08.943721700] Nije odabrana vrsta elementa
 [GRESKA][2024-12-30T11:53:22.803019] Nije odabrana vrsta elementa
+[GRESKA][2024-12-31T17:00:54.043990400] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-31T17:22:33.631052528] Ne moze da se obrise root!
+[GRESKA][2024-12-31T17:23:07.704092291] Ne moze da se obrise root!
