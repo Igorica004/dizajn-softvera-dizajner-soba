@@ -199,5 +199,9 @@
 [GRESKA][2024-12-15T22:32:56.109685083] Elementi se seku
 [GRESKA][2024-12-15T23:49:10.387143900] Elementi se seku
 [GRESKA][2024-12-15T23:49:21.850350700] Elementi se seku
-[GRESKA][2024-12-15T22:57:23.847199562] ne sme da se preklapa sa drugim elementom
-[GRESKA][2024-12-15T22:57:30.086518627] Elementi se seku
+[GRESKA][2024-12-30T10:10:10.273184700] Nije selektovana grana!
+[GRESKA][2024-12-30T10:11:11.785723500] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-30T10:21:02.499022400] Nije selektovana grana!
+[GRESKA][2024-12-30T11:46:09.869071700] Nije odabrana vrsta elementa
+[GRESKA][2024-12-30T11:49:08.943721700] Nije odabrana vrsta elementa
+[GRESKA][2024-12-30T11:53:22.803019] Nije odabrana vrsta elementa

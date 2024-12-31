@@ -8,8 +8,8 @@ import java.awt.event.ActionEvent;
 public class ZoomStateAction extends AbstractRoomAction {
     public ZoomStateAction(){
         putValue(SMALL_ICON, loadIcon("/images/resize.png"));
-        putValue(NAME, "Resize");
-        putValue(SHORT_DESCRIPTION, "Resize");
+        putValue(NAME, "Zoom");
+        putValue(SHORT_DESCRIPTION, "Zoom");
     }
     @Override
     public void actionPerformed(ActionEvent e) {

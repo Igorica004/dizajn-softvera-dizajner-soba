@@ -1,5 +1,6 @@
 package raf.draft.dsw.state.concrete;
 
+import raf.draft.dsw.controller.command.concrete.ResizeCommand;
 import raf.draft.dsw.controller.observer.ISubscriber;
 import raf.draft.dsw.controller.observer.Notification;
 import raf.draft.dsw.gui.swing.MainFrame;
@@ -25,7 +26,7 @@ public class ResizeState implements State {
         int razlikaX = trenutniX - pocetniX;
         int razlikaY = trenutniY - pocetniY;
 
-        RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
+        RoomView rv = MainFrame.getInstanca().getDesniPanel().getSelectedTab();
         int i = 0;
         for(ElementPainter r : rv.getSelektovani())
         {
@@ -33,11 +34,19 @@ public class ResizeState implements State {
             r.setDimenzija(new Dimension(stareDimenzije.get(i).width + razlikaX, stareDimenzije.get(i).height + razlikaY));
             i++;
         }
+
         notifySubscribers(null);
     }
 
     @Override
     public void misOtpusten(MouseEvent e) {
+        RoomView rv = MainFrame.getInstanca().getDesniPanel().getSelectedTab();
+        ArrayList<Dimension> trenutneDimenzije = new ArrayList<>();
+        for(ElementPainter r : rv.getSelektovani())
+        {
+            trenutneDimenzije.add(r.getDimenzija());
+        }
+        rv.getCommandManager().addCommand(new ResizeCommand(stareDimenzije,trenutneDimenzije));
         stareDimenzije.clear();
     }
 

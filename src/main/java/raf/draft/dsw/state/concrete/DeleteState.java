@@ -1,5 +1,6 @@
 package raf.draft.dsw.state.concrete;
 
+import raf.draft.dsw.controller.command.concrete.DeleteCommand;
 import raf.draft.dsw.controller.observer.ISubscriber;
 import raf.draft.dsw.controller.observer.Notification;
 import raf.draft.dsw.gui.swing.MainFrame;
@@ -36,31 +37,10 @@ public class DeleteState implements State {
 
     @Override
     public void misPritisnut(MouseEvent e) {
-        int x = e.getX();
-        int y = e.getY();
-        RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
+        Point p = e.getPoint();
+        RoomView rv = MainFrame.getInstanca().getDesniPanel().getSelectedTab();
+        rv.getCommandManager().addCommand(new DeleteCommand(p));
 
-        Iterator<ElementPainter> iterator = rv.getPainters().iterator();
-        while (iterator.hasNext()) {
-            ElementPainter ep = iterator.next();
-            for (Shape shape : ep.getShapes()) {
-                if (shape.contains(x, y)) {
-                    ((DraftTreeImplementation)MainFrame.getInstanca().getDraftTree()).removeRoomElement(ep.getRoomElement());
-                    iterator.remove();
-                    break;
-                }
-            }
-        }
-        for(ElementPainter ep: rv.getSelektovani())
-        {
-            iterator = rv.getPainters().iterator();
-            while (iterator.hasNext()) {
-                ElementPainter elementPainter = iterator.next();
-                if(elementPainter == ep)
-                    ((DraftTreeImplementation)MainFrame.getInstanca().getDraftTree()).removeRoomElement(ep.getRoomElement());
-            }
-            rv.getPainters().remove(ep);
-        }
         notifySubscribers(null);
     }
 

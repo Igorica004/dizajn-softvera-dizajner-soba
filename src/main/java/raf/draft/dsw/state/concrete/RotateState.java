@@ -1,5 +1,6 @@
 package raf.draft.dsw.state.concrete;
 
+import raf.draft.dsw.controller.command.concrete.RotateCommand;
 import raf.draft.dsw.controller.observer.ISubscriber;
 import raf.draft.dsw.controller.observer.Notification;
 import raf.draft.dsw.core.ApplicationFramework;
@@ -21,22 +22,24 @@ public class RotateState implements State {
 
     private ArrayList<ISubscriber> subscribers = new ArrayList<>();
     Point centarObjekta;
+    double noviUgao, stariUgao;
     @Override
     public void misPrevucen(MouseEvent e) {
         RoomView rv = ((RoomView) ((TabbedPaneImplementation) MainFrame.getInstanca().getDesniPanel().getTabbedPane()).getTabbedPaneView().getSelectedComponent());
         int x = e.getX();
         int y = e.getY();
-        double angle = Math.atan2(centarObjekta.y - y, centarObjekta.x - x) - Math.PI / 2;
+        noviUgao = Math.atan2(centarObjekta.y - y, centarObjekta.x - x) - Math.PI / 2;
         for(ElementPainter ep:rv.getSelektovani())
         {
-            ep.setRotateRatio(angle);
+            ep.setRotateRatio(noviUgao);
         }
         notifySubscribers(null);
     }
 
     @Override
     public void misOtpusten(MouseEvent e) {
-        centarObjekta = null;
+        RoomView rv = MainFrame.getInstanca().getDesniPanel().getSelectedTab();
+        rv.getCommandManager().addCommand(new RotateCommand(stariUgao,noviUgao));
     }
 
     @Override
@@ -54,6 +57,7 @@ public class RotateState implements State {
         }
         for(ElementPainter ep: rv.getSelektovani()) {
             centarObjekta = new Point(ep.getLokacija().x, ep.getLokacija().y);
+            stariUgao = ep.getRotateRatio();
         }
     }
 
