@@ -199,3 +199,5 @@
 [GRESKA][2024-12-15T22:32:56.109685083] Elementi se seku
 [GRESKA][2024-12-15T23:49:10.387143900] Elementi se seku
 [GRESKA][2024-12-15T23:49:21.850350700] Elementi se seku
+[GRESKA][2024-12-15T22:57:23.847199562] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T22:57:30.086518627] Elementi se seku
