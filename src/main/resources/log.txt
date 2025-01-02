@@ -205,3 +205,4 @@
 [GRESKA][2024-12-30T11:46:09.869071700] Nije odabrana vrsta elementa
 [GRESKA][2024-12-30T11:49:08.943721700] Nije odabrana vrsta elementa
 [GRESKA][2024-12-30T11:53:22.803019] Nije odabrana vrsta elementa
+[GRESKA][2025-01-02T21:51:48.351560300] Elementi se seku

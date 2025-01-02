@@ -10,6 +10,7 @@ import raf.draft.dsw.model.painters.ElementPainter;
 import raf.draft.dsw.model.painters.RectanglePainter;
 import raf.draft.dsw.model.roomobjects.RoomElement;
 import raf.draft.dsw.model.structures.Room;
+import raf.draft.dsw.tree.DraftTreeImplementation;
 import raf.draft.dsw.utils.MisaListener;
 
 import javax.swing.*;
@@ -59,11 +60,13 @@ public class RoomView extends JPanel implements ISubscriber {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-
+//        Point p =new Point();
+//        p.x = (int)(room.getDimenzija().width*getScale()) - 30;
+//        p.y = (int)(room.getDimenzija().height*getScale()) - 30;
         g2d.transform(getTransform());
         g2d.drawRect(10,10,(int)(room.getDimenzija().width*getScale()),
                     (int)(room.getDimenzija().height*getScale()));
-
+        //g2d.fillRect(p.x,p.y,40,40);
         for (ElementPainter elementPainter : painters) {
             elementPainter.setScaleRatio(zoomFactor);
             elementPainter.paint(g2d);
@@ -101,8 +104,8 @@ public class RoomView extends JPanel implements ISubscriber {
             sirinaPolja = Math.max(sirinaPolja, e.getDimenzija().width);
             visinaPolja = Math.max(visinaPolja, e.getDimenzija().height);
         }
-        n = room.getDimenzija().width/sirinaPolja;
-        m = room.getDimenzija().height/visinaPolja;
+        n = (int)((room.getDimenzija().width * getScale())/sirinaPolja);
+        m = (int)((room.getDimenzija().height * getScale())/visinaPolja);
 
         int[][] matrica = new int[n][m];
         int top = 0, bottom = n-1, left = 0, right = m-1;
@@ -111,16 +114,34 @@ public class RoomView extends JPanel implements ISubscriber {
 
             // Print top row from left to right
             for (int i = left; i <= right; ++i) {
-                prozor.getSpisakElemenata().get(count).setLokacija(new Point(sirinaPolja*top, visinaPolja*i));
+                if(count==prozor.getSpisakElemenata().size()) break;
+                Point p = new Point();
+
+                if(top==0) p.y = 10;
+                else p.y = visinaPolja*top + 10;
+                if(i==m-1) p.x = (int)(room.getDimenzija().width*getScale()) - prozor.getSpisakElemenata().get(count).getDimenzija().width + 10;
+                else p.x = sirinaPolja*i + 10;
+
+                prozor.getSpisakElemenata().get(count).setLokacija(p);
                 addPainter(prozor.getSpisakElemenata().get(count));
+                ((DraftTreeImplementation)MainFrame.getInstanca().getDraftTree()).addRoomElement(prozor.getSpisakElemenata().get(count).getRoomElement());
                 matrica[top][i] = count++;
             }
             top++;
 
             // Print right column from top to bottom
             for (int i = top; i <= bottom; ++i) {
-                prozor.getSpisakElemenata().get(count).setLokacija(new Point(sirinaPolja*i, visinaPolja*right));
+                if(count==prozor.getSpisakElemenata().size()) break;
+                Point p = new Point();
+
+                if(right==m-1) p.x = (int)(room.getDimenzija().width*getScale()) - prozor.getSpisakElemenata().get(count).getDimenzija().width + 10;
+                else p.x = sirinaPolja*right + 10;
+                if(i==n-1) p.y = (int)(room.getDimenzija().height*getScale()) - prozor.getSpisakElemenata().get(count).getDimenzija().height + 10;
+                else p.y = visinaPolja*i + 10;
+
+                prozor.getSpisakElemenata().get(count).setLokacija(p);
                 addPainter(prozor.getSpisakElemenata().get(count));
+                ((DraftTreeImplementation)MainFrame.getInstanca().getDraftTree()).addRoomElement(prozor.getSpisakElemenata().get(count).getRoomElement());
                 matrica[i][right] = count++;
             }
             right--;
@@ -128,8 +149,17 @@ public class RoomView extends JPanel implements ISubscriber {
             // Print bottom row from right to left (if exists)
             if (top <= bottom) {
                 for (int i = right; i >= left; --i) {
-                    prozor.getSpisakElemenata().get(count).setLokacija(new Point(sirinaPolja*bottom, visinaPolja*i));
+                    if(count==prozor.getSpisakElemenata().size()) break;
+                    Point p = new Point();
+
+                    if(i==0) p.x = 10;
+                    else p.x = sirinaPolja*right + 10;
+                    if(bottom==n-1) p.y = (int)(room.getDimenzija().height*getScale()) - prozor.getSpisakElemenata().get(count).getDimenzija().height + 10;
+                    else p.y = visinaPolja*i + 10;
+
+                    prozor.getSpisakElemenata().get(count).setLokacija(p);
                     addPainter(prozor.getSpisakElemenata().get(count));
+                    ((DraftTreeImplementation)MainFrame.getInstanca().getDraftTree()).addRoomElement(prozor.getSpisakElemenata().get(count).getRoomElement());
                     matrica[bottom][i] = count++;
                 }
                 bottom--;
@@ -137,13 +167,30 @@ public class RoomView extends JPanel implements ISubscriber {
 
             // Print left column from bottom to top (if exists)
             if (left <= right) {
+                if(count==prozor.getSpisakElemenata().size()) break;
                 for (int i = bottom; i >= top; --i) {
-                    prozor.getSpisakElemenata().get(count).setLokacija(new Point(sirinaPolja*i, visinaPolja*left));
+                    if(count==prozor.getSpisakElemenata().size()) break;
+
+                    Point p = new Point();
+
+                    if(left==0) p.x = (int)(room.getDimenzija().width*getScale()) - prozor.getSpisakElemenata().get(count).getDimenzija().width + 10;
+                    else p.x = sirinaPolja*right + 10;
+
+                    prozor.getSpisakElemenata().get(count).setLokacija(new Point(sirinaPolja*left + 10, visinaPolja*i + 10));
                     addPainter(prozor.getSpisakElemenata().get(count));
+                    ((DraftTreeImplementation)MainFrame.getInstanca().getDraftTree()).addRoomElement(prozor.getSpisakElemenata().get(count).getRoomElement());
                     matrica[i][left] = count++;
                 }
                 left++;
             }
+        }
+        for(int i = 0; i < n; i++)
+        {
+            for(int j = 0; j < m; j++)
+            {
+                System.out.print(matrica[i][j] + " ");
+            }
+            System.out.print("\n");
         }
         repaint();
     }

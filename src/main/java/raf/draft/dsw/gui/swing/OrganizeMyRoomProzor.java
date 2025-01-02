@@ -68,32 +68,38 @@ public class OrganizeMyRoomProzor extends JDialog {
         }
         RoomElement k;
         RoomView rv = MainFrame.getInstanca().getDesniPanel().getSelectedTab();
+        Dimension d = new Dimension();
+        d.width = Integer.parseInt(tfSirina.getText());
+        d.width*= rv.getScale();
+        d.height = Integer.parseInt(tfVisina.getText());
+        d.height*= rv.getScale();
         switch(element)
         {
             case "bojler":
                 k = new Bojler("bojler", null, Color.red, 0,new BasicStroke(BasicStroke.CAP_BUTT));
-                elementiZaDodavanje.add(new BojlerPainter(k, new Point(1,1), new Dimension(Integer.parseInt(tfSirina.getText()),Integer.parseInt(tfVisina.getText()))));
+                elementiZaDodavanje.add(new BojlerPainter(k, new Point(1,1), d));
                 break;
             case "kada":
-                k = new Kada("bojler", null, Color.red, 0,new BasicStroke(BasicStroke.CAP_BUTT));
-                elementiZaDodavanje.add(new KadaPainter(k, new Point(1,1), new Dimension((int)(Integer.parseInt(tfSirina.getText())*rv.getScale()), (int)(Integer.parseInt(tfVisina.getText())* rv.getScale()))));                break;
+                k = new Kada("kada", null, Color.red, 0,new BasicStroke(BasicStroke.CAP_BUTT));
+                elementiZaDodavanje.add(new KadaPainter(k, new Point(1,1), d));
+                break;
             case "lavabo":
-                k = new Lavabo("bojler", null, Color.red, 0,new BasicStroke(BasicStroke.CAP_BUTT));
-                elementiZaDodavanje.add(new LavaboPainter(k, new Point(1,1), new Dimension((int)(Integer.parseInt(tfSirina.getText())*rv.getScale()), (int)(Integer.parseInt(tfVisina.getText())* rv.getScale()))));
+                k = new Lavabo("lavabo", null, Color.red, 0,new BasicStroke(BasicStroke.CAP_BUTT));
+                elementiZaDodavanje.add(new LavaboPainter(k, new Point(1,1), d));
                 break;
             case "vrata":
-                k = new Vrata("bojler", null, Color.red, 0,new BasicStroke(BasicStroke.CAP_BUTT));
+                k = new Vrata("vrata", null, Color.red, 0,new BasicStroke(BasicStroke.CAP_BUTT));
                 elementiZaDodavanje.add(new VrataPainter(k, new Point(1,1), new Dimension((int)(Integer.parseInt(tfSirina.getText())*rv.getScale()), (int)(Integer.parseInt(tfVisina.getText())* rv.getScale()))));
                 break;
             case "wc solja":
-                k = new WCSolja("bojler", null, Color.red, 0,new BasicStroke(BasicStroke.CAP_BUTT));
+                k = new WCSolja("wc solja", null, Color.red, 0,new BasicStroke(BasicStroke.CAP_BUTT));
                 elementiZaDodavanje.add(new WCSoljaPainter(k, new Point(1,1), new Dimension((int)(Integer.parseInt(tfSirina.getText())*rv.getScale()), (int)(Integer.parseInt(tfVisina.getText())* rv.getScale()))));
                 break;
             case "ves masina":
             case "sto":
             case "ormar":
             case "krevet":
-                k = new Krevet("bojler", null, Color.BLACK, 0,new BasicStroke(BasicStroke.CAP_BUTT));
+                k = new Krevet("krevet", null, Color.red, 0,new BasicStroke(BasicStroke.CAP_BUTT));
                 elementiZaDodavanje.add(new KrevetPainter(k, new Point(1,1), new Dimension((int)(Integer.parseInt(tfSirina.getText())*rv.getScale()), (int)(Integer.parseInt(tfVisina.getText())* rv.getScale()))));
                 break;
             default:
@@ -104,7 +110,6 @@ public class OrganizeMyRoomProzor extends JDialog {
         button.addActionListener(e->{obrisiElement();});
         spisak.add(JPanelUtils.makeHBox(new JLabel(element + "(" + tfSirina.getText() + " x " + tfVisina.getText() + ")"), button));
         revalidate();
-        System.out.println("dodat element");
     }
     public void obrisiElement()
     {
