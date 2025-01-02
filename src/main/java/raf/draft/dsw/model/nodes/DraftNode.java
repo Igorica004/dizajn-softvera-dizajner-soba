@@ -1,14 +1,19 @@
 package raf.draft.dsw.model.nodes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import raf.draft.dsw.model.structures.Building;
 
 import java.awt.*;
 import java.util.Objects;
 
 @Data
+@NoArgsConstructor
 public abstract class DraftNode {
     private String naziv;
+    @JsonIgnore
     private DraftNode roditelj;
     private Color color;
     private String putanja;

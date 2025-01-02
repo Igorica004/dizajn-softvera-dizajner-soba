@@ -208,3 +208,16 @@
 [GRESKA][2024-12-31T17:00:54.043990400] ne sme da se preklapa sa drugim elementom
 [GRESKA][2024-12-31T17:22:33.631052528] Ne moze da se obrise root!
 [GRESKA][2024-12-31T17:23:07.704092291] Ne moze da se obrise root!
+[GRESKA][2025-01-01T20:58:17.339422424] Neuspesno otvaranje fajla
+[GRESKA][2025-01-01T20:59:49.469026699] Neuspesno otvaranje fajla
+[GRESKA][2025-01-01T21:01:40.094958801] Neuspesno otvaranje fajla
+[GRESKA][2025-01-01T21:02:14.256121783] Neuspesno otvaranje fajla
+[GRESKA][2025-01-01T21:05:25.697125747] Neuspesno otvaranje fajla
+[GRESKA][2025-01-01T21:11:56.748924021] Neuspesno otvaranje fajla
+[GRESKA][2025-01-01T21:17:41.157477711] Neuspesno otvaranje fajla
+[GRESKA][2025-01-01T21:18:34.439509029] Neuspesno otvaranje fajla
+[GRESKA][2025-01-01T21:19:01.546968328] Neuspesno otvaranje fajla
+[GRESKA][2025-01-01T21:21:07.101066640] Neuspesno otvaranje fajla
+[GRESKA][2025-01-01T21:21:37.006977706] Neuspesno otvaranje fajla
+[GRESKA][2025-01-01T21:25:09.635681421] Neuspesno otvaranje fajla
+[GRESKA][2025-01-01T21:34:50.334620586] Neuspesno otvaranje fajla

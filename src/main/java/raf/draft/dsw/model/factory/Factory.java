@@ -5,5 +5,5 @@ import raf.draft.dsw.model.nodes.DraftNode;
 import java.awt.*;
 
 public abstract class Factory {
-    public abstract DraftNode createNode(DraftNode parent, String naziv, String autor, String putanja, Dimension dimenzija);
+    public abstract DraftNode createNode(DraftNode parent, String naziv, String autor, Dimension dimenzija);
 }

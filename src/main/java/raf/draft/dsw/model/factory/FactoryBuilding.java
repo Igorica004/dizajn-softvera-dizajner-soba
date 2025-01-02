@@ -8,7 +8,7 @@ import java.awt.*;
 public class FactoryBuilding extends Factory {
 
     @Override
-    public DraftNode createNode(DraftNode parent, String ime, String autor, String putanja, Dimension dimenzija) {
+    public DraftNode createNode(DraftNode parent, String ime, String autor, Dimension dimenzija) {
         return new Building(ime, parent);
     }
 }

@@ -211,7 +211,7 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         if(draftNode instanceof Project){
             Project project = (Project) draftNode;
             factory = new FactoryProject();
-            DraftNode newNode = factory.createNode(getSelectedNode().getDraftNode(),project.getNaziv(),project.getAutor(),project.getPutanja(),null );
+            DraftNode newNode = factory.createNode(getSelectedNode().getDraftNode(),project.getNaziv(),project.getAutor(),null );
             newNode.setRoditelj(getSelectedNode().getDraftNode());
             return newNode;
         }
@@ -222,9 +222,15 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
             factory = new FactoryRoom();
             dimenzija = ((Room)draftNode).getDimenzija();
         }
-        DraftNode newNode = factory.createNode(getSelectedNode().getDraftNode(),draftNode.getNaziv(),"","",dimenzija);
+        DraftNode newNode = factory.createNode(getSelectedNode().getDraftNode(),draftNode.getNaziv(),"",dimenzija);
         newNode.setRoditelj(getSelectedNode().getDraftNode());
         return newNode;
+    }
+
+    public void addProject(Project project) {
+        DraftTreeItem koren = (DraftTreeItem) treeModel.getRoot();
+        koren.add(new DraftTreeItem(project));
+        ((DraftNodeComposite)koren.getDraftNode()).addChild(project);
     }
 
     @Override

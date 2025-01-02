@@ -17,7 +17,7 @@ public class ProzorNoviProjekat extends JDialog {
     private boolean ucitano = false;
     public ProzorNoviProjekat(String editOrMake){initialize(editOrMake);}
 
-    private JTextField fieldAutor,fieldNaziv,fieldPutanja;
+    private JTextField fieldAutor,fieldNaziv;
 
     public void initialize(String editOrMake){
         this.setModal(true);
@@ -35,18 +35,14 @@ public class ProzorNoviProjekat extends JDialog {
 
         JLabel labelAutor = new JLabel("Autor: ");
         JLabel labelNaziv = new JLabel("Naziv: ");
-        JLabel labelPutanja = new JLabel("Putanja: ");
         fieldAutor = new JTextField(10);
         fieldNaziv = new JTextField(10);
-        fieldPutanja = new JTextField(10);
 
         panel2.setLayout(new GridLayout(3,2));
         panel2.add(labelAutor);
         panel2.add(fieldAutor);
         panel2.add(labelNaziv);
         panel2.add(fieldNaziv);
-        panel2.add(labelPutanja);
-        panel2.add(fieldPutanja);
         if(editOrMake.equals("Make")){
             dugmeNoviProzor = new JButton("Napravi projekat");
         }
@@ -61,8 +57,8 @@ public class ProzorNoviProjekat extends JDialog {
     public Project getProject()
     {
         DraftTreeItem selected = MainFrame.getInstanca().getDraftTree().getSelectedNode();
-        if(fieldNaziv.getText().isEmpty()) return new Project(fieldAutor.getText(), "Project" + selected.getChildCount(), fieldNaziv.getText(), null);
-        return new Project(fieldAutor.getText(), fieldNaziv.getText(), fieldPutanja.getText(), null);
+        if(fieldNaziv.getText().isEmpty()) return new Project(fieldAutor.getText(), "Project" + selected.getChildCount(), null);
+        return new Project(fieldAutor.getText(), fieldNaziv.getText(), null);
     }
     public void setProject()
     {
@@ -72,8 +68,8 @@ public class ProzorNoviProjekat extends JDialog {
 
 
         DraftNode cvor = MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode();
-        String naziv = fieldNaziv.getText(), autor = fieldAutor.getText(), putanja = fieldPutanja.getText();
-        DraftNode dn = new Project(autor,naziv,putanja,cvor.getRoditelj());
+        String naziv = fieldNaziv.getText(), autor = fieldAutor.getText();
+        DraftNode dn = new Project(autor,naziv,cvor.getRoditelj());
         if(!DraftNodeUtils.nameIsValid(dn)){
             Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"Greska pri imenovanju!");
             ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
@@ -82,6 +78,5 @@ public class ProzorNoviProjekat extends JDialog {
         Project project = (Project) cvor;
         project.setNaziv(naziv);
         project.setAutor(autor);
-        project.setPutanja(putanja);
     }
 }

@@ -14,9 +14,6 @@ public class OpenProjectAkcija extends AbstractRoomAction {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        JFileChooser chooser = new JFileChooser();
-        if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            Serializer.getInstanca().deserialize(chooser.getSelectedFile());
-        }
+        Serializer.getInstanca().deserialize();
     }
 }

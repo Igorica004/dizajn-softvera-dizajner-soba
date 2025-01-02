@@ -17,7 +17,7 @@ public class SaveAsAkcija extends AbstractRoomAction {
     public void actionPerformed(ActionEvent e) {
         JFileChooser chooser = new JFileChooser();
         if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            Serializer.getInstanca().serialize(chooser.getSelectedFile());
+            Serializer.getInstanca().serialize(chooser.getSelectedFile().getAbsolutePath());
         }
     }
 }
