@@ -2,15 +2,35 @@ package raf.draft.dsw.model.nodes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import raf.draft.dsw.model.roomobjects.*;
 import raf.draft.dsw.model.structures.Building;
+import raf.draft.dsw.model.structures.Room;
 
 import java.awt.*;
 import java.util.Objects;
 
 @Data
 @NoArgsConstructor
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Room.class, name = "room"),
+        @JsonSubTypes.Type(value = Building.class, name = "building"),
+        @JsonSubTypes.Type(value = Bojler.class, name = "bojler"),
+        @JsonSubTypes.Type(value = Kada.class, name = "kada"),
+        @JsonSubTypes.Type(value = Lavabo.class, name = "lavabo"),
+        @JsonSubTypes.Type(value = Ormar.class, name = "ormar"),
+        @JsonSubTypes.Type(value = Sto.class, name = "sto"),
+        @JsonSubTypes.Type(value = VesMasina.class, name = "vesmasina"),
+        @JsonSubTypes.Type(value = Vrata.class, name = "vrata"),
+        @JsonSubTypes.Type(value = WCSolja.class, name = "wcsolja"),
+})
 public abstract class DraftNode {
     private String naziv;
     @JsonIgnore

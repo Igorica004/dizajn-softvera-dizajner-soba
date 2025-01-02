@@ -1,6 +1,8 @@
 package raf.draft.dsw.model.structures;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import raf.draft.dsw.model.roomobjects.Prototype;
 import raf.draft.dsw.model.nodes.DraftNode;
@@ -11,6 +13,7 @@ import java.awt.*;
 import java.util.ArrayList;
 @Getter
 @Setter
+@NoArgsConstructor
 public class Room extends DraftNodeComposite {
     Dimension dimenzija; //1cm = ~37.8px
     private ArrayList<RoomElement> objects = new ArrayList<>();

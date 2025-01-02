@@ -1,5 +1,6 @@
 package raf.draft.dsw.model.structures;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import raf.draft.dsw.model.nodes.DraftNode;
 import raf.draft.dsw.model.nodes.DraftNodeComposite;
 

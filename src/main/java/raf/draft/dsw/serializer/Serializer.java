@@ -12,8 +12,11 @@ import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.model.messages.Message;
 import raf.draft.dsw.model.messages.MessageType;
 import raf.draft.dsw.model.nodes.DraftNode;
+import raf.draft.dsw.model.nodes.DraftNodeComposite;
+import raf.draft.dsw.model.structures.Building;
 import raf.draft.dsw.model.structures.Project;
 import raf.draft.dsw.tree.DraftTreeImplementation;
+import raf.draft.dsw.tree.model.DraftTreeItem;
 import raf.draft.dsw.utils.DraftNodeUtils;
 
 import javax.swing.*;
@@ -36,8 +39,12 @@ public class Serializer {
     private Serializer(){
     }
     public void serialize(String path) {
-        DraftNode draftNode = MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode();
-        Project selektovan = DraftNodeUtils.getProjectParent(draftNode);
+        DraftTreeItem draftTreeItem = MainFrame.getInstanca().getDraftTree().getSelectedNode();
+        if(draftTreeItem == null){
+            ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(new Message(MessageType.GRESKA,LocalDateTime.now(),"Niste izabrali projekat koji zelite da sacuvate"));
+            return;
+        }
+        Project selektovan = DraftNodeUtils.getProjectParent(draftTreeItem.getDraftNode());
         String putanja = selektovan.getPutanja();
         if(path == null && putanja == null){
             JFileChooser chooser = new JFileChooser();
@@ -88,7 +95,29 @@ public class Serializer {
             }
         } else return;
 
-
+        project.setRoditelj(((DraftTreeImplementation)MainFrame.getInstanca().getDraftTree()).getProjectManager());
+        for(DraftNode child:project.getChildren()){
+            if(child instanceof Building building){
+                for(DraftNode room: building.getChildren()){
+                    room.setRoditelj(building);
+                }
+            }
+            child.setRoditelj(project);
+        }
+        for(DraftNode child:project.getChildren()){
+            if(child instanceof Building building){
+                for(DraftNode room: building.getChildren()){
+                    for(DraftNode element: ((DraftNodeComposite)room).getChildren()){
+                        element.setRoditelj(room);
+                    }
+                }
+            }
+            else{
+                for(DraftNode element: ((DraftNodeComposite)child).getChildren()){
+                    element.setRoditelj(child);
+                }
+            }
+        }
         ((DraftTreeImplementation)MainFrame.getInstanca().getDraftTree()).addProject(project);
 
     }

@@ -206,6 +206,10 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         return (DraftTreeItem) treeView.getLastSelectedPathComponent();
     }
 
+    public DraftNode getProjectManager() {
+        return ((DraftTreeItem) treeModel.getRoot()).getDraftNode();
+    }
+
     private DraftNode createChild(DraftNode draftNode) {
         Factory factory;
         if(draftNode instanceof Project){
@@ -227,10 +231,21 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         return newNode;
     }
 
+    private DraftTreeItem getProjectItem(DraftNode project) {
+        if(project instanceof RoomElement)
+            return new DraftTreeItem(project);
+        DraftTreeItem draftTreeItem = new DraftTreeItem(project);
+        for(DraftNode child: ((DraftNodeComposite)project).getChildren()){
+            draftTreeItem.add(getProjectItem(child));
+        }
+        return draftTreeItem;
+    }
+
     public void addProject(Project project) {
         DraftTreeItem koren = (DraftTreeItem) treeModel.getRoot();
-        koren.add(new DraftTreeItem(project));
         ((DraftNodeComposite)koren.getDraftNode()).addChild(project);
+        koren.add(getProjectItem(project));
+        SwingUtilities.updateComponentTreeUI(treeView);
     }
 
     @Override
