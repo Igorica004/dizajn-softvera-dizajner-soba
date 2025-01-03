@@ -1,11 +1,13 @@
 package raf.draft.dsw.serializer;
 
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.Data;
 import raf.draft.dsw.core.ApplicationFramework;
 import raf.draft.dsw.gui.swing.MainFrame;
@@ -13,8 +15,14 @@ import raf.draft.dsw.model.messages.Message;
 import raf.draft.dsw.model.messages.MessageType;
 import raf.draft.dsw.model.nodes.DraftNode;
 import raf.draft.dsw.model.nodes.DraftNodeComposite;
+import raf.draft.dsw.model.painters.ElementPainter;
+import raf.draft.dsw.model.roomobjects.RoomElement;
 import raf.draft.dsw.model.structures.Building;
 import raf.draft.dsw.model.structures.Project;
+import raf.draft.dsw.model.structures.Room;
+import raf.draft.dsw.tabbedpane.TabbedPaneImplementation;
+import raf.draft.dsw.tabbedpane.view.RoomView;
+import raf.draft.dsw.tree.DraftTree;
 import raf.draft.dsw.tree.DraftTreeImplementation;
 import raf.draft.dsw.tree.model.DraftTreeItem;
 import raf.draft.dsw.utils.DraftNodeUtils;
@@ -27,6 +35,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @Data
 public class Serializer {
@@ -59,8 +68,27 @@ public class Serializer {
         selektovan.setPutanja(putanja);
 
         ObjectMapper mapper = new ObjectMapper();
+
+        ArrayList<ArrayList<PainterContainer>> containers = new ArrayList<>();
+        ArrayList<Room> rooms = DraftNodeUtils.getRooms(selektovan);
+        TabbedPaneImplementation tabbedPane = (TabbedPaneImplementation)MainFrame.getInstanca().getDesniPanel().getTabbedPane();
+        for(Room room : rooms) {
+            if(tabbedPane.getTabbedPaneModel().getSviTabovi().containsKey(room)){
+                ArrayList<PainterContainer> container = new ArrayList<>();
+                for(ElementPainter elementpainter:tabbedPane.getTabbedPaneModel().getSviTabovi().get(room).getPainters()){
+                    container.add(new PainterContainer(elementpainter));
+                }
+                containers.add(container);
+            }
+        }
+
+        ObjectNode rootNode = mapper.createObjectNode();
+        rootNode.set("projekat",mapper.valueToTree(selektovan));
+        rootNode.set("painteri",mapper.valueToTree(containers));
+
+
         try {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(putanja),selektovan);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(putanja),rootNode);
         } catch (Exception e) {
             ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(new Message(MessageType.GRESKA,LocalDateTime.now(),"Neuspesno otvaranje fajla"));
         }
@@ -68,8 +96,10 @@ public class Serializer {
     }
 
     public void deserialize() {
-        ObjectMapper mapper = new ObjectMapper();
         Project project = null;
+        ArrayList<ArrayList<PainterContainer>> containers = null;
+
+        ObjectMapper mapper = new ObjectMapper();
         JFileChooser chooser = new JFileChooser();
         SimpleModule module = new SimpleModule();
         module.addDeserializer(Color.class, new JsonDeserializer<Color>() {
@@ -87,7 +117,9 @@ public class Serializer {
         if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             File fajl = chooser.getSelectedFile();
             try {
-                project = mapper.readValue(fajl,Project.class);
+                ObjectNode rootNode = (ObjectNode) mapper.readTree(fajl);
+                project = mapper.treeToValue(rootNode.get("projekat"),Project.class);
+                containers = mapper.treeToValue(rootNode.get("painteri"),new TypeReference<ArrayList<ArrayList<PainterContainer>>>(){});
             } catch (Exception e) {
                 ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(new Message(MessageType.GRESKA,LocalDateTime.now(),"Neuspesno otvaranje fajla"));
                 System.out.println(e.getMessage());
@@ -118,7 +150,22 @@ public class Serializer {
                 }
             }
         }
-        ((DraftTreeImplementation)MainFrame.getInstanca().getDraftTree()).addProject(project);
+        DraftTreeImplementation draftTree = ((DraftTreeImplementation)MainFrame.getInstanca().getDraftTree());
+        draftTree.addProject(project);
+
+        ArrayList<Room> rooms = DraftNodeUtils.getRooms(project);
+        int i=0,j=0;
+        TabbedPaneImplementation tabbedPane = (TabbedPaneImplementation)MainFrame.getInstanca().getDesniPanel().getTabbedPane();
+        for(Room room:rooms) {
+            RoomView roomView = new RoomView(room);
+            for(DraftNode roomElement:room.getChildren()){
+                roomView.getPainters().add(containers.get(i).get(j).getPainter((RoomElement) roomElement));
+                j++;
+            }
+            j=0;
+            tabbedPane.getTabbedPaneModel().getSviTabovi().put(room,roomView);
+            i++;
+        }
 
     }
 }

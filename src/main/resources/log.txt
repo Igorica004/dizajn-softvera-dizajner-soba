@@ -237,3 +237,8 @@
 [GRESKA][2025-01-02T17:15:38.548427686] ne sme da se preklapa sa drugim elementom
 [GRESKA][2025-01-02T17:15:56.657690574] Neuspesno otvaranje fajla
 [GRESKA][2025-01-02T18:39:51.369449364] Greska pri imenovanju!
+[GRESKA][2025-01-03T16:07:53.179320041] Neuspesno otvaranje fajla
+[GRESKA][2025-01-03T16:11:18.756839755] Niste izabrali projekat koji zelite da sacuvate
+[GRESKA][2025-01-03T16:12:00.498669430] ne sme da se preklapa sa drugim elementom
+[GRESKA][2025-01-03T16:12:13.440707518] ne sme da se preklapa sa drugim elementom
+[GRESKA][2025-01-03T16:12:20.621793454] Niste izabrali projekat koji zelite da sacuvate
