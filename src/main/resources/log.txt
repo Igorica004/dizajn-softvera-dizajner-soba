@@ -1,14 +1,214 @@
-[GRESKA][2025-01-05T13:41:34.808875600] Morate da izaberete sobu za koju zelite da sacuvate sablon
-[GRESKA][2025-01-05T13:41:49.532445900] Neuspesno otvaranje fajla
-[GRESKA][2025-01-05T13:43:10.362186600] Nije odabrana vrsta elementa
-[GRESKA][2025-01-05T13:43:40.755445300] Nije selektovana grana!
-[GRESKA][2025-01-05T13:45:10.173995200] Morate da izaberete sobu na koju hocete da primenite sablon
-[GRESKA][2025-01-05T14:09:03.787717800] Nije odabrana vrsta elementa
-[GRESKA][2025-01-05T14:13:11.763435300] Nije odabrana dimenzija elementa
-[GRESKA][2025-01-05T14:14:18.172249200] ne sme da se preklapa sa drugim elementom
-[GRESKA][2025-01-05T14:19:50.690324900] Neuspesno otvaranje fajla
-[GRESKA][2025-01-05T14:22:04.568858800] Nije selektovana soba za cuvanje sablona
-[GRESKA][2025-01-05T14:44:21.260780500] Niste izabrali projekat koji zelite da sacuvate
-[GRESKA][2025-01-05T16:15:28.996697100] Niste izabrali projekat koji zelite da sacuvate
-[GRESKA][2025-01-05T16:16:06.218572700] Morate da izaberete sobu za koju zelite da sacuvate sablon
-[GRESKA][2025-01-05T16:55:59.542650300] Nije odabrana vrsta elementa
+[GRESKA][2024-11-08T13:30:47.910309900] Soba ne moze da ima dete
+[GRESKA][2024-11-08T21:59:01.470933500] Soba ne moze da ima dete
+[GRESKA][2024-11-08T22:01:42.628128700] Soba ne moze da ima dete
+[GRESKA][2024-11-09T15:41:29.342264144] Soba ne moze da ima dete
+[GRESKA][2024-11-09T16:41:25.554842282] Soba ne moze da ima dete
+[GRESKA][2024-11-10T14:58:17.311479078] nmp
+[GRESKA][2024-11-10T15:17:25.539701600] nmp
+[GRESKA][2024-11-10T15:25:46.777808400] nmp
+[GRESKA][2024-11-10T15:56:25.764716200] Soba ne moze da ima dete
+[GRESKA][2024-11-10T16:26:21.988697300] Ne moze da se obrise root!
+[GRESKA][2024-11-10T16:29:16.571169] Nema selectovan cvor za brisanje!
+[GRESKA][2024-11-10T16:29:34.983802] Nema selectovan cvor za brisanje!
+[GRESKA][2024-11-10T16:29:40.549609100] Ne moze da se obrise root!
+[GRESKA][2024-11-10T16:43:15.671517356] Soba ne moze da ima dete
+[GRESKA][2024-11-10T16:51:57.059843093] Ne moze da se obrise root!
+[GRESKA][2024-11-10T23:19:32.629551500] Greska pri imenovanju!
+[GRESKA][2024-11-10T23:20:41.401447] Nije selektovana grana!
+[GRESKA][2024-11-10T23:26:29.380933500] Greska pri imenovanju!
+[GRESKA][2024-11-11T19:36:33.315933942] Greska pri imenovanju!
+[GRESKA][2024-11-11T20:03:51.533203859] Soba ne moze da ima dete
+[GRESKA][2024-11-11T20:46:36.410351494] Greska pri imenovanju!
+[GRESKA][2024-11-11T20:47:10.929984816] Greska pri imenovanju!
+[GRESKA][2024-11-11T20:51:05.224441436] Greska pri imenovanju!
+[GRESKA][2024-11-11T20:51:21.536438092] Greska pri imenovanju!
+[GRESKA][2024-11-11T21:05:16.139591147] Soba ne moze da ima dete
+[GRESKA][2024-11-11T21:12:04.065188240] Greska pri imenovanju!
+[GRESKA][2024-11-11T21:14:59.160519256] Greska pri imenovanju!
+[GRESKA][2024-11-11T21:15:23.456435097] Greska pri imenovanju!
+[GRESKA][2024-11-11T21:30:02.999012729] Ne moze da se obrise root!
+[GRESKA][2024-11-29T16:53:54.066362500] Soba ne moze da ima dete
+[GRESKA][2024-12-06T19:19:37.114947900] pogresno uneta dimenzija
+[GRESKA][2024-12-06T19:19:50.380574300] pogresno uneta dimenzija
+[GRESKA][2024-12-07T15:57:13.925939300] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T15:57:25.080596600] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T15:57:37.977287100] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T16:12:07.959867600] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T16:12:27.530551100] pogresno uneta dimenzija
+[GRESKA][2024-12-07T16:19:24.669726900] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T16:19:36.104027900] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-07T16:19:38.465417200] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T16:19:48.625498100] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-07T16:20:02.310093200] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-07T16:22:30.679890600] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-07T16:47:58.747335900] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T16:49:47.191988200] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T16:49:55.260911] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-07T16:50:07.533354500] Nije odabrana vrsta elementa
+[GRESKA][2024-12-07T16:51:08.535815600] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T16:51:10.365659300] Nije selektovana grana!
+[GRESKA][2024-12-07T16:51:58.043581500] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T16:52:05.550101400] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T16:52:19.400736100] Nije odabrana vrsta elementa
+[GRESKA][2024-12-07T16:53:18.874660900] Nije odabrana vrsta elementa
+[GRESKA][2024-12-07T16:53:23.981266400] Nije odabrana vrsta elementa
+[GRESKA][2024-12-07T17:11:26.067404900] Nije odabrana vrsta elementa
+[GRESKA][2024-12-07T17:11:30.902965] Nije odabrana dimenzija elementa
+[GRESKA][2024-12-07T19:51:24.238859700] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-07T20:41:32.692705100] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-07T20:41:55.935084500] Nije odabrana vrsta elementa
+[GRESKA][2024-12-07T21:43:35.595357200] Nije selektovana grana!
+[GRESKA][2024-12-08T13:05:51.973923252] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-08T20:55:08.273548700] Nije odabrana dimenzija elementa
+[GRESKA][2024-12-08T22:31:52.676064300] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-08T23:44:27.249204100] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-09T17:33:39.793791901] Nije selektovana grana!
+[GRESKA][2024-12-09T17:41:47.426280495] Nije odabrana vrsta elementa
+[GRESKA][2024-12-09T17:59:26.822306001] Nije selektovana grana!
+[GRESKA][2024-12-09T23:51:01.115856500] Nije odabrana dimenzija elementa
+[GRESKA][2024-12-09T18:55:16.595875533] Nije odabrana dimenzija elementa
+[GRESKA][2024-12-10T00:59:36.780408900] Nije selektovana grana!
+[GRESKA][2024-12-10T02:08:14.009735600] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-10T02:19:33.084508300] Nije odabrana dimenzija elementa
+[GRESKA][2024-12-10T15:31:29.015621400] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-10T15:58:02.718015300] Nije odabrana vrsta elementa
+[GRESKA][2024-12-10T19:48:48.385154600] Nije selektovana grana!
+[GRESKA][2024-12-10T19:48:56.681112700] Nije selektovana grana!
+[GRESKA][2024-12-10T20:11:30.040936600] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-10T22:53:29.894414] pogresno uneta dimenzija
+[GRESKA][2024-12-10T22:53:40.790793500] pogresno uneta dimenzija
+[GRESKA][2024-12-10T23:06:59.186007400] Nije odabrana vrsta elementa
+[GRESKA][2024-12-10T23:07:10.241717500] nije nadjen okvir sobe u koju se dodaje
+[GRESKA][2024-12-10T21:39:24.135695200] Nije selektovana grana!
+[GRESKA][2024-12-10T23:25:00.012392] Nije odabrana vrsta elementa
+[GRESKA][2024-12-10T23:25:44.913982700] nije nadjen okvir sobe u koju se dodaje
+[GRESKA][2024-12-10T23:44:54.493415500] nije nadjen okvir sobe u koju se dodaje
+[GRESKA][2024-12-10T23:47:57.881998200] nije nadjen okvir sobe u koju se dodaje
+[GRESKA][2024-12-10T23:48:05.701758900] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-11T00:02:24.252635600] Nije odabrana vrsta elementa
+[GRESKA][2024-12-12T14:10:22.870942200] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-12T14:16:14.240337700] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-12T18:08:04.976850700] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-12T18:09:46.559883100] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-12T19:02:39.505080600] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-12T22:59:35.055713700] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-12T23:57:23.308125] Nije odabrana vrsta elementa
+[GRESKA][2024-12-14T12:41:06.487054869] Nije selektovan objekat, ili ih ima vise
+[GRESKA][2024-12-14T13:50:45.781712329] Nije odabrana vrsta elementa
+[GRESKA][2024-12-15T18:04:54.695721602] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T18:15:56.515388236] Nije selektovan objekat, ili ih ima vise
+[GRESKA][2024-12-15T18:16:00.116788533] Nije selektovan objekat, ili ih ima vise
+[GRESKA][2024-12-15T18:16:00.738680980] Nije selektovan objekat, ili ih ima vise
+[GRESKA][2024-12-15T18:16:00.901545084] Nije selektovan objekat, ili ih ima vise
+[GRESKA][2024-12-15T18:16:01.092017048] Nije selektovan objekat, ili ih ima vise
+[GRESKA][2024-12-15T18:16:01.266051534] Nije selektovan objekat, ili ih ima vise
+[GRESKA][2024-12-15T18:16:01.437238202] Nije selektovan objekat, ili ih ima vise
+[GRESKA][2024-12-15T18:16:01.594305780] Nije selektovan objekat, ili ih ima vise
+[GRESKA][2024-12-15T18:16:27.709017434] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T18:16:36.580117773] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T18:16:43.644414941] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T18:16:58.868989980] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T18:18:59.645169012] Nije selektovan objekat, ili ih ima vise
+[GRESKA][2024-12-15T18:19:22.967800129] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-15T18:19:41.859163579] Nije selektovan objekat, ili ih ima vise
+[GRESKA][2024-12-15T18:22:07.920681811] Nije otvoren prikaz sobe.
+[GRESKA][2024-12-15T18:41:19.987437841] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T18:41:25.685940465] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T18:46:17.474014753] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-15T18:52:35.833146139] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:13:15.603584312] Nije selektovana grana!
+[GRESKA][2024-12-15T20:14:52.010364322] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:14:56.301824107] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:14:56.924758308] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:14:57.203606015] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:14:57.596621006] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:14:57.996878093] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:14:58.173310567] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:14:58.339592738] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:14:58.499906842] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:14:58.668967141] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:14:58.829878815] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:14:59.161925287] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:14:59.336881512] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:14:59.495778217] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:14:59.653537523] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:14:59.820358214] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:15:00.002168524] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:15:00.173509201] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:15:00.508019321] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:16:00.499909424] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:16:00.759125008] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:18:13.914238889] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:18:14.721433775] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:18:15.212715570] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:18:15.568577682] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:18:15.732075934] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:18:15.902333801] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:18:16.066289292] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:18:16.216395824] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:18:16.374412609] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:18:16.702371082] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:18:17.093918998] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:18:17.253517973] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:18:17.451639759] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:18:17.645598959] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:18:17.811599569] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:18:17.991652848] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:18:18.333668321] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:18:18.490852827] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:18:18.829748421] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:18:19.178051019] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:49.265111358] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:49.917926025] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:50.098047576] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:50.247456501] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:50.549874887] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:50.715063120] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:50.866873333] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:51.013174740] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:51.168020670] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:51.327377887] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:51.638813807] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:51.796369915] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:51.962341617] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:52.125499131] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:52.275216345] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:52.425317910] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:52.580085150] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:53.049201658] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:53.250376983] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:53.434662480] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:53.600666952] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:53.772522689] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:53.948383224] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:54.119629841] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:54.293329877] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:54.459435219] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:54.961529591] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:55.175365996] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:55.356378386] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:55.525683075] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T20:21:56.017802315] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T21:54:59.939284500] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T21:58:28.421262700] ne sme da se preklapa sa drugim elementom
+[GRESKA][2024-12-15T22:43:08.749335100] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-15T23:18:51.767640600] Nije odabrana dimenzija elementa
+[GRESKA][2024-12-15T22:32:43.570486094] Elementi se seku
+[GRESKA][2024-12-15T22:32:47.227896263] Elementi se seku
+[GRESKA][2024-12-15T22:32:51.094054283] Elementi se seku
+[GRESKA][2024-12-15T22:32:56.109685083] Elementi se seku
+[GRESKA][2024-12-15T23:49:10.387143900] Elementi se seku
+[GRESKA][2024-12-15T23:49:21.850350700] Elementi se seku
+[GRESKA][2024-12-30T10:10:10.273184700] Nije selektovana grana!
+[GRESKA][2024-12-30T10:11:11.785723500] Nisu dobre dimenzije sobe
+[GRESKA][2024-12-30T10:21:02.499022400] Nije selektovana grana!
+[GRESKA][2024-12-30T11:46:09.869071700] Nije odabrana vrsta elementa
+[GRESKA][2024-12-30T11:49:08.943721700] Nije odabrana vrsta elementa
+[GRESKA][2024-12-30T11:53:22.803019] Nije odabrana vrsta elementa
+[GRESKA][2025-01-02T21:51:48.351560300] Elementi se seku
+[GRESKA][2025-01-05T14:47:33.545671600] pogresno uneti elementi
+[GRESKA][2025-01-05T14:48:41.197322200] pogresno uneti elementi
+[GRESKA][2025-01-05T15:04:43.808109] Niste izabrali projekat koji zelite da sacuvate
+[GRESKA][2025-01-05T15:07:52.683427200] Nije otvoren prikaz sobe.
+[GRESKA][2025-01-05T15:55:01.828744200] objekat ne moze da ima dete
+[GRESKA][2025-01-05T16:21:55.333665800] pogresno uneta dimenzija

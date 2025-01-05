@@ -19,10 +19,12 @@ import java.util.Map;
 public class OrganizeMyRoomProzor extends JDialog {
     private ArrayList<ElementPainter> elementiZaDodavanje = new ArrayList<>();
     private ArrayList<JButton> buttons = new ArrayList<>();
+
     private JLabel labelSirina = new JLabel("Sirina: ");
     private JLabel labelVisina = new JLabel("Visina: ");
     private JTextField tfSirina = new JTextField(10);
     private JTextField tfVisina = new JTextField(10);
+
     private JComboBox<String> moguciElementi = new JComboBox<>();
     private JButton button = new JButton("Organizuj");
     private JPanel spisak = new JPanel();
@@ -58,7 +60,8 @@ public class OrganizeMyRoomProzor extends JDialog {
         panel.add(panel1);
         panel.add(spisak);
         panel.add(button);
-        setContentPane(panel);
+        JScrollPane sp = new JScrollPane(panel);
+        setContentPane(sp);
 
     }
     void dodajElement(String element)

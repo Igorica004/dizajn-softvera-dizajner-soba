@@ -64,9 +64,6 @@ public class RoomView extends JPanel implements ISubscriber {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-//        Point p =new Point();
-//        p.x = (int)(room.getDimenzija().width*getScale()) - 30;
-//        p.y = (int)(room.getDimenzija().height*getScale()) - 30;
         g2d.transform(getTransform());
         g2d.drawRect(10,10,(int)(room.getDimenzija().width*getScale()),
                     (int)(room.getDimenzija().height*getScale()));
@@ -110,7 +107,7 @@ public class RoomView extends JPanel implements ISubscriber {
         }
         n = (int)((room.getDimenzija().width * getScale())/sirinaPolja);
         m = (int)((room.getDimenzija().height * getScale())/visinaPolja);
-        if(prozor.getSpisakElemenata().size()>n*m || sirinaPolja > room.getDimenzija().width*getScale() || visinaPolja > room.getDimenzija().height*getScale()){
+        if(prozor.getSpisakElemenata().isEmpty() || prozor.getSpisakElemenata().size()>n*m || sirinaPolja > room.getDimenzija().width*getScale() || visinaPolja > room.getDimenzija().height*getScale()){
             Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"pogresno uneti elementi");
             ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
             return;
