@@ -22,11 +22,10 @@ public class DraftNodeUtils {
         return true;
     }
     public static Project getProjectParent(DraftNode child){
-        DraftNode selektovan = MainFrame.getInstanca().getDraftTree().getSelectedNode().getDraftNode();
-        while(selektovan != null && !(selektovan instanceof Project)){
-            selektovan = selektovan.getRoditelj();
+        while(child != null && !(child instanceof Project)){
+            child = child.getRoditelj();
         }
-        if(selektovan instanceof Project project){
+        if(child instanceof Project project){
             return project;
         }
         return null;

@@ -11,6 +11,7 @@ import raf.draft.dsw.model.nodes.DraftNodeComposite;
 @Setter
 @NoArgsConstructor
 public class Project extends DraftNodeComposite {
+    private boolean menjan = true;
     private String naziv;
     private String autor;
     private String putanja;

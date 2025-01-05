@@ -52,6 +52,10 @@ public class Serializer {
             return;
         }
         Project selektovan = DraftNodeUtils.getProjectParent(draftTreeItem.getDraftNode());
+        if(!selektovan.isMenjan()){
+            System.out.println("Projekat nije menjan");
+            return;
+        }
         String putanja = selektovan.getPutanja();
         if(path == null && putanja == null){
             JFileChooser chooser = new JFileChooser();
@@ -64,6 +68,7 @@ public class Serializer {
             System.out.println(putanja);
         } else System.out.println(putanja);
         selektovan.setPutanja(putanja);
+        selektovan.setMenjan(false);
 
         ObjectMapper mapper = new ObjectMapper();
 
@@ -136,6 +141,7 @@ public class Serializer {
             }
         }
         DraftTreeImplementation draftTree = ((DraftTreeImplementation)MainFrame.getInstanca().getDraftTree());
+        project.setMenjan(false);
         draftTree.addProject(project);
 
         ArrayList<Room> rooms = DraftNodeUtils.getRooms(project);

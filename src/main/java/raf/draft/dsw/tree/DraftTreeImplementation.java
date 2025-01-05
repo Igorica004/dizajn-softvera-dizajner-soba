@@ -207,7 +207,17 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
 
     @Override
     public DraftTreeItem getSelectedNode() {
-        return (DraftTreeItem) treeView.getLastSelectedPathComponent();
+        DraftTreeItem draftTreeItem = (DraftTreeItem) treeView.getLastSelectedPathComponent();
+        if(draftTreeItem!=null)
+            selektovaniProjekat = draftTreeItem.getDraftNode();
+        Enumeration<?> enumeration = ((DraftTreeItem)treeModel.getRoot()).depthFirstEnumeration();
+        while(enumeration.hasMoreElements()){
+            DraftTreeItem draftTreeItem2 = (DraftTreeItem) enumeration.nextElement();
+            if(draftTreeItem2.getDraftNode() == selektovaniProjekat)
+                return draftTreeItem2;
+
+        }
+        return null;
     }
 
     public DraftNode getProjectManager() {

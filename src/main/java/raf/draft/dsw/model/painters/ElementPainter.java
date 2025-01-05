@@ -45,14 +45,17 @@ public abstract class ElementPainter {
     public void setLokacija(Point lokacija){
         this.lokacija = lokacija;
         initializeShape();
+        roomElement.setMenjan();
     }
     public void setDimenzija(Dimension dimenzija){
         this.dimenzija = dimenzija;
         initializeShape();
+        roomElement.setMenjan();
     }
 
     public void setScaleRatio(double scaleRatio){
         this.scaleRatio = scaleRatio;
         initializeShape();
+        roomElement.setMenjan();
     }
 }
