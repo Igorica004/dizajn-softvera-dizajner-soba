@@ -30,6 +30,7 @@ import java.util.Objects;
         @JsonSubTypes.Type(value = VesMasina.class, name = "vesmasina"),
         @JsonSubTypes.Type(value = Vrata.class, name = "vrata"),
         @JsonSubTypes.Type(value = WCSolja.class, name = "wcsolja"),
+        @JsonSubTypes.Type(value = Krevet.class, name = "krevet")
 })
 public abstract class DraftNode {
     private String naziv;
