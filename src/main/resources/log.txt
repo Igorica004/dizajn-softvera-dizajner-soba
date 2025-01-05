@@ -1,0 +1,10 @@
+[GRESKA][2025-01-05T13:41:34.808875600] Morate da izaberete sobu za koju zelite da sacuvate sablon
+[GRESKA][2025-01-05T13:41:49.532445900] Neuspesno otvaranje fajla
+[GRESKA][2025-01-05T13:43:10.362186600] Nije odabrana vrsta elementa
+[GRESKA][2025-01-05T13:43:40.755445300] Nije selektovana grana!
+[GRESKA][2025-01-05T13:45:10.173995200] Morate da izaberete sobu na koju hocete da primenite sablon
+[GRESKA][2025-01-05T14:09:03.787717800] Nije odabrana vrsta elementa
+[GRESKA][2025-01-05T14:13:11.763435300] Nije odabrana dimenzija elementa
+[GRESKA][2025-01-05T14:14:18.172249200] ne sme da se preklapa sa drugim elementom
+[GRESKA][2025-01-05T14:19:50.690324900] Neuspesno otvaranje fajla
+[GRESKA][2025-01-05T14:22:04.568858800] Nije selektovana soba za cuvanje sablona
