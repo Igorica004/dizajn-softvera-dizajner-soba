@@ -107,7 +107,7 @@ public class RoomView extends JPanel implements ISubscriber {
         }
         n = (int)((room.getDimenzija().width * getScale())/sirinaPolja);
         m = (int)((room.getDimenzija().height * getScale())/visinaPolja);
-        if(prozor.getSpisakElemenata().size()>n*m || sirinaPolja > room.getDimenzija().width*getScale() || visinaPolja > room.getDimenzija().height*getScale()){
+        if(prozor.getSpisakElemenata().isEmpty() || prozor.getSpisakElemenata().size()>n*m || sirinaPolja > room.getDimenzija().width*getScale() || visinaPolja > room.getDimenzija().height*getScale()){
             Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"pogresno uneti elementi");
             ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
             return;
