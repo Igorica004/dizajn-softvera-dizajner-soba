@@ -64,9 +64,6 @@ public class RoomView extends JPanel implements ISubscriber {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-//        Point p =new Point();
-//        p.x = (int)(room.getDimenzija().width*getScale()) - 30;
-//        p.y = (int)(room.getDimenzija().height*getScale()) - 30;
         g2d.transform(getTransform());
         g2d.drawRect(10,10,(int)(room.getDimenzija().width*getScale()),
                     (int)(room.getDimenzija().height*getScale()));
