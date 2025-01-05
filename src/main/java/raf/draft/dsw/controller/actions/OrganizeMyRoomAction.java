@@ -10,7 +10,7 @@ import java.awt.event.KeyEvent;
 public class OrganizeMyRoomAction extends AbstractRoomAction{
     OrganizeMyRoomAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, ActionEvent.ALT_MASK));
-        putValue(SMALL_ICON, loadIcon("/images/delete.png"));
+        putValue(SMALL_ICON, loadIcon("/images/organize.png"));
         putValue(NAME, "Organize");
         putValue(SHORT_DESCRIPTION, "Organize My Room");
         setEnabled(false);
