@@ -10,6 +10,7 @@ import raf.draft.dsw.utils.JPanelUtils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.time.LocalDateTime;
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 public class OrganizeMyRoomProzor extends JDialog {
     private ArrayList<ElementPainter> elementiZaDodavanje = new ArrayList<>();
+    private ArrayList<JButton> buttons = new ArrayList<>();
     private JLabel labelSirina = new JLabel("Sirina: ");
     private JLabel labelVisina = new JLabel("Visina: ");
     private JTextField tfSirina = new JTextField(10);
@@ -89,32 +91,34 @@ public class OrganizeMyRoomProzor extends JDialog {
                 break;
             case "vrata":
                 k = new Vrata("vrata", null, Color.red, 0,new BasicStroke(BasicStroke.CAP_BUTT));
-                elementiZaDodavanje.add(new VrataPainter(k, new Point(1,1), new Dimension((int)(Integer.parseInt(tfSirina.getText())*rv.getScale()), (int)(Integer.parseInt(tfVisina.getText())* rv.getScale()))));
+                elementiZaDodavanje.add(new VrataPainter(k, new Point(1,1), d));
                 break;
             case "wc solja":
                 k = new WCSolja("wc solja", null, Color.red, 0,new BasicStroke(BasicStroke.CAP_BUTT));
-                elementiZaDodavanje.add(new WCSoljaPainter(k, new Point(1,1), new Dimension((int)(Integer.parseInt(tfSirina.getText())*rv.getScale()), (int)(Integer.parseInt(tfVisina.getText())* rv.getScale()))));
+                elementiZaDodavanje.add(new WCSoljaPainter(k, new Point(1,1), d));
                 break;
             case "ves masina":
             case "sto":
             case "ormar":
             case "krevet":
                 k = new Krevet("krevet", null, Color.red, 0,new BasicStroke(BasicStroke.CAP_BUTT));
-                elementiZaDodavanje.add(new KrevetPainter(k, new Point(1,1), new Dimension((int)(Integer.parseInt(tfSirina.getText())*rv.getScale()), (int)(Integer.parseInt(tfVisina.getText())* rv.getScale()))));
+                elementiZaDodavanje.add(new KrevetPainter(k, new Point(1,1), d));
                 break;
             default:
                 Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"pogresno (nekako) selektovan element");
                 ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
         }
         JButton button = new JButton("x");
-        button.addActionListener(e->{obrisiElement();});
+        buttons.add(button);
+        button.addActionListener(e->{obrisiElement(buttons.indexOf(button));});
         spisak.add(JPanelUtils.makeHBox(new JLabel(element + "(" + tfSirina.getText() + " x " + tfVisina.getText() + ")"), button));
         revalidate();
     }
-    public void obrisiElement()
+    public void obrisiElement(int a)
     {
-        spisak.remove(0);
-        elementiZaDodavanje.removeFirst();
+        spisak.remove(a);
+        elementiZaDodavanje.remove(a);
+        buttons.remove(a);
         revalidate();
     }
     public ArrayList<ElementPainter> getSpisakElemenata()

@@ -4,8 +4,11 @@ import lombok.Data;
 import raf.draft.dsw.controller.command.CommandManager;
 import raf.draft.dsw.controller.observer.ISubscriber;
 import raf.draft.dsw.controller.observer.Notification;
+import raf.draft.dsw.core.ApplicationFramework;
 import raf.draft.dsw.gui.swing.MainFrame;
 import raf.draft.dsw.gui.swing.OrganizeMyRoomProzor;
+import raf.draft.dsw.model.messages.Message;
+import raf.draft.dsw.model.messages.MessageType;
 import raf.draft.dsw.model.painters.ElementPainter;
 import raf.draft.dsw.model.painters.RectanglePainter;
 import raf.draft.dsw.model.roomobjects.RoomElement;
@@ -16,6 +19,7 @@ import raf.draft.dsw.utils.MisaListener;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Data
@@ -106,6 +110,11 @@ public class RoomView extends JPanel implements ISubscriber {
         }
         n = (int)((room.getDimenzija().width * getScale())/sirinaPolja);
         m = (int)((room.getDimenzija().height * getScale())/visinaPolja);
+        if(prozor.getSpisakElemenata().size()>n*m || sirinaPolja > room.getDimenzija().width*getScale() || visinaPolja > room.getDimenzija().height*getScale()){
+            Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"pogresno uneti elementi");
+            ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
+            return;
+        }
 
         int[][] matrica = new int[n][m];
         int top = 0, bottom = n-1, left = 0, right = m-1;
@@ -156,7 +165,6 @@ public class RoomView extends JPanel implements ISubscriber {
                     else p.x = sirinaPolja*right + 10;
                     if(bottom==n-1) p.y = (int)(room.getDimenzija().height*getScale()) - prozor.getSpisakElemenata().get(count).getDimenzija().height + 10;
                     else p.y = visinaPolja*i + 10;
-
                     prozor.getSpisakElemenata().get(count).setLokacija(p);
                     addPainter(prozor.getSpisakElemenata().get(count));
                     ((DraftTreeImplementation)MainFrame.getInstanca().getDraftTree()).addRoomElement(prozor.getSpisakElemenata().get(count).getRoomElement());
