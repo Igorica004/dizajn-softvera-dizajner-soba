@@ -74,7 +74,7 @@ public class AddCommand extends AbstractCommand {
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
                 painter = new KrevetPainter(k,point,d);
                 break;
-            case "Ves Masina":
+            case "Ves masina":
                 k = new VesMasina("ves masina"+room.getChildCount(), rv.getRoom(),
                         Color.RED, 0, new BasicStroke(BasicStroke.CAP_BUTT));
                 painter = new KrevetPainter(k,point,d);
@@ -93,6 +93,7 @@ public class AddCommand extends AbstractCommand {
                 k = null;
                 painter = new KrevetPainter(k,point,d);
                 System.out.println("nesto nije u redu");
+                return;
         }
         for(ElementPainter ep: rv.getPainters()) {
             for(Shape shape: ep.getShapes()) {

@@ -61,7 +61,7 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
             ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
             return;
         }
-        if(!(selectedTreeItem.getDraftNode() instanceof DraftNodeComposite)){
+        if(!(selectedTreeItem.getDraftNode() instanceof DraftNodeComposite) || selectedTreeItem.getDraftNode() instanceof Room){
             Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"objekat ne moze da ima dete");
             ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
             return;
