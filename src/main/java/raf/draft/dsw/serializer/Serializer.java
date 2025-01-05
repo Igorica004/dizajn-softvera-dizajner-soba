@@ -22,7 +22,6 @@ import raf.draft.dsw.model.structures.Project;
 import raf.draft.dsw.model.structures.Room;
 import raf.draft.dsw.tabbedpane.TabbedPaneImplementation;
 import raf.draft.dsw.tabbedpane.view.RoomView;
-import raf.draft.dsw.tree.DraftTree;
 import raf.draft.dsw.tree.DraftTreeImplementation;
 import raf.draft.dsw.tree.model.DraftTreeItem;
 import raf.draft.dsw.utils.DraftNodeUtils;
@@ -31,14 +30,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Enumeration;
 
 @Data
 public class Serializer {
+    private static int patternCounter=1;
     private static Serializer instance = null;
     public static Serializer getInstanca() {
         if(instance == null)
@@ -99,21 +97,8 @@ public class Serializer {
         Project project = null;
         ArrayList<ArrayList<PainterContainer>> containers = null;
 
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = createObjectMapper();
         JFileChooser chooser = new JFileChooser();
-        SimpleModule module = new SimpleModule();
-        module.addDeserializer(Color.class, new JsonDeserializer<Color>() {
-            @Override
-            public Color deserialize(JsonParser parser, DeserializationContext context) throws IOException {
-                JsonNode node = parser.getCodec().readTree(parser);
-                int red = node.get("red").asInt();
-                int green = node.get("green").asInt();
-                int blue = node.get("blue").asInt();
-                int alpha = node.has("alpha") ? node.get("alpha").asInt() : 255; // Podrazumevana vrednost
-                return new Color(red, green, blue, alpha);
-            }
-        });
-        mapper.registerModule(module);
         if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             File fajl = chooser.getSelectedFile();
             try {
@@ -166,6 +151,119 @@ public class Serializer {
             tabbedPane.getTabbedPaneModel().getSviTabovi().put(room,roomView);
             i++;
         }
+    }
 
+    public void savePattern(){
+        JFileChooser chooser = new JFileChooser();
+        while(new File(String.format("src/resources/pattern%d.json",patternCounter)).exists()){
+            patternCounter++;
+        }
+        String putanja = "src/main/resources/pattern"+patternCounter+++".json";
+        File file = new File(putanja);
+        DraftTreeItem draftTreeItem = MainFrame.getInstanca().getDraftTree().getSelectedNode();
+        if(draftTreeItem == null){
+            ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(new Message(MessageType.GRESKA,LocalDateTime.now(),"Nije selektovana soba za cuvanje sablona"));
+            return;
+        }
+        DraftNode draftNode = draftTreeItem.getDraftNode();
+        if(!(draftNode instanceof Room)){
+            ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(new Message(MessageType.GRESKA,LocalDateTime.now(),"Morate da izaberete sobu za koju zelite da sacuvate sablon"));
+            return;
+        }
+        Room room = (Room)draftNode;
+        ArrayList<PainterContainer> painteri = new ArrayList<>();
+        TabbedPaneImplementation tabbedPane = (TabbedPaneImplementation)MainFrame.getInstanca().getDesniPanel().getTabbedPane();
+        RoomView tab = tabbedPane.getTabbedPaneModel().getSviTabovi().get(room);
+        for(ElementPainter painter:tab.getPainters()){
+            painteri.add(new PainterContainer(painter));
+        }
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode rootNode = mapper.createObjectNode();
+        rootNode.set("room",mapper.valueToTree(room));
+        rootNode.set("painteri",mapper.valueToTree(painteri));
+        try {
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(putanja),rootNode);
+        } catch (IOException e) {
+            System.out.println("Ne uspesno otvaranje fajla\n"+e.getMessage());
+        }
+    }
+    public void loadPattern(){
+        DraftTreeItem draftTreeItem = MainFrame.getInstanca().getDraftTree().getSelectedNode();
+        DraftNode draftNode = draftTreeItem.getDraftNode();
+        if(!(draftNode instanceof Room)){
+            ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(new Message(MessageType.GRESKA,LocalDateTime.now(),"Morate da izaberete sobu na koju hocete da primenite sablon"));
+            return;
+        }
+
+        Room room = (Room)draftNode;
+        Room pattern;
+        ArrayList<PainterContainer> painteri = new ArrayList<>();
+
+        ObjectMapper mapper = createObjectMapper();
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new File("src/main/resources"));
+        if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            File fajl = chooser.getSelectedFile();
+            try {
+                ObjectNode rootNode = (ObjectNode) mapper.readTree(fajl);
+                pattern = mapper.treeToValue(rootNode.get("room"),Room.class);
+                painteri = mapper.treeToValue(rootNode.get("painteri"), new TypeReference<ArrayList<PainterContainer>>(){});
+
+            } catch (Exception e) {
+                ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(new Message(MessageType.GRESKA,LocalDateTime.now(),"Neuspesno otvaranje fajla"));
+                System.out.println(e.getMessage());
+                return;
+            }
+        }else return;
+
+        TabbedPaneImplementation tabbedPane = (TabbedPaneImplementation)MainFrame.getInstanca().getDesniPanel().getTabbedPane();
+        tabbedPane.getTabbedPaneModel().getSviTabovi().remove(room);
+        tabbedPane.getTabbedPaneModel().getNoviTabovi().remove(room);
+
+        room.getChildren().clear();
+        for(DraftNode element:pattern.getChildren()){
+            room.getChildren().add(element);
+        }
+        room.setDimenzija(pattern.getDimenzija());
+        RoomView roomView = new RoomView(room);
+        int i=0;
+        for(DraftNode element:room.getChildren()){
+            element.setRoditelj(room);
+            element.setColor(room.getColor());
+            roomView.getPainters().add(painteri.get(i).getPainter((RoomElement) element));
+            i++;
+        }
+
+        tabbedPane.getTabbedPaneModel().getSviTabovi().put(room,roomView);
+        DraftTreeImplementation draftTree = ((DraftTreeImplementation)MainFrame.getInstanca().getDraftTree());
+        Enumeration<?> enumeration = draftTree.getDepthFirstEnumeration();
+        DraftTreeItem draftTreeItem1 = DraftNodeUtils.createDraftTreeItem(room);
+        while(enumeration.hasMoreElements()){
+            DraftTreeItem dti = (DraftTreeItem)enumeration.nextElement();
+            if(dti.getDraftNode().equals(room)){
+                DraftTreeItem roditelj = (DraftTreeItem)dti.getParent();
+                roditelj.remove(dti);
+                roditelj.add(draftTreeItem1);
+            }
+        }
+        draftTree.notifySubscribers(null);
+    }
+
+    private ObjectMapper createObjectMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(Color.class, new JsonDeserializer<Color>() {
+            @Override
+            public Color deserialize(JsonParser parser, DeserializationContext context) throws IOException {
+                JsonNode node = parser.getCodec().readTree(parser);
+                int red = node.get("red").asInt();
+                int green = node.get("green").asInt();
+                int blue = node.get("blue").asInt();
+                int alpha = node.has("alpha") ? node.get("alpha").asInt() : 255; // Podrazumevana vrednost
+                return new Color(red, green, blue, alpha);
+            }
+        });
+        mapper.registerModule(module);
+        return mapper;
     }
 }

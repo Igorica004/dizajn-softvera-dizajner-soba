@@ -26,6 +26,7 @@ import raf.draft.dsw.tabbedpane.view.RoomView;
 import raf.draft.dsw.tree.model.DraftTreeItem;
 import raf.draft.dsw.tree.view.DraftTreeView;
 import raf.draft.dsw.utils.ColorUtils;
+import raf.draft.dsw.utils.DraftNodeUtils;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
@@ -156,6 +157,9 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
             }
         }
     }
+    public Enumeration<?> getDepthFirstEnumeration() {
+        return ((DraftTreeItem)treeModel.getRoot()).depthFirstEnumeration();
+    }
 
     @Override
     public void removeChild() {
@@ -231,20 +235,10 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         return newNode;
     }
 
-    private DraftTreeItem getProjectItem(DraftNode project) {
-        if(project instanceof RoomElement)
-            return new DraftTreeItem(project);
-        DraftTreeItem draftTreeItem = new DraftTreeItem(project);
-        for(DraftNode child: ((DraftNodeComposite)project).getChildren()){
-            draftTreeItem.add(getProjectItem(child));
-        }
-        return draftTreeItem;
-    }
-
     public void addProject(Project project) {
         DraftTreeItem koren = (DraftTreeItem) treeModel.getRoot();
         ((DraftNodeComposite)koren.getDraftNode()).addChild(project);
-        koren.add(getProjectItem(project));
+        koren.add(DraftNodeUtils.createDraftTreeItem(project));
         SwingUtilities.updateComponentTreeUI(treeView);
     }
 
@@ -262,5 +256,6 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         for(ISubscriber subscriber : subscriberList) {
             subscriber.update(notification);
         }
+        SwingUtilities.updateComponentTreeUI(treeView);
     }
 }

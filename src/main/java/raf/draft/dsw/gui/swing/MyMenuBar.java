@@ -1,9 +1,7 @@
 package raf.draft.dsw.gui.swing;
 
 import raf.draft.dsw.controller.actions.*;
-import raf.draft.dsw.serializer.actions.OpenProjectAkcija;
-import raf.draft.dsw.serializer.actions.SaveAkcija;
-import raf.draft.dsw.serializer.actions.SaveAsAkcija;
+import raf.draft.dsw.serializer.actions.*;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
@@ -18,12 +16,16 @@ public class MyMenuBar extends JMenuBar {
         SaveAkcija sa = new SaveAkcija();
         SaveAsAkcija saa = new SaveAsAkcija();
         OpenProjectAkcija opa = new OpenProjectAkcija();
+        SavePatternAkcija spa = new SavePatternAkcija();
+        LoadPatternAkcija lpa = new LoadPatternAkcija();
         fileMenu.add(ea);
         fileMenu.add(ba);
         fileMenu.add(eca);
         fileMenu.add(sa);
         fileMenu.add(saa);
         fileMenu.add(opa);
+        fileMenu.add(spa);
+        fileMenu.add(lpa);
         add(fileMenu);
     }
 }
