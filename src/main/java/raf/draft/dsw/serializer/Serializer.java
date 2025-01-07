@@ -160,12 +160,10 @@ public class Serializer {
     }
 
     public void savePattern(){
-        JFileChooser chooser = new JFileChooser();
         while(new File(String.format("src/resources/pattern%d.json",patternCounter)).exists()){
             patternCounter++;
         }
         String putanja = "src/main/resources/pattern"+patternCounter+++".json";
-        File file = new File(putanja);
         DraftTreeItem draftTreeItem = MainFrame.getInstanca().getDraftTree().getSelectedNode();
         if(draftTreeItem == null){
             ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(new Message(MessageType.GRESKA,LocalDateTime.now(),"Nije selektovana soba za cuvanje sablona"));

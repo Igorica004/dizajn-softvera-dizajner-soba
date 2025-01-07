@@ -212,3 +212,7 @@
 [GRESKA][2025-01-05T15:07:52.683427200] Nije otvoren prikaz sobe.
 [GRESKA][2025-01-05T15:55:01.828744200] objekat ne moze da ima dete
 [GRESKA][2025-01-05T16:21:55.333665800] pogresno uneta dimenzija
+[GRESKA][2025-01-07T13:41:12.570130755] objekat ne moze da ima dete
+[GRESKA][2025-01-07T13:49:48.902661695] Elementi se seku
+[GRESKA][2025-01-07T13:50:24.411360692] Morate da izaberete sobu na koju hocete da primenite sablon
+[GRESKA][2025-01-07T14:00:50.256341079] Niste izabrali projekat koji zelite da sacuvate

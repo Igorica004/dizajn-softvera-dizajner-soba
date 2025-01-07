@@ -14,6 +14,7 @@ import raf.draft.dsw.model.painters.RectanglePainter;
 import raf.draft.dsw.model.roomobjects.RoomElement;
 import raf.draft.dsw.model.structures.Room;
 import raf.draft.dsw.tree.DraftTreeImplementation;
+import raf.draft.dsw.utils.DraftNodeUtils;
 import raf.draft.dsw.utils.MisaListener;
 
 import javax.swing.*;
@@ -77,10 +78,12 @@ public class RoomView extends JPanel implements ISubscriber {
 
     public void addPainter(ElementPainter elementPainter) {
         painters.add(elementPainter);
+        DraftNodeUtils.getProjectParent(room).setMenjan(true);
         repaint();
     }
     public void removePainter(ElementPainter elementPainter) {
         painters.remove(elementPainter);
+        DraftNodeUtils.getProjectParent(room).setMenjan(true);
         repaint();
     }
 

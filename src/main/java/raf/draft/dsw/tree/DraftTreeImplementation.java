@@ -62,7 +62,7 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
             return;
         }
         if(!(selectedTreeItem.getDraftNode() instanceof DraftNodeComposite) || selectedTreeItem.getDraftNode() instanceof Room){
-            Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"objekat ne moze da ima dete");
+            Message messsage = new Message(MessageType.GRESKA, LocalDateTime.now(),"Namestaj se dodaje preko Add state-a");
             ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(messsage);
             return;
         }
@@ -121,6 +121,8 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         }
 
         selectedNode.addChild(newNode);
+        if(!(selectedNode instanceof ProjectExplorer))
+            DraftNodeUtils.getProjectParent(selectedNode).setMenjan(true);
         selectedTreeItem.add(new DraftTreeItem(newNode));
 
         treeView.expandPath(treeView.getSelectionPath());
@@ -134,6 +136,7 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         treeModel.reload();
         room.addChild(roomElement);
         Enumeration<?> enumeration = ((DraftTreeItem)treeModel.getRoot()).depthFirstEnumeration();
+        DraftNodeUtils.getProjectParent(room).setMenjan(true);
         while(enumeration.hasMoreElements()){
             DraftTreeItem draftTreeItem = (DraftTreeItem) enumeration.nextElement();
             DraftNode dn = draftTreeItem.getDraftNode();
@@ -176,6 +179,7 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
         }
         selectedTreeItem.removeFromParent();
         ((DraftNodeComposite)selectedTreeItem.getDraftNode().getRoditelj()).removeChild(selectedTreeItem.getDraftNode());
+        DraftNodeUtils.getProjectParent(selectedTreeItem.getDraftNode()).setMenjan(true);
 
         SwingUtilities.updateComponentTreeUI(treeView);
         notifySubscribers(null);
@@ -184,6 +188,10 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
     @Override
     public void editSelectedNode() {
         DraftTreeItem selectedTreeItem = getSelectedNode();
+        if(selectedTreeItem.getDraftNode() instanceof ProjectExplorer){
+            ApplicationFramework.getInstanca().getMessageGenerator().generateMessage(new Message(MessageType.GRESKA, LocalDateTime.now(),"Ne moze da se menja project explorer"));
+            return;
+        }
         if(selectedTreeItem.getDraftNode() instanceof Project)
         {
             EditProjekatAkcija editRoomAkcija = MainFrame.getInstanca().getActionManager().getEditProjekatAkcija();
@@ -201,23 +209,14 @@ public class DraftTreeImplementation implements DraftTree, IPublisher {
             editRoomAkcija.setRoom();
             notifySubscribers(null);
         }
+        DraftNodeUtils.getProjectParent(selectedTreeItem.getDraftNode()).setMenjan(true);
         SwingUtilities.updateComponentTreeUI(treeView);
     }
 
 
     @Override
     public DraftTreeItem getSelectedNode() {
-        DraftTreeItem draftTreeItem = (DraftTreeItem) treeView.getLastSelectedPathComponent();
-        if(draftTreeItem!=null)
-            selektovaniProjekat = draftTreeItem.getDraftNode();
-        Enumeration<?> enumeration = ((DraftTreeItem)treeModel.getRoot()).depthFirstEnumeration();
-        while(enumeration.hasMoreElements()){
-            DraftTreeItem draftTreeItem2 = (DraftTreeItem) enumeration.nextElement();
-            if(draftTreeItem2.getDraftNode() == selektovaniProjekat)
-                return draftTreeItem2;
-
-        }
-        return null;
+        return (DraftTreeItem) treeView.getLastSelectedPathComponent();
     }
 
     public DraftNode getProjectManager() {
