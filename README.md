@@ -1,1 +1,1 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/81AyoSwM)
+Domaći zadatak iz Dizajna softvera na Računarskom fakultetu. Domaći rađen sa koleginicom Anastasijom Lazić RN 39/2023. Projekat predstavlja program za dizajniranje enterijera prostorija u kom korisnik sa mišem prevlači elemente, rotira ih, zadaje im dimenzije i vrši ostale transformacije. Program je pisan u Javi i koristi JavaFX za grafički intefejs.
